@@ -14,6 +14,7 @@
     </div>
 </div>
 
+<span id="Message" class="d-none">@TempData["Message"]</span>
 
 <div class="row m-b-30">
     <div class="col-lg-8">
@@ -42,28 +43,6 @@
                         <th scope="row">@item.MaQuyenTryCap</th>
                         <td>@item.TenQuyenTryCap</td>
                         <td>@item.Mota</td>
-                        @*<td class="text-right">
-                            @Html.ActionLink("Chi tiết", "Details", new
-                            {
-                                id = item.MaQuyenTryCap,
-                           Controller = "AdminQuyenTruyCap",
-                                area = "Admin"
-                            }, new { @class = "btn btn-primary btn-tone m-r-5" })
-
-                            @Html.ActionLink("Sửa", "Edit", new
-                            {
-                                id = item.MaQuyenTryCap,
-                           Controller = "AdminQuyenTruyCap",
-                                area = "Admin"
-                            }, new { @class = "btn btn-secondary btn-tone m-r-5" })
-
-                            @Html.ActionLink("Xóa", "Delete", new
-                            {
-                                id = item.MaQuyenTryCap,
-                           Controller = "AdminQuyenTruyCap",
-                                area = "Admin"
-                            }, new { @class = "btn btn-success btn-tone m-r-5" })
-                        </td>*@
                         <td>
                             <a href="@Url.Action("Edit", "AdminQuyenTruyCap",new {id = item.MaQuyenTryCap,  area = "Admin" })" title="Chỉnh sửa" class="btn btn-icon btn-hover btn-sm btn-rounded pull-right">
                                 <i class="anticon anticon-edit"></i>
@@ -78,3 +57,15 @@
         </tbody>
     </table>
 </div>
+
+@section Scripts
+{
+    <script type="text/javascript">
+        $(document).ready(function () {
+            var message = $('#Message').text();
+            if (message !== '') {
+                toastr.success(message);
+            }
+        });
+    </script>
+}
