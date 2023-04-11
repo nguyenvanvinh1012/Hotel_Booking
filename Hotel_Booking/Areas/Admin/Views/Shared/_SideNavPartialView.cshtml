@@ -15,44 +15,55 @@
                 </a>
             </li>
 
-            @*Quản lí đơn hàng*@
+            @*Quản lí đơn đặt phòng*@
             <li class="nav-item">
-                <a class="dropdown-toggle" href="@Url.Action("Index", "AdminQuanLyDonHang", new { area = "Admin" })">
+                <a class="dropdown-toggle" href="@Url.Action("Index", "AdminDatPhong", new { area = "Admin" })">
                     <span class="icon-holder">
                         <i class="anticon anticon-appstore"></i>
                     </span>
-                    <span class="title">Quản lý đơn hàng</span>
+                    <span class="title">Quản lý đặt phòng</span>
                     <span class="arrow">
                         <i class="arrow-icon"></i>
                     </span>
                 </a>
             </li>
 
-            @*Quản lí sản phẩm*@
+            @*Quản lí thành phố*@
             <li class="nav-item">
-                <a class="dropdown-toggle" href="@Url.Action("Index", "AdminSanPham", new { area = "Admin" })">
+                <a class="dropdown-toggle" href="@Url.Action("Index", "AdminThanhPho", new { area = "Admin" })">
                     <span class="icon-holder">
                         <i class="anticon anticon-build"></i>
                     </span>
-                    <span class="title">Quản lý sản phẩm</span>
+                    <span class="title">Quản lý thành phố</span>
                     <span class="arrow">
                         <i class="arrow-icon"></i>
                     </span>
                 </a>
             </li>
 
-            @*Quản lí khách hàng*@
-            <li class="nav-item">
-                <a class="dropdown-toggle" href="@Url.Action("Index", "AdminKhachHang",new { area = "Admin" })">
-                    <span class="icon-holder">
-                        <i class="anticon anticon-hdd"></i>
-                    </span>
-                    <span class="title">Quản lý khách hàng</span>
-                    <span class="arrow">
-                        <i class="arrow-icon"></i>
-                    </span>
-                </a>
-            </li>
+            @*Quản lí khách sạn*@
+        <li class="nav-item dropdown">
+            <a class="dropdown-toggle" href="javascript:void(0);">
+                <span class="icon-holder">
+                    <i class="anticon anticon-hdd"></i>
+                </span>
+                <span class="title">Quản lý khách sạn</span>
+                <span class="arrow">
+                    <i class="arrow-icon"></i>
+                </span>
+            </a>
+            <ul class="dropdown-menu">
+                <li>
+                    @Html.ActionLink("Quản lí loại khách sạn", "Index", "AdminLoaiKhachSan", new { area = "Admin" }, null)
+                </li>
+                <li>
+                    @Html.ActionLink("Quản lí khách sạn", "Index", "AdminKhachSan", new { area = "Admin" }, null)
+                </li>
+                <li>
+                    @Html.ActionLink("Quản lí phòng", "Index", "AdminPhong", new { area = "Admin" }, null)
+                </li>
+            </ul>
+        </li>
 
             @*Quản lí hệ thống*@
             <li class="nav-item dropdown">
@@ -67,29 +78,12 @@
                 </a>
                 <ul class="dropdown-menu">
                     <li>
-                        @Html.ActionLink("Quản lí tài khoản", "Index", "AdminTaiKhoans", new { area = "Admin" }, null)
-                    </li>
-                    <li>
-                        @Html.ActionLink("Quản lí danh mục", "Index", "AdminDanhMuc", new { area = "Admin" }, null)@*<a href="form-layouts.html">Quản lý danh mục</a>*@
+                        @Html.ActionLink("Quản lí tài khoản", "Index", "AdminTaiKhoan", new { area = "Admin" }, null)
                     </li>
                     <li>
                         @Html.ActionLink("Quản lí quyền truy cập", "Index", "AdminQuyenTruyCap", new { area = "Admin" }, null)
                     </li>
                 </ul>
-            </li>
-
-
-            @*Shipper*@
-            <li class="nav-item dropdown">
-                <a class="dropdown-toggle" href="@Url.Action("Index", "AdminShipper",new { area = "Admin" })">
-                    <span class="icon-holder">
-                        <i class="anticon anticon-lock"></i>
-                    </span>
-                    <span class="title">Quản lý Shipper</span>
-                    <span class="arrow">
-
-                    </span>
-                </a>
             </li>
         </ul>
     </div>
