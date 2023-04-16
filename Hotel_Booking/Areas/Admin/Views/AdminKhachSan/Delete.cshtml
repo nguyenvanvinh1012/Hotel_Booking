@@ -1,0 +1,95 @@
+﻿@model Hotel_Booking.Models.KhachSan
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="page-header">
+    <div class="header-sub-title">
+        <nav class="breadcrumb breadcrumb-dash">
+            <a href="@Url.Action("Index", "Home",new { area = "Admin" })" class="breadcrumb-item"><i class="anticon anticon-home m-r-5"></i>Trang chủ</a>
+            <a href="@Url.Action("Index", "AdminKhachSan",new { area = "Admin" })" class="breadcrumb-item">Danh sách khách sạn</a>
+            <span class="breadcrumb-item active">Xác nhận xóa</span>
+        </nav>
+    </div>
+</div>
+
+<div class="card-body">
+    <div class="table-responsive">
+        <table class="product-info-table m-t-20">
+            <tbody>
+                <tr>
+                    <td>ID:</td>
+                    <td class="text-dark font-weight-semibold">@Model.Id</td>
+                </tr>
+                <tr>
+                    <td>Tên khách sạn:</td>
+                    <td>@Model.Ten</td>
+                </tr>
+                <tr>
+                    <td>Địa chỉ</td>
+                    <td>@Model.DiaChi</td>
+                </tr>
+                <tr>
+                    <td>Số điện thoại</td>
+                    <td>@Model.SoDienThoai</td>
+                </tr>
+                <tr>
+                    <td>Cách trung tâm</td>
+                    <td>@Model.CachTrungTam</td>
+                </tr>
+
+                <tr>
+                    <td>Mô tả:</td>
+                    <td>@Model.MoTa</td>
+                </tr>
+                <tr>
+                    <td>Giáp biển</td>
+                    @if (Model.GiapBien == true)
+                    {
+                        <td>Có</td>
+                    }
+                    else
+                    {
+                        <td>Không</td>
+                    }
+
+                </tr>
+                <tr>
+                    <td>Đánh giá:</td>
+                    <td>@Model.DanhGia  <i class='bx bxs-star'></i>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Thành phố:</td>
+                    <td>@Model.ThanhPho.Ten</td>
+                </tr>
+                <tr>
+                    <td>Loại khách sạn:</td>
+                    <td>@Model.LoaiKhachSan.Ten</td>
+                </tr>
+                <tr>
+                    <td>Ảnh khách sạn:</td>
+                    <td>
+                        <img width="200" height="200" src="@Model.UrlHinhAnh1" />
+                    </td>
+                </tr>
+                <tr>
+                    <td>Xác nhận xóa:</td>
+                    <td>
+                        @using (Html.BeginForm())
+                        {
+                            @Html.AntiForgeryToken()
+                            <form asp-action="Delete">
+                                <input type="hidden" />
+                                <input type="submit" value="Xóa" class="btn btn-danger" />
+                            </form>
+                        }
+                    </td>
+                </tr>
+            </tbody>
+
+        </table>
+    </div>
+</div>

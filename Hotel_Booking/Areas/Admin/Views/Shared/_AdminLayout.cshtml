@@ -7,6 +7,8 @@
     <title>@ViewData["Title"]</title>
     <link href="~/Content/toastr.css" rel="stylesheet" />
     @Scripts.Render("~/bundles/modernizr")
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link href="~/Content/PagedList.css" rel="stylesheet" />
     <!-- Favicon -->
     <link rel="shortcut icon" href="~/Content/assets/images/favicon.png">
     <!-- page css -->
@@ -155,6 +157,8 @@
     <script src="~/Scripts/toastr.js"></script>
     @RenderSection("scripts", required: false)
 
+    @Scripts.Render("~/Scripts/jquery.validate.min.js")
+    @Scripts.Render("~/Scripts/jquery.validate.unobtrusive.min.js")
     <!-- Core Vendors JS -->
     <script src="~/Content/Adminassets/js/vendors.min.js"></script>
 

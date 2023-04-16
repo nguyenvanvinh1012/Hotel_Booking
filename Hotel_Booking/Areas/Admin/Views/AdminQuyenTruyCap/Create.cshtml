@@ -20,31 +20,31 @@
 {
     @Html.AntiForgeryToken()
 
-    <div class="form-horizontal">
-        <h4>Thêm mới</h4>
-        <hr />
-        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+<div class="form-horizontal">
+    <h4>Thêm mới</h4>
+    <hr />
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
 
-        <div class="form-group">
-            <label class="control-label col-md-2">Quyền truy cập</label>
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.TenQuyenTryCap, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.TenQuyenTryCap, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            <label class="control-label col-md-2">Mô tả</label>
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Mota, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Mota, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group col-md-6">
-            <div class="col-sm-6">
-                <button type="submit" class="btn btn-primary">Lưu thay đổi</button>
-            </div>
+    <div class="form-group">
+        <label class="control-label col-md-2">Quyền truy cập</label>
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.TenQuyenTryCap, new { htmlAttributes = new { @class = "form-control", placeholder = "Tên quyền truy cập" } })
+            @Html.ValidationMessageFor(model => model.TenQuyenTryCap, "", new { @class = "text-danger" })
         </div>
     </div>
+
+    <div class="form-group">
+        <label class="control-label col-md-2">Mô tả</label>
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.Mota, new { htmlAttributes = new { @class = "form-control", placeholder = "Mô tả" } })
+            @Html.ValidationMessageFor(model => model.Mota, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group col-md-6">
+        <div class="col-sm-6">
+            <button type="submit" class="btn btn-primary">Lưu thay đổi</button>
+        </div>
+    </div>
+</div>
 }

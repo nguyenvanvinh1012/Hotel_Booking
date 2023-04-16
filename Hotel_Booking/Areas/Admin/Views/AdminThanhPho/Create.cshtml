@@ -1,0 +1,56 @@
+﻿@model Hotel_Booking.Models.ThanhPho
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+
+<div class="page-header">
+    <div class="header-sub-title">
+        <nav class="breadcrumb breadcrumb-dash">
+            <a href="@Url.Action("Index", "Home",new { area = "Admin" })" class="breadcrumb-item"><i class="anticon anticon-home m-r-5"></i>Trang chủ</a>
+            <a href="@Url.Action("Index", "AdminThanhPho",new { area = "Admin" })" class="breadcrumb-item">Danh sách thành phố</a>
+            <span class="breadcrumb-item active">Tạo mới thành phố</span>
+        </nav>
+    </div>
+</div>
+
+@using (Html.BeginForm("Create", "AdminThanhPho", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+        <div class="form-group">
+            <label class="control-label col-md-2">Tên thành phố</label>
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Ten, new { htmlAttributes = new { @class = "form-control" , placeholder = "Tên thành phố" } })
+                @Html.ValidationMessageFor(model => model.Ten, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-md-2">Mô tả</label>
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.MoTa, new { htmlAttributes = new { @class = "form-control" , placeholder = "Mô tả" } })
+                @Html.ValidationMessageFor(model => model.MoTa, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div>
+            <label class="control-label col-md-2">Ảnh</label>
+            <div class="form-group">
+                <div class="col-md-10">
+                    <input type="file" name="ImageFile" required class="form-control" accept=".png, .jpg, .jpeg" />
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-sm-6">
+                <button type="submit" class="btn btn-primary">Tạo mới</button>
+            </div>
+        </div>
+
+    </div>
+}

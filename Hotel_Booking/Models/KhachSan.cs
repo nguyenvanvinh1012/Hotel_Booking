@@ -1,10 +1,11 @@
-namespace Hotel_Booking.Models
+﻿namespace Hotel_Booking.Models
 {
     using System;
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Data.Entity.Spatial;
+    using System.Web;
 
     [Table("KhachSan")]
     public partial class KhachSan
@@ -17,17 +18,22 @@ namespace Hotel_Booking.Models
 
         public int Id { get; set; }
 
+        [Required(ErrorMessage = "Tên khách sạn không được để trống!")]
         [StringLength(100)]
         public string Ten { get; set; }
 
+        [Required(ErrorMessage = "Địa chỉ khách sạn không được để trống!")]
         [StringLength(100)]
         public string DiaChi { get; set; }
 
+        [Required(ErrorMessage = "SĐT không được để trống!")]
         [StringLength(10)]
         public string SoDienThoai { get; set; }
 
+        [Range(1, 999999, ErrorMessage = "Giá trị phải lớn hơn 0")]
         public int? CachTrungTam { get; set; }
 
+        [Required(ErrorMessage = "Mô tả không được để trống!")]
         [StringLength(1000)]
         public string MoTa { get; set; }
 
@@ -59,5 +65,13 @@ namespace Hotel_Booking.Models
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Phong> Phongs { get; set; }
+        [NotMapped]
+        public HttpPostedFileBase ImageFile1 { get; set; }
+        [NotMapped]
+        public HttpPostedFileBase ImageFile2 { get; set; }
+        [NotMapped]
+        public HttpPostedFileBase ImageFile3 { get; set; }
+        [NotMapped]
+        public HttpPostedFileBase ImageFile4 { get; set; }
     }
 }

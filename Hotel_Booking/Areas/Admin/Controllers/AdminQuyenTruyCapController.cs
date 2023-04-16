@@ -50,7 +50,7 @@ namespace Hotel_Booking.Areas.Admin.Controllers
         {
             context.QuyenTruyCaps.Add(quyenTruyCap);
             context.SaveChanges();
-            TempData["Message"] = "Tạo mới thành công !";
+            TempData["Message"] = "Thêm thành công !";
             return RedirectToAction("Index");
         }
 
