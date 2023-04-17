@@ -137,9 +137,11 @@
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
     <Compile Include="Areas\Admin\Controllers\AdminKhachSanController.cs" />
     <Compile Include="Areas\Admin\Controllers\AdminLoaiKhachSanController.cs" />
+    <Compile Include="Areas\Admin\Controllers\AdminPhongController.cs" />
     <Compile Include="Areas\Admin\Controllers\AdminQuyenTruyCapController.cs" />
     <Compile Include="Areas\Admin\Controllers\AdminThanhPhoController.cs" />
     <Compile Include="Areas\Admin\Controllers\HomeController.cs" />
+    <Compile Include="Areas\Admin\Controllers\SearchController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -1375,6 +1377,13 @@
     <Content Include="Areas\Admin\Views\AdminKhachSan\Delete.cshtml" />
     <Content Include="Areas\Admin\Views\AdminLoaiKhachSan\Delete.cshtml" />
     <Content Include="Areas\Admin\Views\AdminThanhPho\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\AdminPhong\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\AdminPhong\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\AdminPhong\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\Search\FindThanhPho.cshtml" />
+    <Content Include="Areas\Admin\Views\Search\FindKhachSan.cshtml" />
+    <Content Include="Areas\Admin\Views\Search\FindPhong.cshtml" />
+    <Content Include="Areas\Admin\Views\Search\FindLoaiKhachSan.cshtml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />

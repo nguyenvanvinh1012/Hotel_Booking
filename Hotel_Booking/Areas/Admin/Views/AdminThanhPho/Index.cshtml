@@ -110,7 +110,7 @@
         $("#keyword").keyup(function () {
             var strkeyword = $('#keyword').val();
             $.ajax({
-                url: '/Admin/Search/FindProduct/',
+                url: '/Admin/Search/FindThanhPho/',
                 datatype: "json",
                 type: "POST",
                 data: { keyword: strkeyword },

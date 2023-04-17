@@ -1,0 +1,47 @@
+﻿@model List<Hotel_Booking.Models.KhachSan>
+
+@if (Model != null)
+{
+    foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @item.Id
+            </td>
+            <td>
+                <div class="d-flex align-items-center">
+                    <img class="img-fluid rounded" src="@item.UrlHinhAnh1" style="max-width: 60px" alt="">
+                    <h6 class="m-b-0 m-l-10">@item.Ten</h6>
+                </div>
+            </td>
+            <td>@item.DiaChi</td>
+            @*<td>@item.SoDienThoai</td>*@
+            <td>@item.CachTrungTam km</td>
+            @*<td><textarea style="height:400px; width:250px" class="form-control" aria-label="With textarea">@item.MoTa</textarea></td>*@
+
+            @if (@item.GiapBien == false)
+            {
+                <td>Không</td>
+            }
+            else
+            {
+                <td>Có</td>
+            }
+
+            <td>
+                @item.DanhGia
+                <i class='bx bxs-star'></i>
+            </td>
+            <td>@item.ThanhPho.Ten</td>
+            <td>@item.LoaiKhachSan.Ten</td>
+            <td>
+                <a href="@Url.Action("Edit", "AdminKhachSan",new {id = item.Id,  area = "Admin" })" title="Chỉnh sửa" class="btn btn-icon btn-hover btn-sm btn-rounded pull-right">
+                    <i class="anticon anticon-edit"></i>
+                </a>
+                <a href="@Url.Action("Delete", "AdminKhachSan",new {id = item.Id,  area = "Admin" })" title="Xóa" class="btn btn-icon btn-hover btn-sm btn-rounded">
+                    <i class="anticon anticon-delete"></i>
+                </a>
+            </td>
+        </tr>
+    }
+}

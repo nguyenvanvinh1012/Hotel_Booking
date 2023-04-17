@@ -1,0 +1,34 @@
+﻿
+@if (Model != null)
+{
+    foreach (var item in Model)
+    {
+        <tr>
+            <th scope="row">@item.Id</th>
+            <td>@item.Ten</td>
+            <td>@item.DienTich</td>
+            <td>@item.GiaThue</td>
+            <td>@item.TienNghi</td>
+            <td>@item.MoTa</td>
+
+            @if (item.LoaiGiuong == 1)
+            {
+                <td>Giường đơn</td>
+            }
+            else
+            {
+                <td>Giường đôi</td>
+
+            }
+            <td>@item.KhachSan.Ten</td>
+            <td>
+                <a href="@Url.Action("Edit", "AdminPhong",new {id = item.Id,  area = "Admin" })" title="Chỉnh sửa" class="btn btn-icon btn-hover btn-sm btn-rounded pull-right">
+                    <i class="anticon anticon-edit"></i>
+                </a>
+                <a href="@Url.Action("Delete", "AdminPhong",new {id = item.Id,  area = "Admin" })" title="Xóa" class="btn btn-icon btn-hover btn-sm btn-rounded">
+                    <i class="anticon anticon-delete"></i>
+                </a>
+            </td>
+        </tr>
+    }
+}

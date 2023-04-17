@@ -38,7 +38,8 @@
         <div class="table-responsive">
             <table class="table table-hover e-commerce-table">
                 <thead>
-                    <tr>
+                    <tr>               
+                        <th>ID</th>
                         <th>Tên khách sạn</th>
                         <th>Địa chỉ</th>
                         @*<th>SĐT</th>*@
@@ -56,6 +57,9 @@
                         foreach (var item in Model)
                         {
                             <tr>
+                                <td>
+                                    @item.Id
+                                </td>
                                 <td>
                                     <div class="d-flex align-items-center">
                                         <img class="img-fluid rounded" src="@item.UrlHinhAnh1" style="max-width: 60px" alt="">
@@ -76,19 +80,20 @@
                                     <td>Có</td>
                                 }
 
-                                <td>@item.DanhGia 
-                                    <i class='bx bxs-star'></i>
-                                </td>
-                                <td>@item.ThanhPho.Ten</td>
-                                <td>@item.LoaiKhachSan.Ten</td>
                                 <td>
-                                    <a href="@Url.Action("Edit", "AdminKhachSan",new {id = item.Id,  area = "Admin" })" title="Chỉnh sửa" class="btn btn-icon btn-hover btn-sm btn-rounded pull-right">
-                                        <i class="anticon anticon-edit"></i>
-                                    </a>
-                                    <a href="@Url.Action("Delete", "AdminKhachSan",new {id = item.Id,  area = "Admin" })" title="Xóa" class="btn btn-icon btn-hover btn-sm btn-rounded">
-                                        <i class="anticon anticon-delete"></i>
-                                    </a>
-                                </td>
+                                    @item.DanhGia
+                                <i class='bx bxs-star'></i>
+                            </td>
+                            <td>@item.ThanhPho.Ten</td>
+                            <td>@item.LoaiKhachSan.Ten</td>
+                            <td>
+                                <a href="@Url.Action("Edit", "AdminKhachSan",new {id = item.Id,  area = "Admin" })" title="Chỉnh sửa" class="btn btn-icon btn-hover btn-sm btn-rounded pull-right">
+                                    <i class="anticon anticon-edit"></i>
+                                </a>
+                                <a href="@Url.Action("Delete", "AdminKhachSan",new {id = item.Id,  area = "Admin" })" title="Xóa" class="btn btn-icon btn-hover btn-sm btn-rounded">
+                                    <i class="anticon anticon-delete"></i>
+                                </a>
+                            </td>
                             </tr>
                         }
                     }
@@ -113,7 +118,7 @@
         $("#keyword").keyup(function () {
             var strkeyword = $('#keyword').val();
             $.ajax({
-                url: '/Admin/Search/FindProduct/',
+                url: '/Admin/Search/FindKhachSan/',
                 datatype: "json",
                 type: "POST",
                 data: { keyword: strkeyword },
