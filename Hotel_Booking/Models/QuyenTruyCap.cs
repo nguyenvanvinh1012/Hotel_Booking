@@ -1,4 +1,4 @@
-namespace Hotel_Booking.Models
+﻿namespace Hotel_Booking.Models
 {
     using System;
     using System.Collections.Generic;
@@ -18,9 +18,11 @@ namespace Hotel_Booking.Models
         [Key]
         public int MaQuyenTryCap { get; set; }
 
+        [Required(ErrorMessage ="Vui lòng nhập tên quyền truy cập!")]
         [StringLength(50)]
         public string TenQuyenTryCap { get; set; }
 
+        [Required(ErrorMessage ="Vui lòng nhập mô tả!")]
         [StringLength(50)]
         public string Mota { get; set; }
 

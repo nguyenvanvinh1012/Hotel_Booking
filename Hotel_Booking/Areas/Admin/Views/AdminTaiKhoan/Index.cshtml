@@ -1,0 +1,135 @@
+﻿@model IEnumerable<Hotel_Booking.Models.TaiKhoan>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+@*<h2>Index</h2>
+
+    <p>
+        @Html.ActionLink("Create New", "Create")
+    </p>
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.QuyenTruyCap.TenQuyenTryCap)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.MatKhau)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.HoTen)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.SoDienThoai)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Email)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Active)
+            </th>
+            <th></th>
+        </tr>
+
+    @foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.QuyenTruyCap.TenQuyenTryCap)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.MatKhau)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.HoTen)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SoDienThoai)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Email)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Active)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id=item.TenTaiKhoan }) |
+                @Html.ActionLink("Details", "Details", new { id=item.TenTaiKhoan }) |
+                @Html.ActionLink("Delete", "Delete", new { id=item.TenTaiKhoan })
+            </td>
+        </tr>
+    }
+
+    </table>*@
+<div class="page-header">
+    <div class="header-sub-title">
+        <nav class="breadcrumb breadcrumb-dash">
+            <a href="@Url.Action("Index", "Home",new { area = "Admin" })" class="breadcrumb-item"><i class="anticon anticon-home m-r-5"></i>Trang chủ</a>
+            <span class="breadcrumb-item active">Danh sách tài khoản</span>
+        </nav>
+    </div>
+</div>
+
+<span id="Message" class="d-none">@TempData["Message"]</span>
+
+<div class="row m-b-30">
+    <div class="col-lg-8">
+        <a href="@Url.Action("Create", "AdminQuyenTruyCap",new { area = "Admin" })" class="btn btn-primary"><i class="anticon anticon-plus-circle m-r-5"></i><span>Thêm mới</span></a>
+    </div>
+    <div class="col-lg-4 ">
+
+    </div>
+</div>
+<div class="table-responsive">
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">Tên Tài Khoản</th>
+                @*<th scope="col">Mật khẩu</th>*@
+                <th scope="col">Họ Tên</th>
+                <th scope="col">Số điện thoại</th>
+                <th scope="col">Email</th>
+                <th scope="col">Active</th>
+            </tr>
+        </thead>
+        <tbody>
+            @if (Model != null)
+            {
+                foreach (var item in Model)
+                {
+                    <tr>
+                        <th scope="row">@item.TenTaiKhoan</th>
+                        @*<td>@item.MatKhau</td>*@
+                        <td>@item.HoTen</td>
+                        <td>@item.SoDienThoai</td>
+                        <td>@item.Email</td>
+                        @*<td>@item.MaQuyenTryCap</td>*@
+                        <td>@item.Active</td>
+                        <td>
+                            <a href="@Url.Action("Edit", "AdminQuyenTruyCap",new {id = item.MaQuyenTryCap,  area = "Admin" })" title="Chỉnh sửa" class="btn btn-icon btn-hover btn-sm btn-rounded pull-right">
+                                <i class="anticon anticon-edit"></i>
+                            </a>
+                            <a href="@Url.Action("Delete", "AdminQuyenTruyCap",new {id = item.MaQuyenTryCap,  area = "Admin" })" title="Xóa" class="btn btn-icon btn-hover btn-sm btn-rounded">
+                                <i class="anticon anticon-delete"></i>
+                            </a>
+                        </td>
+                    </tr>
+                }
+            }
+        </tbody>
+    </table>
+</div>
+
+@section Scripts
+{
+    <script type="text/javascript">
+        $(document).ready(function () {
+            var message = $('#Message').text();
+            if (message !== '') {
+                toastr.success(message);
+            }
+        });
+    </script>
+}
+

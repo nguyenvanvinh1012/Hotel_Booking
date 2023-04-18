@@ -1,4 +1,4 @@
-namespace Hotel_Booking.Models
+﻿namespace Hotel_Booking.Models
 {
     using System;
     using System.Collections.Generic;
@@ -17,16 +17,21 @@ namespace Hotel_Booking.Models
 
         public int Id { get; set; }
 
+        [Required(ErrorMessage = "Vui lòng nhập tên phòng!")]
         [StringLength(100)]
         public string Ten { get; set; }
 
+        [Range(10, 1000, ErrorMessage ="Giá trị phải lớn 10")]
         public int? DienTich { get; set; }
 
+        [Range(100000, 10000000, ErrorMessage =" Giá trị phải lớn hơn 100000")]
         public int? GiaThue { get; set; }
 
+        [Required(ErrorMessage = "Vui lòng nhập tiện nghi!")]
         [StringLength(200)]
         public string TienNghi { get; set; }
 
+        [Required(ErrorMessage = "Vui lòng nhập mô tả!")]
         [StringLength(1000)]
         public string MoTa { get; set; }
 
