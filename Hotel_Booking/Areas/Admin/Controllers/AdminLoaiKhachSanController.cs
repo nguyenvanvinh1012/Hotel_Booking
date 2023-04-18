@@ -31,18 +31,27 @@ namespace Hotel_Booking.Areas.Admin.Controllers
         [HttpPost]
         public ActionResult Create(LoaiKhachSan loaiKhachSan)
         {
-            if (loaiKhachSan.ImageFile != null && loaiKhachSan.ImageFile.ContentLength > 0)
+            if (ModelState.IsValid)
             {
-                var fileName = Path.GetFileName(loaiKhachSan.ImageFile.FileName);
-                var filePath = Path.Combine(Server.MapPath("~/Content/Images"), fileName);
-                loaiKhachSan.ImageFile.SaveAs(filePath);
-                loaiKhachSan.UrlHinhAnh = "/Content/Images/" + fileName;
+                if (loaiKhachSan.ImageFile != null && loaiKhachSan.ImageFile.ContentLength > 0)
+                {
+                    var fileName = Path.GetFileName(loaiKhachSan.ImageFile.FileName);
+                    var filePath = Path.Combine(Server.MapPath("~/Content/Images"), fileName);
+                    loaiKhachSan.ImageFile.SaveAs(filePath);
+                    loaiKhachSan.UrlHinhAnh = "/Content/Images/" + fileName;
+                }
+                loaiKhachSan.Active = true;
+                context.LoaiKhachSans.Add(loaiKhachSan);
+                context.SaveChanges();
+                TempData["Message"] = "Thêm thành công !";
+                return RedirectToAction("Index");
+
+            }  
+            else
+            {
+                return RedirectToAction("Create");
             }
-            loaiKhachSan.Active = true;
-            context.LoaiKhachSans.Add(loaiKhachSan);
-            context.SaveChanges();
-            TempData["Message"] = "Thêm thành công !";
-            return RedirectToAction("Index");
+               
         }
 
         //edit

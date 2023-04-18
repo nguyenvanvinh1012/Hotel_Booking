@@ -91,7 +91,7 @@ namespace Hotel_Booking.Areas.Admin.Controllers
             }
             else
             {
-                return View(khachSan);
+                return RedirectToAction("Create");
             }
 
         }
