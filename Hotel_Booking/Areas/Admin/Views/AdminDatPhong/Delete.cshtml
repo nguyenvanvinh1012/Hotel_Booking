@@ -1,0 +1,86 @@
+﻿@model Hotel_Booking.Models.DatPhong
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="page-header">
+    <div class="header-sub-title">
+        <nav class="breadcrumb breadcrumb-dash">
+            <a href="@Url.Action("Index", "Home",new { area = "Admin" })" class="breadcrumb-item"><i class="anticon anticon-home m-r-5"></i>Trang chủ</a>
+            <a href="@Url.Action("Index", "AdminDatPhong",new { area = "Admin" })" class="breadcrumb-item">Danh sách các phòng đã đặt</a>
+            <span class="breadcrumb-item active">Xác nhận xóa</span>
+        </nav>
+    </div>
+</div>
+
+<div class="card-body">
+    <div class="table-responsive">
+        <table class="product-info-table m-t-20">
+            <tbody>
+                <tr>
+                    <td>ID:</td>
+                    <td class="text-dark font-weight-semibold">@Model.Id</td>
+                </tr>
+                <tr>
+                    <td>Tên tài khoản:</td>
+                    <td>@Model.TaiKhoan</td>
+                </tr>
+                <tr>
+                    <td>Tên phòng:</td>
+                    <td>@Model.Phong.Ten</td>
+                </tr>
+                <tr>
+                    <td>Ngày đặt:</td>
+                    <td>@Model.NgayDat</td>
+                </tr>
+                <tr>
+                    <td>Ngày đến:</td>
+                    <td>@Model.NgayDen</td>
+                </tr>
+                <tr>
+                    <td>Ngày trả:</td>
+                    <td>@Model.NgayTra</td>
+                </tr>
+                <tr>
+                    <td>Dịch vụ:</td>
+                    <td>@Model.DichVu</td>
+                </tr>
+                <tr>
+                    <td>Ghi chú:</td>
+                    <td>@Model.GhiChu</td>
+                </tr>
+                <tr>
+                    <td>@Model.ThanhTien</td>
+                </tr>
+                <tr>
+                    <td>Thanh toán:</td>
+                    @if (Model.isPaid == true)
+                    {
+                        <td>Đã thanh toán</td>
+                    }
+                    else
+                    {
+                        <td>Chưa thanh toán</td>
+                    }
+                </tr>
+                <tr>
+                    <td>Xác nhận xóa:</td>
+                    <td>
+                        @using (Html.BeginForm())
+                        {
+                            @Html.AntiForgeryToken()
+                            <form asp-action="Delete">
+                                <input type="hidden" />
+                                <input type="submit" value="Xóa" class="btn btn-danger" />
+                            </form>
+                        }
+                    </td>
+                </tr>
+            </tbody>
+
+        </table>
+    </div>
+</div>
+

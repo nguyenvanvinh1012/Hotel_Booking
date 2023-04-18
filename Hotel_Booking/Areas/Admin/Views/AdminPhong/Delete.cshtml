@@ -1,0 +1,80 @@
+﻿@model Hotel_Booking.Models.Phong
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="page-header">
+    <div class="header-sub-title">
+        <nav class="breadcrumb breadcrumb-dash">
+            <a href="@Url.Action("Index", "Home",new { area = "Admin" })" class="breadcrumb-item"><i class="anticon anticon-home m-r-5"></i>Trang chủ</a>
+            <a href="@Url.Action("Index", "AdminPhong",new { area = "Admin" })" class="breadcrumb-item">Danh sách phòng</a>
+            <span class="breadcrumb-item active">Xác nhận xóa</span>
+        </nav>
+    </div>
+</div>
+
+<div class="card-body">
+    <div class="table-responsive">
+        <table class="product-info-table m-t-20">
+            <tbody>
+                <tr>
+                    <td>ID:</td>
+                    <td class="text-dark font-weight-semibold">@Model.Id</td>
+                </tr>
+                <tr>
+                    <td>Tên phòng:</td>
+                    <td>@Model.Ten</td>
+                </tr>
+                <tr>
+                    <td>Diện tích phòng:</td>
+                    <td>@Model.DienTich</td>
+                </tr>
+                <tr>
+                    <td>Giá thuê phòng:</td>
+                    <td>@Model.GiaThue</td>
+                </tr>
+                <tr>
+                    <td>Tiện nghi:</td>
+                    <td>@Model.TienNghi</td>
+                </tr>
+                <tr>
+                    <td>Mô tả:</td>
+                    <td>@Model.MoTa</td>
+                </tr>
+                <tr>
+                    <td>Loại giường:</td>
+                    @if (Model.LoaiGiuong == 1)
+                    {
+                        <td>Giường đơn</td>
+                    }
+                    else
+                    {
+                        <td>Giường đôi</td>
+                    }
+                </tr>
+                <tr>
+                    <td>Tên khách sạn</td>
+                    <td>@Model.KhachSan.Ten</td>
+                </tr>
+
+                <tr>
+                    <td>Xác nhận xóa:</td>
+                    <td>
+                        @using (Html.BeginForm())
+                        {
+                            @Html.AntiForgeryToken()
+                            <form asp-action="Delete">
+                                <input type="hidden" />
+                                <input type="submit" value="Xóa" class="btn btn-danger" />
+                            </form>
+                        }
+                    </td>
+                </tr>
+            </tbody>
+
+        </table>
+    </div>
+</div>
+
+

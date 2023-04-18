@@ -12,7 +12,7 @@ namespace Hotel_Booking.Areas.Admin.Controllers
     public class AdminPhongController : Controller
     {
         HotelBookingContext context = new HotelBookingContext();
-
+        public static int ID = 0;
         // GET: Admin/AdminPhong
         public ActionResult Index(int? page)
         {
@@ -61,6 +61,40 @@ namespace Hotel_Booking.Areas.Admin.Controllers
             context.Phongs.Add(phong);
             context.SaveChanges();
             TempData["Message"] = "Tạo mới thành công !";
+            return RedirectToAction("Index");
+        }
+
+        public ActionResult Delete(int id)
+        {
+            Phong find = context.Phongs.FirstOrDefault(p => p.Id == id);
+            if (find == null)
+            {
+                return HttpNotFound();
+            }
+            ID = id;
+            return View(find);
+        }
+        [HttpPost]
+        public ActionResult Delete(Phong phong)
+        {
+            Phong findPhong = context.Phongs.FirstOrDefault(p => p.Id == ID);
+            List<DatPhong> list = context.DatPhongs.ToList();
+
+            foreach (var item in list)
+            {
+                DatPhong find = context.DatPhongs.FirstOrDefault(p => p.IdPhong == findPhong.Id);
+                context.DatPhongs.Remove(find);
+                context.SaveChanges();
+            }
+
+            if (findPhong == null)
+            {
+                return HttpNotFound();
+            }
+            context.Phongs.Remove(findPhong);
+            context.SaveChanges();
+            ID = 0;
+            TempData["Message"] = "Xóa thành công !";
             return RedirectToAction("Index");
         }
     }

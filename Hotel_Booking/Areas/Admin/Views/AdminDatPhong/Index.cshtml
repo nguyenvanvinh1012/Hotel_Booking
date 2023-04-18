@@ -1,7 +1,6 @@
-﻿@model PagedList.IPagedList<Hotel_Booking.Models.Phong>
+﻿@model  PagedList.IPagedList<Hotel_Booking.Models.DatPhong>
 @using PagedList;
 @using PagedList.Mvc
-
 @{
     ViewBag.Title = "Index";
     Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
@@ -13,10 +12,11 @@
     <div class="header-sub-title">
         <nav class="breadcrumb breadcrumb-dash">
             <a href="@Url.Action("Index", "Home",new { area = "Admin" })" class="breadcrumb-item"><i class="anticon anticon-home m-r-5"></i>Trang chủ</a>
-            <span class="breadcrumb-item active">Danh sách phòng</span>
+            <span class="breadcrumb-item active">Danh sách các phòng đã đặt </span>
         </nav>
     </div>
 </div>
+
 <div class="card">
     <div class="card-body">
         <div class="row m-b-30">
@@ -25,29 +25,27 @@
                     <div class="col-md-6">
                         <div class="input-affix m-v-10">
                             <i class="prefix-icon anticon anticon-search opacity-04"></i>
-                            <input id="keyword" name="keyword" type="text" class="form-control" placeholder="Tìm phòng khách sạn">
+                            <input id="keyword" name="keyword" type="text" class="form-control" placeholder="Tìm các phòng đã đặt">
                         </div>
                     </div>
                 </div>
             </div>
-
-            <div class="col-lg-4 text-right">
-                <a class="btn btn-primary" href="@Url.Action("Create", "AdminPhong",new { area = "Admin" })"><i class="anticon anticon-plus-circle m-r-5"></i><span>Thêm phòng</span></a>
-            </div>
         </div>
         <div class="table-responsive">
-            <table class="table">
+            <table class="table table-hover e-commerce-table">
                 <thead>
                     <tr>
-                        <th scope="col">ID</th>
-                        <th scope="col">Tên</th>
-                        <th scope="col">Diện tích</th>
-                        <th scope="col">Giá thuê</th>
-                        <th scope="col">Tiện nghi</th>
-                        <th scope="col">Mô tả</th>
-                        <th scope="col">Loại giường</th>
-                        <th scope="col">Tên khách sạn</th>
-                        <th scope="col">#</th>
+                        <th>ID</th>
+                        <th>Tên tài khoản</th>
+                        <th>Tên phòng</th>
+                        <th>Ngày đặt</th>
+                        <th>Ngày đến</th>
+                        <th>Ngày trả</th>
+                        <th>Dịch vụ</th>
+                        <th>Ghi chú</th>
+                        <th>Thành tiền</th>
+                        <th>Thanh toán</th>
+                        <th>#</th>
                     </tr>
                 </thead>
                 <tbody id="records_table">
@@ -56,28 +54,29 @@
                         foreach (var item in Model)
                         {
                             <tr>
-                                <th scope="row">@item.Id</th>
-                                <td>@item.Ten</td>
-                                <td>@item.DienTich</td>
-                                <td>@item.GiaThue</td>
-                                <td>@item.TienNghi</td>
-                                <td>@item.MoTa</td>
 
-                                @if (item.LoaiGiuong == 1)
+                                <td>@item.Id</td>
+                                <td>@item.TaiKhoan</td>
+                                <td>@item.Phong.Ten</td>
+                                <td>@item.NgayDat</td>
+                                <td>@item.NgayDen</td>
+                                <td>@item.NgayTra</td>
+                                <td>@item.DichVu</td>
+                                <td>@item.GhiChu</td>
+                                <td>@item.ThanhTien</td>
+                                @if (item.isPaid == true)
                                 {
-                                    <td>Giường đơn</td>
+                                    <td>Đã thanh toán</td>
                                 }
                                 else
                                 {
-                                    <td>Giường đôi</td>
-
+                                    <td>Chưa thanh toán</td>
                                 }
-                                <td>@item.KhachSan.Ten</td>
                                 <td>
-                                    <a href="@Url.Action("Edit", "AdminPhong",new {id = item.Id,  area = "Admin" })" title="Chỉnh sửa" class="btn btn-icon btn-hover btn-sm btn-rounded pull-right">
-                                        <i class="anticon anticon-edit"></i>
-                                    </a>
-                                    <a href="@Url.Action("Delete", "AdminPhong",new {id = item.Id,  area = "Admin" })" title="Xóa" class="btn btn-icon btn-hover btn-sm btn-rounded">
+                                    @*<a href="@Url.Action("Edit", "AdminDatPhong",new {id = item.Id,  area = "Admin" })" title="Chỉnh sửa" class="btn btn-icon btn-hover btn-sm btn-rounded pull-right">
+                                            <i class="anticon anticon-edit"></i>
+                                        </a>*@
+                                    <a href="@Url.Action("Delete", "AdminDatPhong",new {id = item.Id,  area = "Admin" })" title="Xóa" class="btn btn-icon btn-hover btn-sm btn-rounded">
                                         <i class="anticon anticon-delete"></i>
                                     </a>
                                 </td>
@@ -104,7 +103,7 @@
         $("#keyword").keyup(function () {
             var strkeyword = $('#keyword').val();
             $.ajax({
-                url: '/Admin/Search/FindPhong/',
+                url: '/Admin/Search/FindDatPhong/',
                 datatype: "json",
                 type: "POST",
                 data: { keyword: strkeyword },
@@ -120,3 +119,4 @@
         });
     </script>
 }
+

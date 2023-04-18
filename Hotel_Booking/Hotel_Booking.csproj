@@ -136,6 +136,7 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
+    <Compile Include="Areas\Admin\Controllers\AdminDatPhongController.cs" />
     <Compile Include="Areas\Admin\Controllers\AdminKhachSanController.cs" />
     <Compile Include="Areas\Admin\Controllers\AdminLoaiKhachSanController.cs" />
     <Compile Include="Areas\Admin\Controllers\AdminPhongController.cs" />
@@ -1388,6 +1389,10 @@
     <Content Include="Areas\Admin\Views\Search\FindPhong.cshtml" />
     <Content Include="Areas\Admin\Views\Search\FindLoaiKhachSan.cshtml" />
     <Content Include="Areas\Admin\Views\AdminTaiKhoan\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\AdminPhong\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\AdminDatPhong\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\AdminDatPhong\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\Search\FindDatPhong.cshtml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />

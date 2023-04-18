@@ -167,7 +167,7 @@ namespace Hotel_Booking.Areas.Admin.Controllers
                     if (count == 7)
                         break;
                 }
-                return PartialView("FindLoaiKhachSan", list2);
+                return PartialView("FindDatPhong", list2);
 
             }
             list = context.DatPhongs.AsNoTracking()
@@ -179,11 +179,11 @@ namespace Hotel_Booking.Areas.Admin.Controllers
 
             if (list == null)
             {
-                return PartialView("FindLoaiKhachSan", null);
+                return PartialView("FindDatPhong", null);
             }
             else
             {
-                return PartialView("FindLoaiKhachSan", list);
+                return PartialView("FindDatPhong", list);
             }
         }
     }
