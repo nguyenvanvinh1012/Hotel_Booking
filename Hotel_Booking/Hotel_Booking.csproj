@@ -147,6 +147,7 @@
     <Compile Include="Areas\Admin\Controllers\SearchController.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\KhachSanController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -1082,15 +1083,16 @@
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\Images\BietThu.jpeg" />
     <Content Include="Content\Images\CanHo.jpeg" />
-    <Content Include="Content\Images\DaLat.jpg" />
     <Content Include="Content\Images\DaNang.jpg" />
     <Content Include="Content\Images\Glamping.jpeg" />
     <Content Include="Content\Images\HaNoi.jpg" />
     <Content Include="Content\Images\HoChiMinh.jpg" />
+    <Content Include="Content\Images\HoiAn.jpg" />
+    <Content Include="Content\Images\Hue.jpg" />
     <Content Include="Content\Images\KhachSan.jpeg" />
-    <Content Include="Content\Images\PhuQuoc.jpg" />
     <Content Include="Content\Images\Resort.jpeg" />
     <Content Include="Content\Images\ThonDa.jpeg" />
+    <Content Include="Content\Images\vietnam.png" />
     <Content Include="Content\PagedList.css" />
     <Content Include="Content\toastr.css" />
     <Content Include="Content\toastr.min.css" />
@@ -1410,11 +1412,14 @@
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
-    <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Shared\_HeaderPartialView.cshtml" />
     <Content Include="Views\Shared\_FooterPartialView.cshtml" />
     <Content Include="Web.Config" />
     <Content Include="Views\Account\DangKy.cshtml" />
+    <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\KhachSan\Index.cshtml" />
+    <Content Include="Views\KhachSan\Detail.cshtml" />
+    <Content Include="Views\KhachSan\NotFound.cshtml" />
     <None Include="Web.Debug.Config">
       <DependentUpon>Web.Config</DependentUpon>
     </None>

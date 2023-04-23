@@ -1,0 +1,413 @@
+﻿@model Hotel_Booking.Models.KhachSan
+
+@{
+    ViewBag.Title = "Detail";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<section class="breadcrumb-main pb-0" style="background-image: url(/Content/assets/images/bg/bg8.jpg);">
+    <div class="breadcrumb-outer pt-10">
+        <div class="container">
+            <div class="breadcrumb-content d-md-flex align-items-center pt-10">
+                <nav aria-label="breadcrumb">
+                    <ul class="breadcrumb">
+                      
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </div>
+    <div class="dot-overlay"></div>
+</section>
+
+
+<section class="blog trending destination-b pb-6">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-xs-12 mb-4">
+                <div class="single-content">
+                    <div class="description" id="description">
+                        <div class="single-full-title border-b mb-2 pb-2">
+                            <div class="single-title">
+                                <ul class="d-md-flex mb-2">
+                                    <li class="bg-navy py-1 px-3 white">Free Wi-Fi</li>
+                                </ul>
+                                <div class="d-block d-md-flex flex-horizontal-center mb-1">
+                                    <h4 class="font-weight-bold mb-0 mr-2">@Model.Ten</h4>
+                                    <div class="rating">
+                                        @for (int i = 0; i < Model.DanhGia; i++)
+                                        {
+                                            <span class="fa fa-star checked"></span>
+                                        }
+                                    </div>
+                                </div>
+                                <p class="mb-0">
+                                    <i class="fa fa-map-marker-alt mr-2"></i> @Model.DiaChi
+                                    <a href="#"> - View on map</a>
+                                </p>
+                            </div>
+                        </div>
+                        <div class="single-slider">
+                            <div class="slider-1 slider-store">
+                                <div class="detail-slider-item">
+                                    <img src="@Model.UrlHinhAnh2" alt="image">
+                                </div>
+                                <div class="detail-slider-item">
+                                    <img src="@Model.UrlHinhAnh1" alt="image">
+                                </div>
+                                <div class="detail-slider-item">
+                                    <img src="@Model.UrlHinhAnh3" alt="image">
+                                </div>
+                                <div class="detail-slider-item">
+                                    <img src="@Model.UrlHinhAnh4" alt="image">
+                                </div>
+                                <div class="detail-slider-item">
+                                    <img src="@Model.UrlHinhAnh1" alt="image">
+                                </div>
+                                <div class="detail-slider-item">
+                                    <img src="@Model.UrlHinhAnh2" alt="image">
+                                </div>
+                                <div class="detail-slider-item">
+                                    <img src="@Model.UrlHinhAnh3" alt="image">
+                                </div>
+                            </div>
+                            <div class="slider-1 slider-thumbs">
+                                <div class="detail-slider-item">
+                                    <img style="max-width: 100%; object-fit: cover; width: 100%; height: 100px" src="@Model.UrlHinhAnh1" alt="image">
+                                </div>
+                                <div class="detail-slider-item">
+                                    <img style="max-width: 100%; object-fit: cover; width: 100%; height: 100px" src="@Model.UrlHinhAnh2" alt="image">
+                                </div>
+                                <div class="detail-slider-item">
+                                    <img style="max-width: 100%; object-fit: cover; width: 100%; height: 100px" src="@Model.UrlHinhAnh3" alt="image">
+                                </div>
+                                <div class="detail-slider-item">
+                                    <img style="max-width: 100%; object-fit: cover; width: 100%; height: 100px" src="@Model.UrlHinhAnh4" alt="image">
+                                </div>
+                                <div class="detail-slider-item">
+                                    <img style="max-width: 100%; object-fit: cover; width: 100%; height: 100px" src="@Model.UrlHinhAnh1" alt="image">
+                                </div>
+                                <div class="detail-slider-item">
+                                    <img style="max-width: 100%; object-fit: cover; width: 100%; height: 100px" src="@Model.UrlHinhAnh2" alt="image">
+                                </div>
+                                <div class="detail-slider-item">
+                                    <img style="max-width: 100%; object-fit: cover; width: 100%; height: 100px" src="@Model.UrlHinhAnh3" alt="image">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="description-inner mb-2 mt-1">
+                            <h4>Mô tả</h4>
+                            <p>
+                                @Model.MoTa
+                            </p>
+                        </div>
+                        <div class="description-inner mb-2">
+                            <div class="description-content">
+                                <div class="car-specifi">
+                                    <table>
+                                        <h4>We give you the following for FREE: </h4>
+                                        <thead>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td class="title">Amendments</td>
+                                                <td>Unlimited Kilometres for ALL car groups</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="title">Theft Protection</td>
+                                                <td>Local Taxes</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="title">Direct-dial phone</td>
+                                                <td>Road Fee</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="title">Collision Damage Waiver</td>
+                                                <td>First Additional Driver</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="description-inner">
+                            <h4>Select Your Room</h4>
+                            <div class="product-item__outer w-100 border p-4 mb-2">
+                                <div class="row d-flex align-items-center justify-content-between">
+                                    <div class="col-md-4 col-lg-4">
+                                        <div class="product-item__header">
+                                            <img class="img-fluid w-100" src="~/Content/assets/images/rooms/list1.jpg"
+                                                 alt="Image Description">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-5 col-lg-5">
+                                        <div class="rooms-content py-2">
+                                            <h5 class="mb-1">
+                                                <a href="#" class="font-weight-bold">
+                                                    Deluxe Twin
+                                                    Room
+                                                </a>
+                                            </h5>
+                                            <div class="row">
+                                                <div class="col-lg-6 col-md-6 mb-1">
+                                                    <i class="fa fa-wifi"></i> Free
+                                                    Wi-Fi
+                                                </div>
+                                                <div class="col-lg-6 col-md-6 mb-1">
+                                                    <i class="fa fa-vector-square"></i> 15 m²
+                                                </div>
+                                                <div class="col-lg-6 col-md-6 mb-1">
+                                                    <i class="fa fa-bed"></i> 2
+                                                    single beds
+                                                </div>
+                                                <div class="col-lg-6 col-md-6 mb-1">
+                                                    <i class="fa fa-shower"></i>
+                                                    Shower
+                                                </div>
+                                                <div class="col-lg-12">
+                                                    <a href="#"
+                                                       class="text-underline font-size-14">
+                                                        Room photos and
+                                                        details
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3 col-lg-3">
+                                        <div class="rooms-pricing text-center">
+                                            <p class="mb-1">
+                                                From <span class="font-weight-bold ml-1"> £899.00</span>
+                                                <span> / night</span>
+                                            </p>
+                                            <a href="#" class="nir-btn w-100">Book Now</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="product-item__outer w-100 border p-4 mb-2">
+                                <div class="row d-flex align-items-center justify-content-between">
+                                    <div class="col-md-4 col-lg-4">
+                                        <div class="product-item__header">
+                                            <img class="img-fluid w-100" src="~/Content/assets/images/rooms/list2.jpg"
+                                                 alt="Image Description">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-5 col-lg-5">
+                                        <div class="rooms-content py-2">
+                                            <h5 class="mb-1">
+                                                <a href="#" class="font-weight-bold">
+                                                    Premium Single
+                                                    Room
+                                                </a>
+                                            </h5>
+                                            <div class="row">
+                                                <div class="col-lg-6 col-md-6 mb-1">
+                                                    <i class="fa fa-wifi"></i> Free
+                                                    Wi-Fi
+                                                </div>
+                                                <div class="col-lg-6 col-md-6 mb-1">
+                                                    <i class="fa fa-vector-square"></i> 15 m²
+                                                </div>
+                                                <div class="col-lg-6 col-md-6 mb-1">
+                                                    <i class="fa fa-bed"></i> 1
+                                                    single beds
+                                                </div>
+                                                <div class="col-lg-6 col-md-6 mb-1">
+                                                    <i class="fa fa-shower"></i>
+                                                    Shower
+                                                </div>
+                                                <div class="col-lg-12">
+                                                    <a href="#"
+                                                       class="text-underline font-size-14">
+                                                        Room photos and
+                                                        details
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3 col-lg-3">
+                                        <div class="rooms-pricing text-center">
+                                            <p class="mb-1">
+                                                From <span class="font-weight-bold ml-1"> £700.00</span>
+                                                <span> / night</span>
+                                            </p>
+                                            <a href="#" class="nir-btn w-100">Book Now</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="product-item__outer w-100 border p-4 mb-2">
+                                <div class="row d-flex align-items-center justify-content-between">
+                                    <div class="col-md-4 col-lg-4">
+                                        <div class="product-item__header">
+                                            <img class="img-fluid w-100" src="~/Content/assets/images/rooms/list3.jpg"
+                                                 alt="Image Description">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-5 col-lg-5">
+                                        <div class="rooms-content py-2">
+                                            <h5 class="mb-1">
+                                                <a href="#" class="font-weight-bold">
+                                                    Suplex Double
+                                                    Room
+                                                </a>
+                                            </h5>
+                                            <div class="row">
+                                                <div class="col-lg-6 col-md-6 mb-1">
+                                                    <i class="fa fa-wifi"></i> Free
+                                                    Wi-Fi
+                                                </div>
+                                                <div class="col-lg-6 col-md-6 mb-1">
+                                                    <i class="fa fa-vector-square"></i> 15 m²
+                                                </div>
+                                                <div class="col-lg-6 col-md-6 mb-1">
+                                                    <i class="fa fa-bed"></i> 2
+                                                    single beds
+                                                </div>
+                                                <div class="col-lg-6 col-md-6 mb-1">
+                                                    <i class="fa fa-shower"></i>
+                                                    Shower
+                                                </div>
+                                                <div class="col-lg-12">
+                                                    <a href="#"
+                                                       class="text-underline font-size-14">
+                                                        Room photos and
+                                                        details
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3 col-lg-3">
+                                        <div class="rooms-pricing text-center">
+                                            <p class="mb-1">
+                                                From <span class="font-weight-bold ml-1"> £700.00</span>
+                                                <span> / night</span>
+                                            </p>
+                                            <a href="#" class="nir-btn w-100">Book Now</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="single-map mb-4" id="single-map">
+                        <h4>Map</h4>
+                        <div class="map">
+                            <div style="width: 100%">
+                                <iframe height="400"
+                                        src="https://maps.google.com/maps?width=100%25&amp;height=600&amp;hl=en&amp;q=+(mangal%20bazar)&amp;t=&amp;z=14&amp;ie=UTF8&amp;iwloc=B&amp;output=embed"></iframe>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 col-xs-12 mb-4">
+                <div class="sidebar-sticky">
+                    <div class="list-sidebar">
+                        <div class="sidebar-item d-flex align-items-center">
+                            <span class="border py-1 px-2 mr-2"><a href="#"><i class="flaticon-like"></i></a></span>
+                            <span class="border py-1 px-2 mr-2">
+                                <a href="#">
+                                    <i class="fa fa-share-alt"></i>
+                                </a>
+                            </span>
+                            <span class="rating bg-navy px-2 white py-1">4.5/5</span>
+                            <span class="ml-2"><strong class="pink">Excellent</strong> (38 Reviews)</span>
+                        </div>
+                    </div>
+                    <div class="sidebar-item mb-4">
+                        <form class="form-content">
+                            <h4 class="title white font-weight-normal">
+                                From <span class="font-weight-bold">£350.00</span> / night
+                            </h4>
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    <div class="form-group">
+                                        <label class="white">Check In</label>
+                                        <div class="input-box">
+                                            <i class="flaticon-calendar"></i>
+                                            <input id="date-range0" type="text" placeholder="yyyy-mmm-dd">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6">
+                                    <div class="form-group">
+                                        <label class="white">Check Out</label>
+                                        <div class="input-box">
+                                            <i class="flaticon-calendar"></i>
+                                            <input id="date-range1" type="text" placeholder="yyyy-mm-dd">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6">
+                                    <div class="form-group">
+                                        <label class="white">Adult</label>
+                                        <div class="input-box">
+                                            <i class="flaticon-add-user"></i>
+                                            <select class="niceSelect">
+                                                <option value="1">1</option>
+                                                <option value="2">2</option>
+                                                <option value="3">3</option>
+                                                <option value="4">4</option>
+                                                <option value="5">5</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6">
+                                    <div class="form-group">
+                                        <label class="white">Children</label>
+                                        <div class="input-box">
+                                            <i class="flaticon-add-user"></i>
+                                            <select class="niceSelect">
+                                                <option value="1">1</option>
+                                                <option value="2">2</option>
+                                                <option value="3">3</option>
+                                                <option value="4">4</option>
+                                                <option value="5">5</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-12">
+                                    <div class="form-group mb-0">
+                                        <a href="#" class="nir-btn w-100">
+                                            <i class="fa fa-search"></i> Check
+                                            Availability
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="list-sidebar">
+                        <div class="sidebar-item">
+                            <h3>Why Book With Us?</h3>
+                            <div class="services-list">
+                                <div class="d-flex align-items-center mb-2 pb-2 border-b">
+                                    <i class="fa fa-tag pink mr-2"></i>
+                                    <span>No-hassle best price guarantee</span>
+                                </div>
+                                <div class="d-flex align-items-center mb-2 pb-2 border-b">
+                                    <i class="fa fa-phone-alt pink mr-2"></i>
+                                    <span>Customer care available 24/7</span>
+                                </div>
+                                <div class="d-flex align-items-center mb-2 pb-2 border-b">
+                                    <i class="fa fa-star pink mr-2"></i>
+                                    <span>Hand-picked Tours & Activities</span>
+                                </div>
+                                <div class="d-flex align-items-center">
+                                    <i class="fa fa-plane pink mr-2"></i>
+                                    <span>Free Travel Insureance</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

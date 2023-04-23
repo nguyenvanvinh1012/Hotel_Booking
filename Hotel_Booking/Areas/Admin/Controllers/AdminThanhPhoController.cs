@@ -57,6 +57,7 @@ namespace Hotel_Booking.Areas.Admin.Controllers
                 return HttpNotFound();
             }
             temp = thongTinTP.UrlHinhAnh;
+            ViewBag.Active = thongTinTP.Active;
             return View(thongTinTP);
         }
         [HttpPost]
@@ -70,7 +71,7 @@ namespace Hotel_Booking.Areas.Admin.Controllers
 
             editSanPham.Ten = thanhPho.Ten;
             editSanPham.MoTa = thanhPho.MoTa;
-            if (Active == "true")
+            if (Active == "on")
                 editSanPham.Active = true;
             else
                 editSanPham.Active = false;

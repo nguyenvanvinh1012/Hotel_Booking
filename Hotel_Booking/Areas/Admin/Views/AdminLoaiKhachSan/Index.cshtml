@@ -42,7 +42,7 @@
                         <th>ID</th>
                         <th>Tên loại</th>
                         <th>Mô tả</th>
-                        @*<th>Trạng thái</th>*@
+                        <th>Trạng thái</th>
                     </tr>
                 </thead>
                 <tbody id="records_table">
@@ -62,28 +62,28 @@
                                     </div>
                                 </td>
                                 <td>@item.MoTa</td>
-                                @*<td>
-                            @if (item.Active == true)
-                            {
-                                <div class="d-flex align-items-center">
-                                    <div class="badge badge-success badge-dot m-r-10"></div>
-                                    <div>Active</div>
-                                </div>
-                            }
-                            else
-                            {
-                                <div class="d-flex align-items-center">
-                                    <div class="badge badge-danger badge-dot m-r-10"></div>
-                                    <div>Disable</div>
-                                </div>
-                            }*@
+                                <td>
+                                    @if (item.Active == true)
+                                    {
+                                        <div class="d-flex align-items-center">
+                                            <div class="badge badge-success badge-dot m-r-10"></div>
+                                            <div>Active</div>
+                                        </div>
+                                    }
+                                    else
+                                    {
+                                        <div class="d-flex align-items-center">
+                                            <div class="badge badge-danger badge-dot m-r-10"></div>
+                                            <div>Disable</div>
+                                        </div>
+                                    }
 
                                 <td>
                                 <td>
                                     <a href="@Url.Action("Edit", "AdminLoaiKhachSan",new {id = item.Id,  area = "Admin" })" title="Chỉnh sửa" class="btn btn-icon btn-hover btn-sm btn-rounded pull-right">
                                         <i class="anticon anticon-edit"></i>
                                     </a>
-                                    <a href="@Url.Action("Delete", "AdminLoaiKhachSan",new {id = item.Id,  area = "Admin" })" title="Xóa" class="btn btn-icon btn-hover btn-sm btn-rounded">
+                                    <a href="#" title="Xóa" class="btn btn-icon btn-hover btn-sm btn-rounded">
                                         <i class="anticon anticon-delete"></i>
                                     </a>
                                 </td>

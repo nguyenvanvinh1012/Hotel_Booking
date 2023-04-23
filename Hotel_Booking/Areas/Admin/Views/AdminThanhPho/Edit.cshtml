@@ -3,6 +3,7 @@
 @{
     ViewBag.Title = "Edit";
     Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+    bool active = ViewBag.Active;
 }
 
 
@@ -42,10 +43,17 @@
     </div>
     <div class="form-group">
         <div class="col-md-10">
-           <label class="checkbox-inline">
-               @Html.CheckBox("Active", true)
-               Active
-           </label>
+            <div class="checkbox">
+                @if (ViewBag.Active == true)
+                {
+                    <input name="Active" id="checkbox1" type="checkbox" checked />
+                }
+                else
+                {
+                    <input name="Active" id="checkbox1" type="checkbox" />
+                }
+                <label for="checkbox1">Active</label>
+            </div>
         </div>
     </div>
     <div>

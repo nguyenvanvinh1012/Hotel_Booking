@@ -57,16 +57,17 @@ namespace Hotel_Booking.Areas.Admin.Controllers
         //edit
         public ActionResult Edit(int id)
         {
-            LoaiKhachSan thongTinTP = context.LoaiKhachSans.FirstOrDefault(p => p.Id == id);
-            if (thongTinTP == null)
+            LoaiKhachSan thongTinL = context.LoaiKhachSans.FirstOrDefault(p => p.Id == id);
+            if (thongTinL == null)
             {
                 return HttpNotFound();
             }
-            temp = thongTinTP.UrlHinhAnh;
-            return View(thongTinTP);
+            ViewBag.Active = thongTinL.Active;
+            temp = thongTinL.UrlHinhAnh;
+            return View(thongTinL);
         }
         [HttpPost]
-        public ActionResult Edit(LoaiKhachSan loaiKhachSan)
+        public ActionResult Edit(LoaiKhachSan loaiKhachSan, string Active)
         {
             LoaiKhachSan editSanPham = context.LoaiKhachSans.FirstOrDefault(p => p.Id == loaiKhachSan.Id);
             if (editSanPham == null)
@@ -76,6 +77,10 @@ namespace Hotel_Booking.Areas.Admin.Controllers
 
             editSanPham.Ten = loaiKhachSan.Ten;
             editSanPham.MoTa = loaiKhachSan.MoTa;
+            if (Active == "on")
+                editSanPham.Active = true;
+            else
+                editSanPham.Active = false;
             //ảnh
             if (loaiKhachSan.ImageFile != null && loaiKhachSan.ImageFile.ContentLength > 0)
             {
