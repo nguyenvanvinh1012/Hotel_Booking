@@ -5,6 +5,7 @@
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Data.Entity.Spatial;
+    using System.Web;
 
     [Table("Phong")]
     public partial class Phong
@@ -21,10 +22,14 @@
         [StringLength(100)]
         public string Ten { get; set; }
 
-        [Range(10, 1000, ErrorMessage ="Giá trị phải lớn 10")]
+        [Range(10, 1000, ErrorMessage ="Diện tích phải lớn 10")]
         public int? DienTich { get; set; }
 
-        [Range(100000, 10000000, ErrorMessage =" Giá trị phải lớn hơn 100000")]
+        [StringLength(200)]
+        public string UrlHinhAnh { get; set; }
+
+
+        [Range(100000, 10000000, ErrorMessage =" Giá thuê phải lớn hơn 100000")]
         public int? GiaThue { get; set; }
 
         [Required(ErrorMessage = "Vui lòng nhập tiện nghi!")]
@@ -43,5 +48,7 @@
         public virtual ICollection<DatPhong> DatPhongs { get; set; }
 
         public virtual KhachSan KhachSan { get; set; }
+        [NotMapped]
+        public HttpPostedFileBase ImageFile { get; set; }
     }
 }

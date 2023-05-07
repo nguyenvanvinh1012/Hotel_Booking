@@ -39,14 +39,14 @@
             <table class="table">
                 <thead>
                     <tr>
-                        <th scope="col">ID</th>
+                        @*<th scope="col">ID</th>*@
                         <th scope="col">Tên</th>
                         <th scope="col">Diện tích</th>
-                        <th scope="col">Giá thuê</th>
+                        <th scope="col">Giá</th>
                         <th scope="col">Tiện nghi</th>
                         <th scope="col">Mô tả</th>
                         <th scope="col">Loại giường</th>
-                        <th scope="col">Tên khách sạn</th>
+                        <th scope="col">Khách sạn</th>
                         <th scope="col">#</th>
                     </tr>
                 </thead>
@@ -56,10 +56,14 @@
                         foreach (var item in Model)
                         {
                             <tr>
-                                <th scope="row">@item.Id</th>
-                                <td>@item.Ten</td>
-                                <td>@item.DienTich</td>
-                                <td>@item.GiaThue</td>
+                                <td>
+                                    <div class="d-flex align-items-center">
+                                        <img class="img-fluid rounded" src="@item.UrlHinhAnh" style="max-width: 100px" alt="">
+                                        <h6 class="m-b-0 m-l-10">@item.Ten</h6>
+                                    </div>
+                                </td>
+                                <td>@item.DienTich m2</td>
+                                <td>@item.GiaThue.Value.ToString("#,##0") VNĐ</td>
                                 <td>@item.TienNghi</td>
                                 <td>@item.MoTa</td>
 

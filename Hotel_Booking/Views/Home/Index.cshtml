@@ -329,13 +329,13 @@
                 <div class="col-lg-4 col-md-6 mb-4 slider-item">
                     <div class="trend-item">
                         <div class="trend-image">
-                            <a href="@Url.Action("Index", "LoaiKachSan",new { id = item.Id })">
+                            <a href="@Url.Action("Index", "LoaiKhachSan",new { id = item.Id })">
                                 <img src="@item.UrlHinhAnh" alt="image">
                             </a>
                         </div>
                         <div class="trend-content-main">
                             <div style="padding: 23px 20px 20px; background: #ffffff" class="trend-content">
-                                <h4><a href="#">@item.Ten</a></h4>
+                                <h4><a href="@Url.Action("Index", "LoaiKhachSan",new { id = item.Id })">@item.Ten</a></h4>
                                 <p class="mb-0">
                                     @*<i class="fa fa-eye mr-1"></i>*@ 19.187 @item.Ten
                                 </p>

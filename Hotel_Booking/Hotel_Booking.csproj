@@ -146,8 +146,10 @@
     <Compile Include="Areas\Admin\Controllers\HomeController.cs" />
     <Compile Include="Areas\Admin\Controllers\SearchController.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\DatPhongController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\KhachSanController.cs" />
+    <Compile Include="Controllers\LoaiKhachSanController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -1419,7 +1421,10 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\KhachSan\Index.cshtml" />
     <Content Include="Views\KhachSan\Detail.cshtml" />
-    <Content Include="Views\KhachSan\NotFound.cshtml" />
+    <Content Include="Views\Shared\NotFound.cshtml" />
+    <Content Include="Views\LoaiKhachSan\Index.cshtml" />
+    <Content Include="Views\LoaiKhachSan\Detail.cshtml" />
+    <Content Include="Views\DatPhong\Confirm.cshtml" />
     <None Include="Web.Debug.Config">
       <DependentUpon>Web.Config</DependentUpon>
     </None>

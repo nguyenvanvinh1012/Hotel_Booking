@@ -13,6 +13,7 @@ namespace Hotel_Booking.Areas.Admin.Controllers
     {
         HotelBookingContext context = new HotelBookingContext();
         public static int ID = 0;
+        public static string temp = "";
         // GET: Admin/AdminPhong
         public ActionResult Index(int? page)
         {
@@ -29,10 +30,13 @@ namespace Hotel_Booking.Areas.Admin.Controllers
             {
                 return HttpNotFound("Thông tin không tồn tại...!");
             }
+            ViewBag.MoTa = thongTin.MoTa;
+            ViewBag.TienNghi = thongTin.TienNghi;
+            temp = thongTin.UrlHinhAnh;
             return View(thongTin);
         }
         [HttpPost]
-        public ActionResult Edit(Phong phong)
+        public ActionResult Edit(Phong phong, string moTa, string tienNghi)
         {
             Phong editPhong = context.Phongs.FirstOrDefault(p => p.Id == phong.Id);
             if (editPhong == null)
@@ -42,9 +46,20 @@ namespace Hotel_Booking.Areas.Admin.Controllers
             editPhong.Ten = phong.Ten;
             editPhong.DienTich = phong.DienTich;
             editPhong.GiaThue = phong.GiaThue;
-            editPhong.TienNghi = phong.TienNghi;
-            editPhong.MoTa = phong.MoTa;
+            editPhong.TienNghi = tienNghi;
+            editPhong.MoTa = moTa;
             editPhong.LoaiGiuong = phong.LoaiGiuong;
+            //ảnh
+            if (phong.ImageFile != null && phong.ImageFile.ContentLength > 0)
+            {
+                var fileName = Path.GetFileName(phong.ImageFile.FileName);
+                var filePath = Path.Combine(Server.MapPath("~/Content/Images"), fileName);
+                phong.ImageFile.SaveAs(filePath);
+                phong.UrlHinhAnh = "/Content/Images/" + fileName;
+                editPhong.UrlHinhAnh = phong.UrlHinhAnh;
+            }
+            else
+                editPhong.UrlHinhAnh = temp;
             context.SaveChanges();
             TempData["Message"] = "Chỉnh sửa thành công !";
             return RedirectToAction("Index");
@@ -56,8 +71,17 @@ namespace Hotel_Booking.Areas.Admin.Controllers
             return View();
         }
         [HttpPost]
-        public ActionResult Create(Phong phong)
+        public ActionResult Create(Phong phong, string moTa, string tienNghi)
         {
+            if (phong.ImageFile != null && phong.ImageFile.ContentLength > 0)
+            {
+                var fileName = Path.GetFileName(phong.ImageFile.FileName);
+                var filePath = Path.Combine(Server.MapPath("~/Content/Images"), fileName);
+                phong.ImageFile.SaveAs(filePath);
+                phong.UrlHinhAnh = "/Content/Images/" + fileName;
+            }
+            phong.MoTa = moTa;
+            phong.TienNghi = tienNghi;
             context.Phongs.Add(phong);
             context.SaveChanges();
             TempData["Message"] = "Tạo mới thành công !";

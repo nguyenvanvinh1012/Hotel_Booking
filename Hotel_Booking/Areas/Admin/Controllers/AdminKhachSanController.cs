@@ -38,62 +38,55 @@ namespace Hotel_Booking.Areas.Admin.Controllers
         }
 
         [HttpPost]
-        public ActionResult Create(KhachSan khachSan, string GiapBien, string danhGia,string moTa, string buaAn)
+        public ActionResult Create(KhachSan khachSan, string GiapBien, string danhGia, string moTa, string buaAn)
 
         {
-            if (ModelState.IsValid)
+            if (khachSan.ImageFile1 != null && khachSan.ImageFile1.ContentLength > 0)
             {
-                if (khachSan.ImageFile1 != null && khachSan.ImageFile1.ContentLength > 0)
-                {
-                    var fileName = Path.GetFileName(khachSan.ImageFile1.FileName);
-                    var filePath = Path.Combine(Server.MapPath("~/Content/Images"), fileName);
-                    khachSan.ImageFile1.SaveAs(filePath);
-                    khachSan.UrlHinhAnh1 = "/Content/Images/" + fileName;
-                }
-
-                if (khachSan.ImageFile2 != null && khachSan.ImageFile2.ContentLength > 0)
-                {
-                    var fileName = Path.GetFileName(khachSan.ImageFile2.FileName);
-                    var filePath = Path.Combine(Server.MapPath("~/Content/Images"), fileName);
-                    khachSan.ImageFile2.SaveAs(filePath);
-                    khachSan.UrlHinhAnh2 = "/Content/Images/" + fileName;
-                }
-
-                if (khachSan.ImageFile3 != null && khachSan.ImageFile3.ContentLength > 0)
-                {
-                    var fileName = Path.GetFileName(khachSan.ImageFile3.FileName);
-                    var filePath = Path.Combine(Server.MapPath("~/Content/Images"), fileName);
-                    khachSan.ImageFile3.SaveAs(filePath);
-                    khachSan.UrlHinhAnh3 = "/Content/Images/" + fileName;
-                }
-
-                if (khachSan.ImageFile4 != null && khachSan.ImageFile4.ContentLength > 0)
-                {
-                    var fileName = Path.GetFileName(khachSan.ImageFile4.FileName);
-                    var filePath = Path.Combine(Server.MapPath("~/Content/Images"), fileName);
-                    khachSan.ImageFile4.SaveAs(filePath);
-                    khachSan.UrlHinhAnh4 = "/Content/Images/" + fileName;
-                }
-
-                if (GiapBien == "on")
-                    khachSan.GiapBien = true;
-                else
-                    khachSan.GiapBien = false;
-
-                khachSan.DanhGia = int.Parse(danhGia);
-                khachSan.BuaAn = int.Parse(buaAn);
-                khachSan.MoTa = moTa;
-
-                context.KhachSans.Add(khachSan);
-                context.SaveChanges();
-                TempData["Message"] = "Thêm thành công !";
-                return RedirectToAction("Index");
+                var fileName = Path.GetFileName(khachSan.ImageFile1.FileName);
+                var filePath = Path.Combine(Server.MapPath("~/Content/Images"), fileName);
+                khachSan.ImageFile1.SaveAs(filePath);
+                khachSan.UrlHinhAnh1 = "/Content/Images/" + fileName;
             }
+
+            if (khachSan.ImageFile2 != null && khachSan.ImageFile2.ContentLength > 0)
+            {
+                var fileName = Path.GetFileName(khachSan.ImageFile2.FileName);
+                var filePath = Path.Combine(Server.MapPath("~/Content/Images"), fileName);
+                khachSan.ImageFile2.SaveAs(filePath);
+                khachSan.UrlHinhAnh2 = "/Content/Images/" + fileName;
+            }
+
+            if (khachSan.ImageFile3 != null && khachSan.ImageFile3.ContentLength > 0)
+            {
+                var fileName = Path.GetFileName(khachSan.ImageFile3.FileName);
+                var filePath = Path.Combine(Server.MapPath("~/Content/Images"), fileName);
+                khachSan.ImageFile3.SaveAs(filePath);
+                khachSan.UrlHinhAnh3 = "/Content/Images/" + fileName;
+            }
+
+            if (khachSan.ImageFile4 != null && khachSan.ImageFile4.ContentLength > 0)
+            {
+                var fileName = Path.GetFileName(khachSan.ImageFile4.FileName);
+                var filePath = Path.Combine(Server.MapPath("~/Content/Images"), fileName);
+                khachSan.ImageFile4.SaveAs(filePath);
+                khachSan.UrlHinhAnh4 = "/Content/Images/" + fileName;
+            }
+
+            if (GiapBien == "on")
+                khachSan.GiapBien = true;
             else
-            {
-                return RedirectToAction("Create");
-            }
+                khachSan.GiapBien = false;
 
+            khachSan.DanhGia = int.Parse(danhGia);
+            khachSan.BuaAn = int.Parse(buaAn);
+            khachSan.MoTa = moTa;
+
+            context.KhachSans.Add(khachSan);
+            context.SaveChanges();
+            TempData["Message"] = "Thêm thành công !";
+
+            return RedirectToAction("Index");
         }
         //edit
         public ActionResult Edit(int id)
@@ -114,10 +107,11 @@ namespace Hotel_Booking.Areas.Admin.Controllers
 
             ViewBag.MoTa = thongTinKS.MoTa;
             ViewBag.GiapBien = thongTinKS.GiapBien;
+            ViewBag.Active = thongTinKS.Active;
             return View(thongTinKS);
         }
         [HttpPost]
-        public ActionResult Edit(KhachSan khachSan,string GiapBien, string danhGia, string moTa, string buaAn)
+        public ActionResult Edit(KhachSan khachSan, string GiapBien, string danhGia, string moTa, string buaAn, string Active)
         {
             KhachSan editkhachSan = context.KhachSans.FirstOrDefault(p => p.Id == khachSan.Id);
             if (editkhachSan == null)
@@ -146,6 +140,10 @@ namespace Hotel_Booking.Areas.Admin.Controllers
             else
                 editkhachSan.BuaAn = int.Parse(buaAn);
             editkhachSan.MoTa = moTa;
+            if (Active == "on")
+                editkhachSan.Active = true;
+            else
+                editkhachSan.Active = false;
 
             //image 1
             if (khachSan.ImageFile1 != null && khachSan.ImageFile1.ContentLength > 0)
@@ -154,7 +152,7 @@ namespace Hotel_Booking.Areas.Admin.Controllers
                 var filePath = Path.Combine(Server.MapPath("~/Content/Images"), fileName);
                 khachSan.ImageFile1.SaveAs(filePath);
                 khachSan.UrlHinhAnh1 = "/Content/Images/" + fileName;
-                editkhachSan.UrlHinhAnh1= khachSan.UrlHinhAnh1;
+                editkhachSan.UrlHinhAnh1 = khachSan.UrlHinhAnh1;
             }
             else
             {

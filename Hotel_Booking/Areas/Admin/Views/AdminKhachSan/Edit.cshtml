@@ -20,143 +20,159 @@
 {
     @Html.AntiForgeryToken()
 
-    <div class="form-horizontal">
-        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+<div class="form-horizontal">
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
 
-        <div class="form-group">
-            <label class="control-label col-md-2">Tên khách sạn</label>
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Ten, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Ten, "", new { @class = "text-danger" })
-            </div>
+    <div class="form-group">
+        <label class="control-label col-md-2">Tên khách sạn</label>
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.Ten, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Ten, "", new { @class = "text-danger" })
         </div>
-        <div class="form-group">
-            <label class="control-label col-md-2">Địa chỉ</label>
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.DiaChi, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.DiaChi, "", new { @class = "text-danger" })
-            </div>
-        </div>
-        <div class="form-group">
-            <label class="control-label col-md-2">SDT</label>
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.SoDienThoai, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.SoDienThoai, "", new { @class = "text-danger" })
-            </div>
-        </div>
-        <div class="form-group">
-            <label class="control-label col-md-2">Cách trung tâm</label>
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.CachTrungTam, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.CachTrungTam, "", new { @class = "text-danger" })
-            </div>
-        </div>
-        <div class="form-group">
-            <div class="col-md-10">
-                <div class="checkbox">
-                    @if (GiapBien == true)
-                    {
-                        <input name="GiapBien" id="checkbox1" type="checkbox" checked />
-                    }
-                    else
-                    {
-                        <input name="GiapBien" id="checkbox1" type="checkbox" />
-                    }
-                    <label for="checkbox1">Giáp biển</label>
-                </div>
-            </div>
-        </div>
-        <div class="form-group">
-            <label class="control-label col-md-2">Mô tả</label>
-            <div class="col-md-10">
-                <textarea style="height:125px" class="form-control" name="moTa">@ViewBag.MoTa</textarea>
-            </div>
-        </div>
-
-        <div class="row">
-            <div class="form-group col-md-6">
-                <label class="control-label col-md-3">Bữa ăn</label>
-                <div class="col-md-10">
-                    <select class="form-control" name="buaAn" id="buaAn">
-                        <option value="-1">Dịch vụ</option>
-                        <option value="0">Không có</option>
-                        <option value="1">Bữa sáng</option>
-                        <option value="2">Bữa sáng và trưa</option>
-                        <option value="3">Bữa sáng và tối</option>
-                        <option value="4">Cả ba bữa</option>
-                    </select>
-                </div>
-            </div>
-            <div class="form-group col-md-6">
-                <label class="control-label col-md-3">Đánh giá</label>
-                <div class="col-md-10">
-                    <select class="form-control" name="danhGia" id="danhGia">
-                        <option value="-1">Số sao</option>
-                        <option value="1">1</option>
-                        <option value="2">2</option>
-                        <option value="3">3</option>
-                        <option value="4">4</option>
-                        <option value="5">5</option>
-                    </select>
-                </div>
-            </div>
-        </div>
-
-        <div class="row">
-            <div class="form-group col-md-6">
-                <label class="control-label col-md-3">Thành phố</label>
-                <div class="col-md-10">
-                    @Html.DropDownList("IdThanhPho", new SelectList(ViewBag.ListThanhPho, "Id", "Ten"), htmlAttributes: new { @class = "form-control" })
-                    @Html.ValidationMessageFor(model => model.IdThanhPho, "", new { @class = "text-danger" })
-                </div>
-            </div>
-            <div class="form-group col-md-6">
-                <label class="control-label col-md-3">Loại KS</label>
-                <div class="col-md-10">
-                    @Html.DropDownList("IdLoaiKhachSan", new SelectList(ViewBag.ListLoaiKhachSan, "Id", "Ten"), htmlAttributes: new { @class = "form-control" })
-                    @Html.ValidationMessageFor(model => model.IdLoaiKhachSan, "", new { @class = "text-danger" })
-                </div>
-            </div>
-        </div>
-        <div>
-            <label class="control-label col-md-2">Ảnh khách sạn:</label>
-            <div class="form-group">
-                <label class="control-label col-md-2">Ảnh 1</label>
-                <img width="200" height="200" src="@Model.UrlHinhAnh1" />
-                <div class="col-md-10">
-                    <input type="file" name="ImageFile1" class="form-control" accept=".png, .jpg, .jpeg" />
-                </div>
-            </div>
-
-            <div class="form-group">
-                <label class="control-label col-md-2">Ảnh 1</label>
-                <img width="200" height="200" src="@Model.UrlHinhAnh2" />
-                <div class="col-md-10">
-                    <input type="file" name="ImageFile2" class="form-control" accept=".png, .jpg, .jpeg" />
-                </div>
-            </div>
-
-            <div class="form-group">
-                <label class="control-label col-md-2">Ảnh 3</label>
-                <img width="200" height="200" src="@Model.UrlHinhAnh3" />
-                <div class="col-md-10">
-                    <input type="file" name="ImageFile3" class="form-control" accept=".png, .jpg, .jpeg" />
-                </div>
-            </div>
-            <div class="form-group">
-                <label class="control-label col-md-2">Ảnh 4</label>
-                <img width="200" height="200" src="@Model.UrlHinhAnh4" />
-                <div class="col-md-10">
-                    <input type="file" name="ImageFile4" class="form-control" accept=".png, .jpg, .jpeg" />
-                </div>
-            </div>
-        </div>
-
-        <div class="form-group">
-            <div class="col-sm-6">
-                <button type="submit" class="btn btn-primary">Lưu</button>
-            </div>
-        </div>
-
     </div>
+    <div class="form-group">
+        <label class="control-label col-md-2">Địa chỉ</label>
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.DiaChi, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.DiaChi, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-md-2">SDT</label>
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.SoDienThoai, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.SoDienThoai, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-md-2">Cách trung tâm</label>
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.CachTrungTam, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.CachTrungTam, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-md-10">
+            <div class="checkbox">
+                @if (GiapBien == true)
+                {
+                    <input name="GiapBien" id="checkbox1" type="checkbox" checked />
+                }
+                else
+                {
+                    <input name="GiapBien" id="checkbox1" type="checkbox" />
+                }
+                <label for="checkbox1">Giáp biển</label>
+            </div>
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-md-10">
+            <div class="checkbox">
+                @if (ViewBag.Active == true)
+                {
+                    <input name="Active" id="checkbox2" type="checkbox" checked />
+                }
+                else
+                {
+                    <input name="Active" id="checkbox2" type="checkbox" />
+                }
+                <label for="checkbox2">Active</label>
+            </div>
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-md-2">Mô tả</label>
+        <div class="col-md-10">
+            <textarea style="height:125px" class="form-control" name="moTa">@ViewBag.MoTa</textarea>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="form-group col-md-6">
+            <label class="control-label col-md-3">Bữa ăn</label>
+            <div class="col-md-10">
+                <select class="form-control" name="buaAn" id="buaAn">
+                    <option value="-1">Dịch vụ</option>
+                    <option value="0">Không có</option>
+                    <option value="1">Bữa sáng</option>
+                    <option value="2">Bữa sáng và trưa</option>
+                    <option value="3">Bữa sáng và tối</option>
+                    <option value="4">Cả ba bữa</option>
+                </select>
+            </div>
+        </div>
+        <div class="form-group col-md-6">
+            <label class="control-label col-md-3">Đánh giá</label>
+            <div class="col-md-10">
+                <select class="form-control" name="danhGia" id="danhGia">
+                    <option value="-1">Số sao</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                </select>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="form-group col-md-6">
+            <label class="control-label col-md-3">Thành phố</label>
+            <div class="col-md-10">
+                @Html.DropDownList("IdThanhPho", new SelectList(ViewBag.ListThanhPho, "Id", "Ten"), htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.IdThanhPho, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group col-md-6">
+            <label class="control-label col-md-3">Loại KS</label>
+            <div class="col-md-10">
+                @Html.DropDownList("IdLoaiKhachSan", new SelectList(ViewBag.ListLoaiKhachSan, "Id", "Ten"), htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.IdLoaiKhachSan, "", new { @class = "text-danger" })
+            </div>
+        </div>
+    </div>
+    <div>
+        <label class="control-label col-md-2">Ảnh khách sạn:</label>
+
+        <div style="width: 30%" class="form-group">
+            <label class="control-label col-md-2">Ảnh 1</label>
+            <img style="max-width: 100%; object-fit: cover; width: 100%; height: 250px" src="@Model.UrlHinhAnh1" />
+            <div class="col-md-10">
+                <input type="file" name="ImageFile1" class="form-control" accept=".png, .jpg, .jpeg" />
+            </div>
+        </div>
+
+        <div style="width: 30%" class="form-group">
+            <label class="control-label col-md-2">Ảnh 2</label>
+            <img style="max-width: 100%; object-fit: cover; width: 100%; height: 250px" src="@Model.UrlHinhAnh2" />
+            <div class="col-md-10">
+                <input type="file" name="ImageFile2" class="form-control" accept=".png, .jpg, .jpeg" />
+            </div>
+        </div>
+
+        <div style="width: 30%" class="form-group">
+            <label class="control-label col-md-2">Ảnh 3</label>
+            <img style="max-width: 100%; object-fit: cover; width: 100%; height: 250px" src="@Model.UrlHinhAnh3" />
+            <div class="col-md-10">
+                <input type="file" name="ImageFile3" class="form-control" accept=".png, .jpg, .jpeg" />
+            </div>
+        </div>
+        <div style="width: 30%" class="form-group">
+            <label class="control-label col-md-2">Ảnh 4</label>
+            <img style="max-width: 100%; object-fit: cover; width: 100%; height: 250px" src="@Model.UrlHinhAnh4" />
+            <div class="col-md-10">
+                <input type="file" name="ImageFile4" class="form-control" accept=".png, .jpg, .jpeg" />
+            </div>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="col-sm-6">
+            <button type="submit" class="btn btn-primary">Lưu</button>
+        </div>
+    </div>
+
+</div>
 }

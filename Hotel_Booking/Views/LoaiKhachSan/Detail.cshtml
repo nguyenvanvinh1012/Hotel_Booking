@@ -3,7 +3,6 @@
 @{
     ViewBag.Title = "Detail";
     Layout = "~/Views/Shared/_Layout.cshtml";
-    List<Hotel_Booking.Models.Phong> DSPhong = ViewBag.ListPhong;
 }
 
 <section class="breadcrumb-main pb-0" style="background-image: url(/Content/assets/images/bg/bg8.jpg);">
@@ -131,77 +130,166 @@
                             </div>
                         </div>
                         <div class="description-inner">
-                            <h4>Select your room</h4>
-                            @if (DSPhong.Count > 0)
-                            {
-                                foreach (var item in DSPhong)
-                                {
-                                    <div class="product-item__outer w-100 border p-4 mb-2">
-                                        <div class="row d-flex align-items-center justify-content-between">
-                                            <div class="col-md-4 col-lg-4">
-                                                <div class="product-item__header">
-                                                    <img class="img-fluid w-100" src="@item.UrlHinhAnh"
-                                                         alt="Image Description">
+                            <h4>Chọn phòng!</h4>
+                            <div class="product-item__outer w-100 border p-4 mb-2">
+                                <div class="row d-flex align-items-center justify-content-between">
+                                    <div class="col-md-4 col-lg-4">
+                                        <div class="product-item__header">
+                                            <img class="img-fluid w-100" src="~/Content/assets/images/rooms/list1.jpg"
+                                                 alt="Image Description">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-5 col-lg-5">
+                                        <div class="rooms-content py-2">
+                                            <h5 class="mb-1">
+                                                <a href="#" class="font-weight-bold">
+                                                    Deluxe Twin
+                                                    Room
+                                                </a>
+                                            </h5>
+                                            <div class="row">
+                                                <div class="col-lg-6 col-md-6 mb-1">
+                                                    <i class="fa fa-wifi"></i> Free
+                                                    Wi-Fi
                                                 </div>
-                                            </div>
-                                            <div class="col-md-5 col-lg-5">
-                                                <div class="rooms-content py-2">
-                                                    <h5 class="mb-1">
-                                                        <a href="#" class="font-weight-bold">
-                                                            @item.Ten
-                                                        </a>
-                                                    </h5>
-                                                    <div class="row">
-                                                        <div class="col-lg-6 col-md-6 mb-1">
-                                                            <i class="fa fa-wifi"></i> Free
-                                                            Wi-Fi
-                                                        </div>
-                                                        <div class="col-lg-6 col-md-6 mb-1">
-                                                            <i class="fa fa-vector-square"></i> @item.DienTich m²
-                                                        </div>
-                                                        @if (item.LoaiGiuong == 1)
-                                                        {
-                                                            <div class="col-lg-6 col-md-6 mb-1">
-                                                                <i class="fa fa-bed"></i> 1
-                                                                single beds
-                                                            </div>
-                                                        }
-                                                        else
-                                                        {
-                                                            <div class="col-lg-6 col-md-6 mb-1">
-                                                                <i class="fa fa-bed"></i> 2
-                                                                single beds
-                                                            </div>
-                                                        }
-
-                                                        <div class="col-lg-6 col-md-6 mb-1">
-                                                            <i class="fa fa-shower"></i>
-                                                            Shower
-                                                        </div>
-                                                        <div class="col-lg-12">
-                                                            <a href="#"
-                                                               class="text-underline font-size-14">
-                                                                Room photos and
-                                                                details
-                                                            </a>
-                                                        </div>
-                                                    </div>
+                                                <div class="col-lg-6 col-md-6 mb-1">
+                                                    <i class="fa fa-vector-square"></i> 15 m²
                                                 </div>
-                                            </div>
-                                            <div class="col-md-3 col-lg-3">
-                                                <div class="rooms-pricing text-center">
-                                                    <p class="mb-1">
-                                                        From <span class="font-weight-bold ml-1">@item.GiaThue.Value.ToString("#,##0") VNĐ</span>
-                                                        <span> / night</span>
-                                                    </p>
-                                                    <a href="@Url.Action("Confirm", "DatPhong",new { id = item.Id })" class="nir-btn w-100">Đặt ngay</a>
+                                                <div class="col-lg-6 col-md-6 mb-1">
+                                                    <i class="fa fa-bed"></i> 2
+                                                    single beds
+                                                </div>
+                                                <div class="col-lg-6 col-md-6 mb-1">
+                                                    <i class="fa fa-shower"></i>
+                                                    Shower
+                                                </div>
+                                                <div class="col-lg-12">
+                                                    <a href="#"
+                                                       class="text-underline font-size-14">
+                                                        Room photos and
+                                                        details
+                                                    </a>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
-                                }
-                            }
-
+                                    <div class="col-md-3 col-lg-3">
+                                        <div class="rooms-pricing text-center">
+                                            <p class="mb-1">
+                                                From <span class="font-weight-bold ml-1"> £899.00</span>
+                                                <span> / night</span>
+                                            </p>
+                                            <a href="#" class="nir-btn w-100">Book Now</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="product-item__outer w-100 border p-4 mb-2">
+                                <div class="row d-flex align-items-center justify-content-between">
+                                    <div class="col-md-4 col-lg-4">
+                                        <div class="product-item__header">
+                                            <img class="img-fluid w-100" src="~/Content/assets/images/rooms/list2.jpg"
+                                                 alt="Image Description">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-5 col-lg-5">
+                                        <div class="rooms-content py-2">
+                                            <h5 class="mb-1">
+                                                <a href="#" class="font-weight-bold">
+                                                    Premium Single
+                                                    Room
+                                                </a>
+                                            </h5>
+                                            <div class="row">
+                                                <div class="col-lg-6 col-md-6 mb-1">
+                                                    <i class="fa fa-wifi"></i> Free
+                                                    Wi-Fi
+                                                </div>
+                                                <div class="col-lg-6 col-md-6 mb-1">
+                                                    <i class="fa fa-vector-square"></i> 15 m²
+                                                </div>
+                                                <div class="col-lg-6 col-md-6 mb-1">
+                                                    <i class="fa fa-bed"></i> 1
+                                                    single beds
+                                                </div>
+                                                <div class="col-lg-6 col-md-6 mb-1">
+                                                    <i class="fa fa-shower"></i>
+                                                    Shower
+                                                </div>
+                                                <div class="col-lg-12">
+                                                    <a href="#"
+                                                       class="text-underline font-size-14">
+                                                        Room photos and
+                                                        details
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3 col-lg-3">
+                                        <div class="rooms-pricing text-center">
+                                            <p class="mb-1">
+                                                From <span class="font-weight-bold ml-1"> £700.00</span>
+                                                <span> / night</span>
+                                            </p>
+                                            <a href="#" class="nir-btn w-100">Book Now</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="product-item__outer w-100 border p-4 mb-2">
+                                <div class="row d-flex align-items-center justify-content-between">
+                                    <div class="col-md-4 col-lg-4">
+                                        <div class="product-item__header">
+                                            <img class="img-fluid w-100" src="~/Content/assets/images/rooms/list3.jpg"
+                                                 alt="Image Description">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-5 col-lg-5">
+                                        <div class="rooms-content py-2">
+                                            <h5 class="mb-1">
+                                                <a href="#" class="font-weight-bold">
+                                                    Suplex Double
+                                                    Room
+                                                </a>
+                                            </h5>
+                                            <div class="row">
+                                                <div class="col-lg-6 col-md-6 mb-1">
+                                                    <i class="fa fa-wifi"></i> Free
+                                                    Wi-Fi
+                                                </div>
+                                                <div class="col-lg-6 col-md-6 mb-1">
+                                                    <i class="fa fa-vector-square"></i> 15 m²
+                                                </div>
+                                                <div class="col-lg-6 col-md-6 mb-1">
+                                                    <i class="fa fa-bed"></i> 2
+                                                    single beds
+                                                </div>
+                                                <div class="col-lg-6 col-md-6 mb-1">
+                                                    <i class="fa fa-shower"></i>
+                                                    Shower
+                                                </div>
+                                                <div class="col-lg-12">
+                                                    <a href="#"
+                                                       class="text-underline font-size-14">
+                                                        Room photos and
+                                                        details
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3 col-lg-3">
+                                        <div class="rooms-pricing text-center">
+                                            <p class="mb-1">
+                                                From <span class="font-weight-bold ml-1"> £700.00</span>
+                                                <span> / night</span>
+                                            </p>
+                                            <a href="#" class="nir-btn w-100">Book Now</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                     <div class="single-map mb-4" id="single-map">

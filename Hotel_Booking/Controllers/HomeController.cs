@@ -14,11 +14,13 @@ namespace Hotel_Booking.Controllers
         {
             var listTP = context.ThanhPhoes.Where(p => p.Active == true).ToList();
             ViewBag.ListLoaKS = context.LoaiKhachSans.Where(p => p.Active == true).ToList();
+
             ViewBag.TPHCM = context.ThanhPhoes.FirstOrDefault(p => p.Ten == "TP. Hồ Chí Minh");
             ViewBag.HaNoi = context.ThanhPhoes.FirstOrDefault(p => p.Ten == "Hà Nội");
             ViewBag.DaNang = context.ThanhPhoes.FirstOrDefault(p => p.Ten == "Đà Nẵng");
             ViewBag.Hue = context.ThanhPhoes.FirstOrDefault(p => p.Ten == "Huế");
             ViewBag.HoiAn = context.ThanhPhoes.FirstOrDefault(p => p.Ten == "Hội An");
+
             return View(listTP);
         }
 
