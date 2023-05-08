@@ -16,23 +16,23 @@
         }
 
         [Key]
-        [Required(ErrorMessage ="Vui lòng nhập tên tài khoản!")]
+        [Required(ErrorMessage = "Vui lòng nhập tên tài khoản!")]
         [StringLength(50)]
         public string TenTaiKhoan { get; set; }
 
-        [Required(ErrorMessage ="Vui lòng nhập mật khẩu!")]
+        [Required(ErrorMessage = "Vui lòng nhập mật khẩu!")]
         [StringLength(20)]
         public string MatKhau { get; set; }
 
-        [Required(ErrorMessage ="Vui lòng nhập họ tên!")]
+        [Required(ErrorMessage = "Vui lòng nhập họ tên!")]
         [StringLength(50)]
         public string HoTen { get; set; }
 
-        [Required(ErrorMessage ="Vui lòng nhập số điện thoại!")]
+        [Required(ErrorMessage = "Vui lòng nhập số điện thoại!")]
         [StringLength(15)]
         public string SoDienThoai { get; set; }
 
-        [Required(ErrorMessage ="Vui lòng nhập Email!")]
+        [Required(ErrorMessage = "Vui lòng nhập Email!")]
         [StringLength(50)]
         public string Email { get; set; }
 

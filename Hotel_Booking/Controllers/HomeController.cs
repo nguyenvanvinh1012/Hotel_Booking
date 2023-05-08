@@ -24,5 +24,12 @@ namespace Hotel_Booking.Controllers
             return View(listTP);
         }
 
+        public ActionResult Search(String searchString)
+        {
+
+
+            return View();
+        }
+
     }
 }

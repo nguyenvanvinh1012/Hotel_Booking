@@ -1417,7 +1417,6 @@
     <Content Include="Views\Shared\_HeaderPartialView.cshtml" />
     <Content Include="Views\Shared\_FooterPartialView.cshtml" />
     <Content Include="Web.Config" />
-    <Content Include="Views\Account\DangKy.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\KhachSan\Index.cshtml" />
     <Content Include="Views\KhachSan\Detail.cshtml" />
