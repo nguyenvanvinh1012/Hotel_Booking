@@ -12,13 +12,8 @@
 
 
 
-<div style="margin: 15px 0">
-    @using (Html.BeginForm("Search", "Home", FormMethod.Get))
-    {
-        <input type="text" name="searchString" placeholder="Tìm kiếm khách sạn" />
-        <input type="submit" value="Search" />
-    }
-</div>
+<span id="Message" class="d-none">@TempData["Message"]</span>
+<span id="MessageErr" class="d-none">@TempData["MessageErr"]</span>
 
 
 <section class="banner overflow-hidden px-4">
@@ -392,3 +387,15 @@
         </div>
     </div>
 </section>
+
+@section Scripts
+{
+    <script type="text/javascript">
+        $(document).ready(function () {
+            var message = $('#MessageErr').text();
+            if (message !== '') {
+                toastr.error(message);
+            }
+        });
+    </script>
+}

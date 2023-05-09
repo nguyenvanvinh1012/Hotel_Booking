@@ -1,67 +1,12 @@
-﻿@model IEnumerable<Hotel_Booking.Models.TaiKhoan>
-
+﻿@model PagedList.IPagedList<Hotel_Booking.Models.TaiKhoan>
+@using PagedList;
+@using PagedList.Mvc
 @{
     ViewBag.Title = "Index";
     Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
 }
 
-@*<h2>Index</h2>
 
-    <p>
-        @Html.ActionLink("Create New", "Create")
-    </p>
-    <table class="table">
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.QuyenTruyCap.TenQuyenTryCap)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.MatKhau)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.HoTen)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.SoDienThoai)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Email)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Active)
-            </th>
-            <th></th>
-        </tr>
-
-    @foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.QuyenTruyCap.TenQuyenTryCap)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.MatKhau)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.HoTen)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.SoDienThoai)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Email)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Active)
-            </td>
-            <td>
-                @Html.ActionLink("Edit", "Edit", new { id=item.TenTaiKhoan }) |
-                @Html.ActionLink("Details", "Details", new { id=item.TenTaiKhoan }) |
-                @Html.ActionLink("Delete", "Delete", new { id=item.TenTaiKhoan })
-            </td>
-        </tr>
-    }
-
-    </table>*@
 <div class="page-header">
     <div class="header-sub-title">
         <nav class="breadcrumb breadcrumb-dash">
@@ -99,18 +44,29 @@
                 foreach (var item in Model)
                 {
                     <tr>
-                        <th scope="row">@item.TenTaiKhoan</th>
-                        @*<td>@item.MatKhau</td>*@
+                        <th scope="row">@item.TenTaiKhoan</th>                       
                         <td>@item.HoTen</td>
                         <td>@item.SoDienThoai</td>
-                        <td>@item.Email</td>
-                        @*<td>@item.MaQuyenTryCap</td>*@
-                        <td>@item.Active</td>
+                        <td>@item.Email</td>                        
                         <td>
-                            <a href="@Url.Action("Edit", "AdminQuyenTruyCap",new {id = item.MaQuyenTryCap,  area = "Admin" })" title="Chỉnh sửa" class="btn btn-icon btn-hover btn-sm btn-rounded pull-right">
-                                <i class="anticon anticon-edit"></i>
-                            </a>
-                            <a href="@Url.Action("Delete", "AdminQuyenTruyCap",new {id = item.MaQuyenTryCap,  area = "Admin" })" title="Xóa" class="btn btn-icon btn-hover btn-sm btn-rounded">
+                            @if (item.Active == true)
+                            {
+                                <div class="d-flex align-items-center">
+                                    <div class="badge badge-success badge-dot m-r-10"></div>
+                                    <div>Active</div>
+                                </div>
+                            }
+                            else
+                            {
+                                <div class="d-flex align-items-center">
+                                    <div class="badge badge-danger badge-dot m-r-10"></div>
+                                    <div>Disable</div>
+                                </div>
+                            }
+
+                        <td>
+                        <td>
+                            <a href="@Url.Action("Disable", "AdminTaiKhoan",new {tk = item.TenTaiKhoan,  area = "Admin" })" title="Xóa" class="btn btn-icon btn-hover btn-sm btn-rounded">
                                 <i class="anticon anticon-delete"></i>
                             </a>
                         </td>
@@ -119,17 +75,18 @@
             }
         </tbody>
     </table>
+    @Html.PagedListPager(Model, page => Url.Action("Index", new { page }))
+</div>
 </div>
 
 @section Scripts
 {
     <script type="text/javascript">
         $(document).ready(function () {
-            var message = $('#Message').text();
+            var message = $('#MessageErr').text();
             if (message !== '') {
-                toastr.success(message);
+                toastr.error(message);
             }
         });
     </script>
 }
-

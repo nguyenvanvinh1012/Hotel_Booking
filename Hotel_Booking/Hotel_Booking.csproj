@@ -1397,6 +1397,7 @@
     <Content Include="Areas\Admin\Views\AdminDatPhong\Index.cshtml" />
     <Content Include="Areas\Admin\Views\AdminDatPhong\Delete.cshtml" />
     <Content Include="Areas\Admin\Views\Search\FindDatPhong.cshtml" />
+    <Content Include="Areas\Admin\Views\AdminTaiKhoan\Disable.cshtml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
