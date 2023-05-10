@@ -1425,6 +1425,8 @@
     <Content Include="Views\LoaiKhachSan\Index.cshtml" />
     <Content Include="Views\LoaiKhachSan\Detail.cshtml" />
     <Content Include="Views\DatPhong\Confirm.cshtml" />
+    <Content Include="Views\Account\DangKy.cshtml" />
+    <Content Include="Views\Account\DangNhap.cshtml" />
     <None Include="Web.Debug.Config">
       <DependentUpon>Web.Config</DependentUpon>
     </None>

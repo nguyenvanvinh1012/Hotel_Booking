@@ -92,13 +92,33 @@
                         </div>
                     </div>
                     <div class="register-login">
-                        <a href="#" class="mr-2" data-toggle="modal" data-target="#register">
-                            <i class="icon-user mr-1"></i> Register
-                        </a>
-                        <a href="#" data-toggle="modal" data-target="#login">
-                            <i class="icon-login mr-1"></i>
-                            Login
-                        </a>
+                        @if (User.Identity.IsAuthenticated)
+                        {
+                            <a href="@Url.Action("Index", "Account")" class="mr-2">
+                                <i class="icon-user mr-1"></i> Tài khoản
+                            </a>
+                        }
+                        else
+                        {
+                            <a href="@Url.Action("DangKy", "Account")" class="mr-2">
+                                <i class="icon-user mr-1"></i> Đăng ký
+                            </a>
+                        }
+
+                        @if (User.Identity.IsAuthenticated)
+                        {
+                            <a href="@Url.Action("DangXuat", "Account")">
+                                <i class="icon-login mr-1"></i>
+                                Đăng xuất
+                            </a>
+                        }
+                        else
+                        { <a href="@Url.Action("DangNhap", "Account")">
+                                <i class="icon-login mr-1"></i>
+                                Đăng nhập
+                            </a>
+                        }
+
                     </div>
                     <div id="slicknav-mobile"></div>
                 </div>

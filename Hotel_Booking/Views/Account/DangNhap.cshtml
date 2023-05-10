@@ -1,0 +1,76 @@
+﻿@model Hotel_Booking.Models.TaiKhoan
+
+@{
+    ViewBag.Title = "DangNhap";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<span id="Message" class="d-none">@TempData["Message"]</span>
+<span id="MessageErr" class="d-none">@TempData["MessageErr"]</span>
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="modal-body p-0">
+        <div class="login-content p-4 text-center">
+
+            <div class="login-title section-border">
+                <h3  style="font-size: 23px" class="pink">ĐĂNG NHẬP</h3>
+            </div>
+            <div class="login-form">
+                <form>
+                    <div style="width: 60%" class="form-group">
+                        <input name="TenTaiKhoan" type="text" placeholder="Tên tài khoản">
+                    </div>
+                    <div style="width: 60%" class="form-group">
+                        <input name="MatKhau" type="password" placeholder="Mật khẩu">
+                    </div>
+                </form>
+                <div style="width: 60%" class="form-group">
+                    <input style="width: 100%" type="submit" value="Đăng nhập" class="nir-btn">
+                </div>
+                <div class="form-group mb-0 form-checkbox mt-3">
+                    <input type="checkbox"> Remember Me | <a href="#" class="">Quên mật khẩu?</a>
+                </div>
+            </div>
+            <div class="login-social border-t mt-3 pt-2 mb-3">
+                <p class="mb-2">OR continue with</p>
+                <a href="#" class="btn-facebook">
+                    <i class="fab fa-facebook" aria-hidden="true"></i>
+                    Facebook
+                </a>
+                <a href="#" class="btn-twitter">
+                    <i class="fab fa-twitter" aria-hidden="true"></i>
+                    Twitter
+                </a>
+            </div>
+            <div class="sign-up">
+                <p class="m-0">Chưa có tài khoản? <a href="@Url.Action("DangKy", "Account")" class="pink">Đăng ký</a></p>
+            </div>
+        </div>
+    </div>
+}
+
+
+@section Scripts
+{
+    <script type="text/javascript">
+        $(document).ready(function () {
+            var message = $('#Message').text();
+            if (message !== '') {
+                toastr.success(message);
+            }
+        });
+
+        $(document).ready(function () {
+            var messageErr = $('#MessageErr').text();
+            if (messageErr !== '') {
+                toastr.error(messageErr);
+            }
+        });
+    </script>
+}
+
+

@@ -13,23 +13,28 @@ namespace Hotel_Booking.Controllers
         // GET: Account
 
         HotelBookingContext context = new HotelBookingContext();
-
-        public ActionResult DangKy(String tentaikhoan,String matkhau,String hoten,String sodienthoai,String email,String xacnhanmatkhau)
+        [HttpGet]
+        public ActionResult DangKy()
         {
-            TaiKhoan tk = context.TaiKhoans.FirstOrDefault(p => p.TenTaiKhoan == tentaikhoan);
+            return View();
+        }
+        [HttpPost]
+        public ActionResult DangKy(TaiKhoan tk,String xacnhanmatkhau, string matkhau)
+        {
+            TaiKhoan taiKhoan = context.TaiKhoans.FirstOrDefault(p => p.TenTaiKhoan == tk.TenTaiKhoan);
             if (ModelState.IsValid)
             {
-                if (tk == null)
+                if (taiKhoan == null)
                 {
                     if(xacnhanmatkhau == matkhau)
                     {
                         TaiKhoan taiKhoan1 = new TaiKhoan
                         {
-                            TenTaiKhoan = tentaikhoan,
+                            TenTaiKhoan = tk.TenTaiKhoan,
                             MatKhau = matkhau,
-                            HoTen = hoten,
-                            SoDienThoai = sodienthoai,
-                            Email = email,
+                            HoTen = tk.HoTen,
+                            SoDienThoai = tk.SoDienThoai,
+                            Email = tk.Email,
                             MaQuyenTryCap = 3,
                             Active = true,
 
@@ -37,23 +42,28 @@ namespace Hotel_Booking.Controllers
                         context.TaiKhoans.Add(taiKhoan1);
                         context.SaveChanges();
                         TempData["Message"] = "Đăng ký thành công !";
-                        return RedirectToAction("Index", "Home", new { area = "" });
+                        return RedirectToAction("DangNhap", "Account", new { area = "" });
                     }
                     else
                     {
                         TempData["MessageErr"] = "Xác nhận mật khẩu không hợp lệ !";
-                        return RedirectToAction("Index", "Home", new { area = "" });
+                        return RedirectToAction("DangKy", "Account", new { area = "" });
                     }
                 }
                 else
                 {
-                    ViewBag.error = "Tên tài khoản đã tồn tại! Vui lòng sử dụng tên tài khoản khác";
-                    return View();
+                    TempData["MessageErr"] = "Tên tài khoản đã tồn tại! Vui lòng sử dụng tên tài khoản khác";
+                    return RedirectToAction("DangKy", "Account", new { area = "" });
                 }
             }
             return RedirectToAction("Index", "Home", new { area = "" });
         }
 
+        public ActionResult DangNhap()
+        {
+            return View();
+        }
+        [HttpPost]
         public ActionResult DangNhap(String tentaikhoan, String matkhau)
         {
             if (ModelState.IsValid)
@@ -67,13 +77,12 @@ namespace Hotel_Booking.Controllers
                         if (t.Active == false)
                         {
                             TempData["MessageErr"] = "Tài khoản đã bị chặn!!";
-                            return RedirectToAction("Index", "Home", new { area = "" });
+                            return RedirectToAction("DangNhap", "Account", new { area = "" });
                         }
                         else
                         {
                             Session["TenTaiKhoan"] = t.TenTaiKhoan;
                             FormsAuthentication.SetAuthCookie(t.TenTaiKhoan, false);
-                            //return RedirectToAction("Dashborad", "Account");
                             return RedirectToAction("Index", "Home", new { area = "" });
                         }
                     }
@@ -83,13 +92,19 @@ namespace Hotel_Booking.Controllers
                         return RedirectToAction("Index", "Home", new { area = "Admin" });
                     }
                 }
-                TempData["MessageErr"] = "UserName or PassWord is wrong!!";
-                return View();
+                TempData["MessageErr"] = "Tài khoản hoặc mật khẩu sai!!";
+                return RedirectToAction("DangNhap", "Account", new { area = "" });
             }
             else
             {
                 return RedirectToAction("DangNhap");
             }         
+        }
+        public ActionResult DangXuat()
+        {
+            Session["TenTaiKhoan"] = null;
+            FormsAuthentication.SignOut();
+            return RedirectToAction("DangNhap");
         }
     }
 }
