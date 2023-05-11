@@ -30,11 +30,20 @@ namespace Hotel_Booking.Controllers
             return View();
         }
 
-        public ActionResult Search(String searchString)
+        public ActionResult Search(string keyword)
         {
+            var findTP = context.ThanhPhoes.Where(p => p.Ten.Contains(keyword)).ToList();
+            ThanhPho es = findTP.FirstOrDefault();
+            if (es != null)
+            {
+                return RedirectToAction("Index", "KhachSan", new { id = es.Id });
+            }
+            else
+            {
+                TempData["MessageErr"] = "Không có khách sạn cần tìm !";
+                return RedirectToAction("Index");
+            }
 
-
-            return View();
         }
 
     }

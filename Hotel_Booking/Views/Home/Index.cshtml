@@ -70,73 +70,75 @@
 
 
 <div class="form-main">
-    
-    <div class="container">
-        <div class="form-content form-content1 w-100 transparent p-0 shadow-none position-relative">
-            <div class="form-navtab text-center">
-                <ul class="nav nav-tabs">
-                    <li class="active"><a data-toggle="tab" href="#hotel"><i class="flaticon-building"></i>Tìm khách sạn</a></li>
-                </ul>
-            </div>
-            <div class="tab-content">
-                <div id="hotel" class="tab-pane in active">
-                    <div class="row d-flex align-items-center justify-content-between">
-                        <div class="col-lg">
-                            <div class="form-group mb-0">
-                                <label>Điểm đến</label>
-                                <div class="input-box">
-                                    <i class="flaticon-placeholder"></i>
-                                    <input type="text" placeholder="Bạn muốn đến đâu?" />
+    @using (Html.BeginForm("Search", "Home"))
+    {
+        <div class="container">
+            <div class="form-content form-content1 w-100 transparent p-0 shadow-none position-relative">
+                <div class="form-navtab text-center">
+                    <ul class="nav nav-tabs">
+                        <li class="active"><a data-toggle="tab" href="#hotel"><i class="flaticon-building"></i>Tìm khách sạn</a></li>
+                    </ul>
+                </div>
+                <div class="tab-content">
+                    <div id="hotel" class="tab-pane in active">
+                        <div class="row d-flex align-items-center justify-content-between">
+                            <div class="col-lg">
+                                <div class="form-group mb-0">
+                                    <label>Điểm đến</label>
+                                    <div class="input-box">
+                                        <i class="flaticon-placeholder"></i>
+                                        <input name="keyword" type="text" placeholder="Bạn muốn đến đâu?" />
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="col-lg">
-                            <div class="form-group mb-0">
-                                <label>Ngày nhận phòng</label>
-                                @*<div class="input-box">
-                                        <i class="flaticon-calendar"></i>
-                                        <input id="date-range2" type="text" placeholder="yyyy-mm-dd">
-                                    </div>*@
-                                <div class="input-box">
-                                    <i class="fa fa-calendar"></i>
-                                    <input id="date-range0" type="text" placeholder="yyyy-mm-dd">
+                            <div class="col-lg">
+                                <div class="form-group mb-0">
+                                    <label>Ngày nhận phòng</label>
+                                    <div class="input-box">
+                                        <i class="fa fa-calendar"></i>
+                                        <input id="date-range0" type="text" placeholder="yyyy-mm-dd" name="ngayden">
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="col-lg">
-                            <div class="form-group mb-0">
-                                <label>Ngày trả phòng</label>
-                                <div class="input-box">
-                                    <i class="fa fa-calendar"></i>
-                                    <input id="date-range1" type="text" placeholder="yyyy-mm-dd">
+                            <div class="col-lg">
+                                <div class="form-group mb-0">
+                                    <label>Ngày trả phòng</label>
+                                    <div class="input-box">
+                                        <i class="fa fa-calendar"></i>
+                                        <input id="date-range1" type="text" placeholder="yyyy-mm-dd" name="ngaydi">
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="col-lg">
-                            <div class="form-group mb-0">
-                                <label>Người</label>
-                                <div class="input-box">
-                                    <i class="flaticon-add-user"></i>
-                                    <select class="niceSelect">
-                                        <option value="1">1</option>
-                                        <option value="2">2</option>
-                                        <option value="3">3</option>
-                                        <option value="4">4</option>
-                                        <option value="5">5</option>
-                                    </select>
+                            <div class="col-lg">
+                                <div class="form-group mb-0">
+                                    <label>Người</label>
+                                    <div class="input-box">
+                                        <i class="flaticon-add-user"></i>
+                                        <select class="niceSelect">
+                                            <option value="1">1</option>
+                                            <option value="2">2</option>
+                                            <option value="3">3</option>
+                                            <option value="4">4</option>
+                                            <option value="5">5</option>
+                                        </select>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="col-lg">
-                            <div class="form-group mb-0 mt-3">
-                                <a href="#" class="nir-btn w-100"><i class="fa fa-search mr-2"></i> Tìm </a>
+                            <div class="col-lg">
+                                <div class="form-group mb-0 mt-3">
+                                    <div class="input-box">
+                                        <input type="submit" value="Search" class="nir-btn w-100" />
+                                        <i class="fa fa-search mr-2"></i>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
+    }
+
 </div>
 
 @* Khám phá việt nam *@
