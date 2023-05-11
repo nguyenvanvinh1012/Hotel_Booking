@@ -155,12 +155,16 @@
     </Compile>
     <Compile Include="Models\DatPhong.cs" />
     <Compile Include="Models\HotelBookingContext.cs" />
+    <Compile Include="Models\Info.cs" />
     <Compile Include="Models\KhachSan.cs" />
     <Compile Include="Models\LoaiKhachSan.cs" />
     <Compile Include="Models\Phong.cs" />
     <Compile Include="Models\QuyenTruyCap.cs" />
+    <Compile Include="Models\Result.cs" />
     <Compile Include="Models\TaiKhoan.cs" />
     <Compile Include="Models\ThanhPho.cs" />
+    <Compile Include="Other\MoMoSecurity.cs" />
+    <Compile Include="Other\PaymentRequest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -1092,6 +1096,7 @@
     <Content Include="Content\Images\HoiAn.jpg" />
     <Content Include="Content\Images\Hue.jpg" />
     <Content Include="Content\Images\KhachSan.jpeg" />
+    <Content Include="Content\Images\momo.png" />
     <Content Include="Content\Images\Resort.jpeg" />
     <Content Include="Content\Images\ThonDa.jpeg" />
     <Content Include="Content\Images\vietnam.png" />
@@ -1424,9 +1429,10 @@
     <Content Include="Views\Shared\NotFound.cshtml" />
     <Content Include="Views\LoaiKhachSan\Index.cshtml" />
     <Content Include="Views\LoaiKhachSan\Detail.cshtml" />
-    <Content Include="Views\DatPhong\Confirm.cshtml" />
     <Content Include="Views\Account\DangKy.cshtml" />
     <Content Include="Views\Account\DangNhap.cshtml" />
+    <Content Include="Views\DatPhong\Confirm.cshtml" />
+    <Content Include="Views\Home\Contact.cshtml" />
     <None Include="Web.Debug.Config">
       <DependentUpon>Web.Config</DependentUpon>
     </None>

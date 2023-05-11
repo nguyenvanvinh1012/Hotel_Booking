@@ -70,6 +70,7 @@
 
 
 <div class="form-main">
+    
     <div class="container">
         <div class="form-content form-content1 w-100 transparent p-0 shadow-none position-relative">
             <div class="form-navtab text-center">
@@ -395,6 +396,12 @@
             var message = $('#MessageErr').text();
             if (message !== '') {
                 toastr.error(message);
+            }
+        });
+        $(document).ready(function () {
+            var message = $('#Message').text();
+            if (message !== '') {
+                toastr.success(message);
             }
         });
     </script>

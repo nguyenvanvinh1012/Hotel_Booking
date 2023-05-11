@@ -1,20 +1,21 @@
-﻿@model Hotel_Booking.Models.KhachSan
+﻿@model Hotel_Booking.Models.TaiKhoan
 
 @{
-    ViewBag.Title = "Confirm";
+    ViewBag.Title = "Confirm1";
     Layout = "~/Views/Shared/_Layout.cshtml";
+    Hotel_Booking.Models.ThanhPho TP = ViewBag.ThanhPho;
+    Hotel_Booking.Models.Phong Phong = ViewBag.Phong;
 }
-
 
 <section class="breadcrumb-main pb-0" style="background-image: url(/Content/assets/images/bg/bg8.jpg);">
     <div class="breadcrumb-outer pt-10">
         <div class="container">
             <div class="breadcrumb-content d-md-flex align-items-center pt-10">
-                <h2 class="mb-0">Hotel Booking</h2>
+                <h2 class="mb-0"></h2>
                 <nav aria-label="breadcrumb">
                     <ul class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="#">Home</a></li>
-                        <li class="breadcrumb-item active" aria-current="page">Hotel Booking</li>
+                        <li class="breadcrumb-item"><a href="#"></a></li>
+                        <li class="breadcrumb-item active" aria-current="page"></li>
                     </ul>
                 </nav>
             </div>
@@ -30,40 +31,51 @@
             <div class="col-lg-8 col-xs-12 mb-4">
                 <div class="payment-book">
                     <div class="description flight-book mb-4">
-                        <div class="detail-title"><h3>YOUR PERSONAL INFORMATION</h3></div>
+                        <div class="detail-title"><h3>THÔNG TIN CỦA BẠN</h3></div>
                         <div class="description-content">
                             <form>
                                 <div class="form-group">
-                                    <label>Name:</label>
-                                    <input type="text" class="form-control" id="fName" placeholder="Enter full name">
+                                    <label>Họ và tên:</label>
+                                    @Html.DisplayFor(model => model.HoTen)
+                                    @*<input type="text" class="form-control" id="fName" placeholder="Enter full name">*@
                                 </div>
                                 <div class="form-group">
                                     <label>Email:</label>
-                                    <input type="text" class="form-control" id="email1" placeholder="abc@xyz.com">
+                                    @Html.DisplayFor(model => model.Email)
+                                    @*<input type="text" class="form-control" id="email1" placeholder="abc@xyz.com">*@
                                 </div>
                                 <div class="form-group col-left-padding">
-                                    <label>Phone Number:</label>
-                                    <input type="text" class="form-control" id="phnumber1" placeholder="XXXX-XXXXXX">
+                                    <label>Số điện thoại:</label>
+                                    @Html.DisplayFor(model => model.SoDienThoai)
+                                    @*<input type="text" class="form-control" id="phnumber1" placeholder="XXXX-XXXXXX">*@
                                 </div>
                             </form>
                         </div>
                     </div>
                     <div class="comment-btn mb-4">
-                        <a href="#" class="nir-btn">Confirm Booking</a>
+                        <a href="#" class="nir-btn">Chọn phương thức đặt phòng</a>
                     </div>
                     <div class="description detail-box mb-4">
                         <div class="booking-box">
-                            <div class="booking-box-title d-md-flex align-items-center bg-pink p-4 mb-4">
-                                <i class="fa fa-check"></i>
-                                <div class="title-content ml-3">
-                                    <h3 class="mb-0 white">Thank You. Your booking order is confirmed now.</h3>
-                                    <p class="mb-0 white">A confirmation email has been sent to your provided email address.</p>
-                                </div>
+                            @*<div class="booking-box-title d-md-flex align-items-center bg-pink p-4 mb-4">
+                                    <i class="fa fa-check"></i>
+                                    <div class="title-content ml-3">
+                                        <h3 class="mb-0 white">Thank You. Your booking order is confirmed now.</h3>
+                                        <p class="mb-0 white">A confirmation email has been sent to your provided email address.</p>
+                                    </div>
+                                </div>*@
+                            <div class="booking-border mb-2 bg-lgrey p-4">
+                                <a  href="@Url.Action("Order", "DatPhong")"  style="font-weight: bold; font-size: 20px; margin-bottom:25px" class="border-b pb-2 mb-2">
+                                    Thanh khi nhận phòng                                   
+                                </a>
+                                <p style="margin-top: 20px">This is the third time I've used Travelo Website and telling you the truth their services are always reliable and it ony takes few minutes to plan and finalize.</p>
                             </div>
                             <div class="booking-border mb-2 bg-lgrey p-4">
-                                <h4 class="border-b pb-2 mb-2">Payment</h4>
-                                <p>This is the third time I've used Travelo Website and telling you the truth their services are always reliable and it ony takes few minutes to plan and finalize.</p>
-                                <a href="#">Payment is made by Credit Card via Paypal</a>
+                                <a  href="@Url.Action("OrderMomo", "DatPhong")" style="font-weight: bold; font-size: 20px; margin-bottom:25px" class="border-b pb-2 mb-2">
+                                    Thanh toán điện tử
+                                    <img style="width: 28px; border-radius: 3px; margin-left: 5px" src="~/Content/Images/momo.png" />
+                                </a>
+                                <p style="margin-top: 20px">This is the third time I've used Travelo Website and telling you the truth their services are always reliable and it ony takes few minutes to plan and finalize.</p>
                             </div>
                         </div>
                     </div>
@@ -74,81 +86,35 @@
                     <div class="sidebar-item mb-4">
                         <div class="trend-item mb-0">
                             <div class="trend-image">
-                                <img src="~/Content/assets/images/rooms/list1.jpg" alt="image">
+                                <img src="@Phong.UrlHinhAnh" alt="image">
                                 <div class="trend-tags">
                                     <a href="#"><i class="flaticon-like"></i></a>
                                 </div>
                             </div>
                             <div class="trend-content-main">
                                 <div class="trend-content">
-                                    <h4 class="mb-1 p-0 bordernone"><a href="#" class="" tabindex="0">Park Avenue Baker Street</a></h4>
-                                    <p class="mb-0"><i class="fa fa-map-marker mr-2 grey"></i> Lyuishen Tokya, Japan</p>
+                                    <h4 class="mb-1 p-0 bordernone"><a href="#" class="" tabindex="0">@Phong.Ten</a></h4>
+                                    <p class="mb-0"><i class="fa fa-map-marker mr-2 grey"></i>@TP.Ten</p>
                                 </div>
                             </div>
                         </div>
                     </div>
                     <div class="list-sidebar">
                         <div class="sidebar-item">
-                            <h3>Booking Detail</h3>
+                            <h3>Chi tiết đặt phòng</h3>
                             <ul class="list-unstyled font-size-1 mb-0 font-size-16">
                                 <li class="d-flex justify-content-between py-1 border-b">
                                     <span class="font-weight-medium">Date <br> 22/09/2019, 00:00 AM <br> 23/09/2019, 00:00 AM</span>
-                                    <span class="text-secondary"><a href="#" class="text-underline">Edit</a></span>
                                 </li>
                                 <li class="d-flex justify-content-between py-1 border-b">
-                                    <span class="font-weight-medium">Car type</span>
-                                    <span class="text-secondary">Hatchbacks</span>
+                                    <span class="font-weight-medium">Giá thuê </span>
+                                    <span class="text-secondary">@Phong.GiaThue.Value.ToString("#,##0") VNĐ</span>
                                 </li>
                                 <li class="d-flex justify-content-between py-1 border-b">
-                                    <span class="font-weight-medium">Pick Up From</span>
-                                    <span class="text-secondary">Los Angeles</span>
-                                </li>
-                                <li class="d-flex justify-content-between py-1 border-b">
-                                    <span class="font-weight-medium">Drop Off To</span>
-                                    <span class="text-secondary">California</span>
-                                </li>
-                                <li class="d-flex justify-content-between py-1">
-                                    <span class="font-weight-medium">Est. Distance</span>
-                                    <span class="text-secondary">50 kilometer</span>
+                                    <span class="font-weight-medium">Tổng tiền</span>
+                                    <span class="text-secondary pink">@Phong.GiaThue.Value.ToString("#,##0") VNĐ</span>
                                 </li>
                             </ul>
-                        </div>
-                        <div class="sidebar-item">
-                            <h3>Payment</h3>
-                            <table>
-                                <tbody>
-                                    <tr>
-                                        <td> Price</td>
-                                        <td class="pink">$580.00</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Number of Travellers</td>
-                                        <td class="pink">1</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Infant Price</td>
-                                        <td class="pink">$0.00</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Subtotal</td>
-                                        <td class="pink">$580.00</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Total</td>
-                                        <td class="pink">$580.00</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Tax &amp; fee</td>
-                                        <td class="pink">0</td>
-                                    </tr>
-                                </tbody>
-                                <tfoot class="bg-pink">
-                                    <tr>
-                                        <th class="font-weight-bold white">Amount</th>
-                                        <th class="font-weight-bold white">$580.00</th>
-                                    </tr>
-                                </tfoot>
-                            </table>
                         </div>
                     </div>
                 </div>
@@ -156,3 +122,4 @@
         </div>
     </div>
 </section>
+

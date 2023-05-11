@@ -38,8 +38,12 @@ namespace Hotel_Booking.Controllers
             {
                 return PartialView("NotFound");
             }
+            //ngay == den
             ViewBag.ListPhong = context.Phongs.Where(p => p.IdKhachSan == khachSan.Id).ToList();
             return View(khachSan);
         }
+        //check
+        //sses
+        //f
     }
 }
