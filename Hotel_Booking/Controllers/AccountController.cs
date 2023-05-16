@@ -76,7 +76,7 @@ namespace Hotel_Booking.Controllers
                     {
                         if (t.Active == false)
                         {
-                            TempData["MessageErr"] = "Tài khoản đã bị chặn!!";
+                            TempData["MessageErr"] = "Tài khoản đã bị chặn!!"; 
                             return RedirectToAction("DangNhap", "Account", new { area = "" });
                         }
                         else

@@ -4,6 +4,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.Text;
+using UnidecodeSharpFork;
+using System.Globalization;
+using System.Data.Common;
+using System.Data.SqlClient;
 
 namespace Hotel_Booking.Controllers
 {
@@ -12,8 +17,10 @@ namespace Hotel_Booking.Controllers
         HotelBookingContext context = new HotelBookingContext();
         public ActionResult Index()
         {
+
             var listTP = context.ThanhPhoes.Where(p => p.Active == true).ToList();
             ViewBag.ListLoaKS = context.LoaiKhachSans.Where(p => p.Active == true).ToList();
+
 
             ViewBag.TPHCM = context.ThanhPhoes.FirstOrDefault(p => p.Ten == "TP. Hồ Chí Minh");
             ViewBag.HaNoi = context.ThanhPhoes.FirstOrDefault(p => p.Ten == "Hà Nội");
@@ -29,20 +36,52 @@ namespace Hotel_Booking.Controllers
 
             return View();
         }
-
-        public ActionResult Search(string keyword)
+        public static string RemoveDiacritics(string text)
         {
-            var findTP = context.ThanhPhoes.Where(p => p.Ten.Contains(keyword)).ToList();
-            ThanhPho es = findTP.FirstOrDefault();
-            if (es != null)
+            string formD = text.Normalize(NormalizationForm.FormD);
+            StringBuilder sb = new StringBuilder();
+
+            foreach (char ch in formD)
             {
-                return RedirectToAction("Index", "KhachSan", new { id = es.Id });
+                UnicodeCategory category = CharUnicodeInfo.GetUnicodeCategory(ch);
+                if (category != UnicodeCategory.NonSpacingMark)
+                {
+                    sb.Append(ch);
+                }
             }
-            else
+            return sb.ToString().Normalize(NormalizationForm.FormC);
+        }
+        public ActionResult Search(string keyword, DateTime ngayden, DateTime ngaydi)
+        {
+            Info info = new Info();
+            info.ngayDen = ngayden;
+            info.ngayTra = ngaydi;
+            Session["Info"] = info;
+            int kt = DateTime.Compare(ngayden, ngaydi);
+            if(ngaydi.ToUniversalTime() < ngayden.ToUniversalTime())
             {
-                TempData["MessageErr"] = "Không có khách sạn cần tìm !";
-                return RedirectToAction("Index");
+                TempData["MessageErr"] = "Ngày không hợp lệ!!";
+                return RedirectToAction("Index", "Home");
             }
+            string searchKeyword = RemoveDiacritics(keyword);
+            if (!string.IsNullOrEmpty(keyword))
+            {
+                var findTP = context.ThanhPhoes.Where(p => p.Ten.Contains(keyword)).FirstOrDefault();
+                if (findTP != null)
+                {
+                    return RedirectToAction("Index", "KhachSan", new { id = findTP.Id });
+                }
+                else
+                {
+                    var findTP2 = context.ThanhPhoes.ToList().Where(p => RemoveDiacritics(p.Ten).ToLower().Contains(keyword.ToLower())).FirstOrDefault();
+                    if (findTP2 != null)
+                    {
+                        return RedirectToAction("Index", "KhachSan", new { id = findTP2.Id });
+                    }
+                    return PartialView("NotFound");
+                }
+            }
+            return PartialView("NotFound");
 
         }
 

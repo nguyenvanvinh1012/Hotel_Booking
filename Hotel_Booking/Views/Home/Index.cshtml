@@ -96,7 +96,8 @@
                                     <label>Ngày nhận phòng</label>
                                     <div class="input-box">
                                         <i class="fa fa-calendar"></i>
-                                        <input id="date-range0" type="text" placeholder="yyyy-mm-dd" name="ngayden">
+                                        @*id="date-range0"*@
+                                        <input type="date" min="" id="date" name="ngayden" required>
                                     </div>
                                 </div>
                             </div>
@@ -105,7 +106,8 @@
                                     <label>Ngày trả phòng</label>
                                     <div class="input-box">
                                         <i class="fa fa-calendar"></i>
-                                        <input id="date-range1" type="text" placeholder="yyyy-mm-dd" name="ngaydi">
+                                        @*id="date-range1"*@
+                                        <input type="date" min="" id="date2" name="ngaydi" required>
                                     </div>
                                 </div>
                             </div>
@@ -127,7 +129,7 @@
                             <div class="col-lg">
                                 <div class="form-group mb-0 mt-3">
                                     <div class="input-box">
-                                        <input type="submit" value="Search" class="nir-btn w-100" />
+                                        <input style="border: none" type="submit" value="Search" class="nir-btn w-100" />
                                         <i class="fa fa-search mr-2"></i>
                                     </div>
                                 </div>
@@ -406,5 +408,23 @@
                 toastr.success(message);
             }
         });
+      
+        var date = new Date();
+        var day = date.getDate();
+        var month = date.getMonth() + 1;
+        var year = date.getFullYear();
+
+        if (month < 10) month = "0" + month;
+        if (day < 10) day = "0" + day;
+        
+        var today = year + "-" + month + "-" + day;
+
+        document.getElementById("date").value = today
+        document.getElementById("date").setAttribute("min", today);
+        var day2 = date.getDate() + 1;
+        var next = year + "-" + month + "-" + day2;
+        document.getElementById("date2").value = next;
+        document.getElementById("date2").setAttribute("min", next);
+
     </script>
 }

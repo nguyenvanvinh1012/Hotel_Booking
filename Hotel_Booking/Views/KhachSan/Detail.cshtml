@@ -4,6 +4,16 @@
     ViewBag.Title = "Detail";
     Layout = "~/Views/Shared/_Layout.cshtml";
     List<Hotel_Booking.Models.Phong> DSPhong = ViewBag.ListPhong;
+    bool kt = false;
+    if (ViewBag.ngayden != null)
+    {
+        DateTime ngayden = ViewBag.ngayden;
+        kt = true;
+    }
+    if (ViewBag.ngaydi != null)
+    {
+        DateTime ngaydi = ViewBag.ngaydi;
+    }
 }
 
 <section class="breadcrumb-main pb-0" style="background-image: url(/Content/assets/images/bg/bg8.jpg);">
@@ -229,71 +239,87 @@
                             <span class="ml-2"><strong class="pink">Excellent</strong> (38 Reviews)</span>
                         </div>
                     </div>
-                    <div class="sidebar-item mb-4">
-                        <form class="form-content">
-                            <h4 class="title white font-weight-normal">
-                                From <span class="font-weight-bold">£350.00</span> / night
-                            </h4>
-                            <div class="row">
-                                <div class="col-lg-6">
-                                    <div class="form-group">
-                                        <label class="white">Check In</label>
-                                        <div class="input-box">
-                                            <i class="flaticon-calendar"></i>
-                                            <input id="date-range0" type="text" placeholder="yyyy-mmm-dd">
+                    @using (Html.BeginForm("SearchDetail", "KhachSan"))
+                    {
+                        <div class="sidebar-item mb-4">
+                            <div class="form-content">
+                                <h4 class="title white font-weight-normal">
+                                    From <span class="font-weight-bold">£350.00</span> / night
+                                </h4>
+                                <div class="row">
+                                    <div class="col-lg-6">
+                                        <div class="form-group">
+                                            <label class="white">Ngày đến</label>
+                                            <div class="input-box">
+                                                @if (kt == true)
+                                                {
+                                                    <input style="padding-left: 10px" type="date" min="" id="ngayden" name="ngayden" value="@ViewBag.ngayden.ToString("yyyy-MM-dd")" required>
+                                                }
+                                                else
+                                                {
+                                                    <input style="padding-left: 10px" type="date" min="" id="ngayden" name="ngayden" required>
+                                                }
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-                                <div class="col-lg-6">
-                                    <div class="form-group">
-                                        <label class="white">Check Out</label>
-                                        <div class="input-box">
-                                            <i class="flaticon-calendar"></i>
-                                            <input id="date-range1" type="text" placeholder="yyyy-mm-dd">
+                                    <div class="col-lg-6">
+                                        <div class="form-group">
+                                            <label class="white">Ngày trả</label>
+                                            <div class="input-box">
+                                                @if (kt == true)
+                                                {
+                                                    <input style="padding-left: 10px" type="date" min="" id="ngaydi" name="ngaydi" value="@ViewBag.ngaydi.ToString("yyyy-MM-dd")" required>
+
+                                                }
+                                                else
+                                                {
+                                                    <input style="padding-left: 10px" type="date" min="" id="ngaydi" name="ngaydi" required>
+                                                }
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-                                <div class="col-lg-6">
-                                    <div class="form-group">
-                                        <label class="white">Adult</label>
-                                        <div class="input-box">
-                                            <i class="flaticon-add-user"></i>
-                                            <select class="niceSelect">
-                                                <option value="1">1</option>
-                                                <option value="2">2</option>
-                                                <option value="3">3</option>
-                                                <option value="4">4</option>
-                                                <option value="5">5</option>
-                                            </select>
+                                    <div class="col-lg-6">
+                                        <div class="form-group">
+                                            <label class="white">Adult</label>
+                                            <div class="input-box">
+                                                <i class="flaticon-add-user"></i>
+                                                <select class="niceSelect">
+                                                    <option value="1">1</option>
+                                                    <option value="2">2</option>
+                                                    <option value="3">3</option>
+                                                    <option value="4">4</option>
+                                                    <option value="5">5</option>
+                                                </select>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-                                <div class="col-lg-6">
-                                    <div class="form-group">
-                                        <label class="white">Children</label>
-                                        <div class="input-box">
-                                            <i class="flaticon-add-user"></i>
-                                            <select class="niceSelect">
-                                                <option value="1">1</option>
-                                                <option value="2">2</option>
-                                                <option value="3">3</option>
-                                                <option value="4">4</option>
-                                                <option value="5">5</option>
-                                            </select>
+                                    <div class="col-lg-6">
+                                        <div class="form-group">
+                                            <label class="white">Children</label>
+                                            <div class="input-box">
+                                                <i class="flaticon-add-user"></i>
+                                                <select class="niceSelect">
+                                                    <option value="1">1</option>
+                                                    <option value="2">2</option>
+                                                    <option value="3">3</option>
+                                                    <option value="4">4</option>
+                                                    <option value="5">5</option>
+                                                </select>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-                                <div class="col-lg-12">
-                                    <div class="form-group mb-0">
-                                        <a href="#" class="nir-btn w-100">
-                                            <i class="fa fa-search"></i> Check
-                                            Availability
-                                        </a>
+                                    <div class="col-lg-12">
+                                        <div class="form-group mb-0">
+                                            <a href="#" class="nir-btn w-100">
+                                                <i class="fa fa-search"></i> Check
+                                                Availability
+                                            </a>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                        </form>
-                    </div>
+                        </div>
+                    }
                     <div class="list-sidebar">
                         <div class="sidebar-item">
                             <h3>Why Book With Us?</h3>

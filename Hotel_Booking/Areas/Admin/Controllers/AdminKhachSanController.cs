@@ -81,7 +81,7 @@ namespace Hotel_Booking.Areas.Admin.Controllers
             khachSan.DanhGia = int.Parse(danhGia);
             khachSan.BuaAn = int.Parse(buaAn);
             khachSan.MoTa = moTa;
-
+            khachSan.Active = true;
             context.KhachSans.Add(khachSan);
             context.SaveChanges();
             TempData["Message"] = "Thêm thành công !";

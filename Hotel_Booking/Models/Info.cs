@@ -13,7 +13,10 @@ namespace Hotel_Booking.Models
         public DateTime ngayDen { get; set; }
         public DateTime ngayTra { get; set; }
         
-        public int tongTien { get; set; }
+        public int tongTien
+        {
+            get { return ((ngayTra - ngayDen).Days) * giaThue;}
+        }
 
     }
 }

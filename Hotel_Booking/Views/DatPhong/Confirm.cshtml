@@ -5,6 +5,7 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
     Hotel_Booking.Models.ThanhPho TP = ViewBag.ThanhPho;
     Hotel_Booking.Models.Phong Phong = ViewBag.Phong;
+    int tongTien = ViewBag.TongTien;
 }
 
 <section class="breadcrumb-main pb-0" style="background-image: url(/Content/assets/images/bg/bg8.jpg);">
@@ -104,7 +105,7 @@
                             <h3>Chi tiết đặt phòng</h3>
                             <ul class="list-unstyled font-size-1 mb-0 font-size-16">
                                 <li class="d-flex justify-content-between py-1 border-b">
-                                    <span class="font-weight-medium">Date <br> 22/09/2019, 00:00 AM <br> 23/09/2019, 00:00 AM</span>
+                                    <span class="font-weight-medium">Date <br>@ViewBag.NgayDen<br>@ViewBag.NgayDi</span>
                                 </li>
                                 <li class="d-flex justify-content-between py-1 border-b">
                                     <span class="font-weight-medium">Giá thuê </span>
@@ -112,7 +113,7 @@
                                 </li>
                                 <li class="d-flex justify-content-between py-1 border-b">
                                     <span class="font-weight-medium">Tổng tiền</span>
-                                    <span class="text-secondary pink">@Phong.GiaThue.Value.ToString("#,##0") VNĐ</span>
+                                    <span class="text-secondary pink">@tongTien.ToString("#,##0") VNĐ</span>
                                 </li>
                             </ul>
                         </div>
