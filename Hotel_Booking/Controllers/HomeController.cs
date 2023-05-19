@@ -20,8 +20,6 @@ namespace Hotel_Booking.Controllers
 
             var listTP = context.ThanhPhoes.Where(p => p.Active == true).ToList();
             ViewBag.ListLoaKS = context.LoaiKhachSans.Where(p => p.Active == true).ToList();
-
-
             ViewBag.TPHCM = context.ThanhPhoes.FirstOrDefault(p => p.Ten == "TP. Hồ Chí Minh");
             ViewBag.HaNoi = context.ThanhPhoes.FirstOrDefault(p => p.Ten == "Hà Nội");
             ViewBag.DaNang = context.ThanhPhoes.FirstOrDefault(p => p.Ten == "Đà Nẵng");
@@ -32,8 +30,6 @@ namespace Hotel_Booking.Controllers
         }
         public ActionResult Contact()
         {
-            
-
             return View();
         }
         public static string RemoveDiacritics(string text)
@@ -51,6 +47,7 @@ namespace Hotel_Booking.Controllers
             }
             return sb.ToString().Normalize(NormalizationForm.FormC);
         }
+
         public ActionResult Search(string keyword, DateTime ngayden, DateTime ngaydi)
         {
             Info info = new Info();
@@ -58,32 +55,19 @@ namespace Hotel_Booking.Controllers
             info.ngayTra = ngaydi;
             Session["Info"] = info;
             int kt = DateTime.Compare(ngayden, ngaydi);
-            if(ngaydi.ToUniversalTime() < ngayden.ToUniversalTime())
-            {
-                TempData["MessageErr"] = "Ngày không hợp lệ!!";
-                return RedirectToAction("Index", "Home");
-            }
-            string searchKeyword = RemoveDiacritics(keyword);
             if (!string.IsNullOrEmpty(keyword))
             {
-                var findTP = context.ThanhPhoes.Where(p => p.Ten.Contains(keyword)).FirstOrDefault();
-                if (findTP != null)
+
+                string searchKeyword = RemoveDiacritics(keyword);
+                var findTP2 = context.ThanhPhoes.ToList().Where(p => RemoveDiacritics(p.Ten).ToLower().Contains(searchKeyword.ToLower())).FirstOrDefault();
+                if (findTP2 != null)
                 {
-                    return RedirectToAction("Index", "KhachSan", new { id = findTP.Id });
-                }
-                else
-                {
-                    var findTP2 = context.ThanhPhoes.ToList().Where(p => RemoveDiacritics(p.Ten).ToLower().Contains(keyword.ToLower())).FirstOrDefault();
-                    if (findTP2 != null)
-                    {
-                        return RedirectToAction("Index", "KhachSan", new { id = findTP2.Id });
-                    }
-                    return PartialView("NotFound");
+                    return RedirectToAction("Index", "KhachSan", new { id = findTP2.Id });
                 }
             }
             return PartialView("NotFound");
-
         }
 
     }
+
 }

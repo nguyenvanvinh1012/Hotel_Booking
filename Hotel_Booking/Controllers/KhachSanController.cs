@@ -2,7 +2,9 @@
 using PagedList;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
+using System.Text;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.UI;
@@ -32,7 +34,7 @@ namespace Hotel_Booking.Controllers
             ViewBag.soks = temp + 462;
             ViewBag.ThanhPho = tp;
             Info info = (Info)Session["Info"];
-            if(info != null)
+            if (info != null)
             {
                 ViewBag.ngayden = info.ngayDen;
                 ViewBag.ngaydi = info.ngayTra;
@@ -58,6 +60,21 @@ namespace Hotel_Booking.Controllers
             ViewBag.ListPhong = context.Phongs.Where(p => p.IdKhachSan == khachSan.Id).ToList();
             return View(khachSan);
         }
+        public static string RemoveDiacritics(string text)
+        {
+            string formD = text.Normalize(NormalizationForm.FormD);
+            StringBuilder sb = new StringBuilder();
+
+            foreach (char ch in formD)
+            {
+                UnicodeCategory category = CharUnicodeInfo.GetUnicodeCategory(ch);
+                if (category != UnicodeCategory.NonSpacingMark)
+                {
+                    sb.Append(ch);
+                }
+            }
+            return sb.ToString().Normalize(NormalizationForm.FormC);
+        }
         public ActionResult Search(string keyword, DateTime ngayden, DateTime ngaydi)
         {
             Info info = new Info();
@@ -65,24 +82,20 @@ namespace Hotel_Booking.Controllers
             info.ngayTra = ngaydi;
             Session["Info"] = info;
             int kt = DateTime.Compare(ngayden, ngaydi);
-            if (ngaydi.ToUniversalTime() < ngayden.ToUniversalTime())
+            if (!string.IsNullOrEmpty(keyword))
             {
-                TempData["MessageErr"] = "Ngày không hợp lệ!!";
-                return RedirectToAction("Index", "KhachSan", new { id = ID});
+                string searchKeyword = RemoveDiacritics(keyword);
+                var findTP2 = context.ThanhPhoes.ToList().Where(p => RemoveDiacritics(p.Ten).ToLower().Contains(searchKeyword.ToLower())).FirstOrDefault();
+                if (findTP2 != null)
+                {
+                    return RedirectToAction("Index", "KhachSan", new { id = findTP2.Id });
+                }
             }
-            var findTP = context.ThanhPhoes.Where(p => p.Ten.Contains(keyword)).FirstOrDefault();
-            if (findTP != null)
-            {
-                return RedirectToAction("Index", "KhachSan", new { id = findTP.Id });
-            }
-            else
-            {
-                return PartialView("NotFound");
-            }
+            return PartialView("NotFound");
         }
         public ActionResult SearchDetail(DateTime ngayden, DateTime ngaydi)
         {
-            if(ngaydi.ToUniversalTime() < ngayden.ToUniversalTime())
+            if (ngaydi.ToUniversalTime() < ngayden.ToUniversalTime())
             {
                 return RedirectToAction("Index", "KhachSan", new { id = ID });
             }
@@ -94,7 +107,7 @@ namespace Hotel_Booking.Controllers
 
             if (starRating != null && starRating.Length > 0)
             {
-               
+
             }
 
             return View(filteredHotels);

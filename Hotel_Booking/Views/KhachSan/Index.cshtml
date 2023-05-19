@@ -311,18 +311,11 @@ else
 
         var today = year + "-" + month + "-" + day;
 
-        /*   document.getElementById("ngayden").value = today*/
         document.getElementById("ngayden").setAttribute("min", today);
 
 
         /* document.getElementById("date2").value = today;*/
         document.getElementById("ngaydi").setAttribute("min", today);
-        //filter
-        var checkboxes = document.querySelectorAll('#filterForm input[type="checkbox"]');
-        checkboxes.forEach(function (checkbox) {
-            checkbox.addEventListener('change', function () {
-                document.getElementById('filterForm').submit();
-            });
-        });
+     
     </script>
 }

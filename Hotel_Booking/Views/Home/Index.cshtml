@@ -97,7 +97,7 @@
                                     <div class="input-box">
                                         <i class="fa fa-calendar"></i>
                                         @*id="date-range0"*@
-                                        <input type="date" min="" id="date" name="ngayden" required>
+                                        <input type="date" id="date" name="ngayden" required>
                                     </div>
                                 </div>
                             </div>
@@ -107,7 +107,7 @@
                                     <div class="input-box">
                                         <i class="fa fa-calendar"></i>
                                         @*id="date-range1"*@
-                                        <input type="date" min="" id="date2" name="ngaydi" required>
+                                        <input type="date" id="date2" name="ngaydi" required>
                                     </div>
                                 </div>
                             </div>
@@ -413,18 +413,30 @@
         var day = date.getDate();
         var month = date.getMonth() + 1;
         var year = date.getFullYear();
-
         if (month < 10) month = "0" + month;
         if (day < 10) day = "0" + day;
-        
         var today = year + "-" + month + "-" + day;
-
-        document.getElementById("date").value = today
+        //document.getElementById("date").value = today;
         document.getElementById("date").setAttribute("min", today);
-        var day2 = date.getDate() + 1;
-        var next = year + "-" + month + "-" + day2;
-        document.getElementById("date2").value = next;
-        document.getElementById("date2").setAttribute("min", next);
 
+
+        var input1 = document.getElementById('date');
+        var input2 = document.getElementById('date2');
+
+        input1.addEventListener('change', function () {
+            var selectedDate = new Date(input1.value);
+            var nextDay = new Date(selectedDate.getTime() + 24 * 60 * 60 * 1000); // Tăng thêm 1 ngày
+
+
+            var day2 = nextDay.getDate();
+            var month2 = nextDay.getMonth() + 1;
+            var year2 = nextDay.getFullYear();
+            if (month2 < 10) month2 = "0" + month2;
+            if (day2 < 10) day2 = "0" + day2;
+            var formattedDate = year2 + "-" + month2 + "-" + day2;
+            //input2.value = formattedDate;
+            input2.setAttribute("min", formattedDate);
+            debugger
+        });
     </script>
 }
