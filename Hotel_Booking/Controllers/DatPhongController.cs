@@ -109,6 +109,8 @@ namespace Hotel_Booking.Controllers
                 DatPhong datPhong = new DatPhong();
                 datPhong.TaiKhoan = taiKhoan.TenTaiKhoan;
                 datPhong.IdPhong = info.idPhong;
+                datPhong.NgayDen = info.ngayDen;
+                datPhong.NgayTra = info.ngayTra;
                 datPhong.ThanhTien = info.tongTien;
                 datPhong.isPaid = true;
                 context.DatPhongs.Add(datPhong);

@@ -1,6 +1,7 @@
 ﻿using Hotel_Booking.Models;
 using PagedList;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
@@ -42,21 +43,53 @@ namespace Hotel_Booking.Controllers
             var result = context.KhachSans.Where(p => p.IdThanhPho == id).ToList().ToPagedList(pageIndex, pageSize);
             return View(result);
         }
+        public bool checkEmptyRoom(Phong p, DateTime ngayDen, DateTime ngayTra)
+        {
+            //ngayDen.CompareTo(tmp.NgayTra) > 0) || ngayTra.CompareTo(tmp.NgayDen) < 0
+            var listDatPhong = context.DatPhongs.ToList();
+            if (listDatPhong != null)
+            {
+                foreach(DatPhong tmp in listDatPhong)
+                {
+                    if (tmp.IdPhong == p.Id)
+                    {
+                        if (!(ngayDen.CompareTo(tmp.NgayTra) > 0) || ngayTra.CompareTo(tmp.NgayDen) < 0)
+                        {
+                            return false;
+                        }
+                    }
+                }
+            }
+            return true;
+        }
         public ActionResult Detail(int id)
         {
             KhachSan khachSan = context.KhachSans.FirstOrDefault(p => p.Id == id);
+            ID2 = id;
             Info info = (Info)Session["Info"];
             if (info != null)
             {
                 ViewBag.ngayden = info.ngayDen;
                 ViewBag.ngaydi = info.ngayTra;
+                List<Phong> ListPhong = new List<Phong>();
+                var DSPhong = context.Phongs.Where(p => p.IdKhachSan == khachSan.Id).ToList();
+
+                foreach(Phong tmp in DSPhong)//id = 1, id = 2
+                {
+                    if(checkEmptyRoom(tmp, info.ngayDen, info.ngayTra))
+                    {
+                        ListPhong.Add(tmp);
+                    }
+                }
+                ViewBag.ListPhong = ListPhong;
+                return View(khachSan);
             }
             if (khachSan == null)
             {
                 return PartialView("NotFound");
             }
-            ID2 = id;
-            //kiem tra cho nay
+  
+            
             ViewBag.ListPhong = context.Phongs.Where(p => p.IdKhachSan == khachSan.Id).ToList();
             return View(khachSan);
         }
@@ -95,22 +128,11 @@ namespace Hotel_Booking.Controllers
         }
         public ActionResult SearchDetail(DateTime ngayden, DateTime ngaydi)
         {
-            if (ngaydi.ToUniversalTime() < ngayden.ToUniversalTime())
-            {
-                return RedirectToAction("Index", "KhachSan", new { id = ID });
-            }
+            Info info = new Info();
+            info.ngayDen = ngayden;
+            info.ngayTra = ngaydi;
+            Session["Info"] = info;
             return RedirectToAction("Detail", "KhachSan", new { id = ID2 });
-        }
-        public ActionResult Filter(int[] starRating)
-        {
-            var filteredHotels = context.KhachSans.ToList();
-
-            if (starRating != null && starRating.Length > 0)
-            {
-
-            }
-
-            return View(filteredHotels);
         }
     }
 }

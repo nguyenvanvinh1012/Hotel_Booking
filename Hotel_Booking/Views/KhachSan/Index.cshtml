@@ -313,9 +313,24 @@ else
 
         document.getElementById("ngayden").setAttribute("min", today);
 
+        var input1 = document.getElementById('ngayden');
+        var input2 = document.getElementById('ngaydi');
 
-        /* document.getElementById("date2").value = today;*/
-        document.getElementById("ngaydi").setAttribute("min", today);
+        input1.addEventListener('change', function () {
+            var selectedDate = new Date(input1.value);
+            var nextDay = new Date(selectedDate.getTime() + 24 * 60 * 60 * 1000); // Tăng thêm 1 ngày
+
+
+            var day2 = nextDay.getDate();
+            var month2 = nextDay.getMonth() + 1;
+            var year2 = nextDay.getFullYear();
+            if (month2 < 10) month2 = "0" + month2;
+            if (day2 < 10) day2 = "0" + day2;
+            var formattedDate = year2 + "-" + month2 + "-" + day2;
+            //input2.value = formattedDate;
+            input2.setAttribute("min", formattedDate);
+            debugger
+        });
      
     </script>
 }

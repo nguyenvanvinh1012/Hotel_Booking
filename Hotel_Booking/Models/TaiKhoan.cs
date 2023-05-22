@@ -21,7 +21,7 @@
         public string TenTaiKhoan { get; set; }
 
         [Required(ErrorMessage = "Vui lòng nhập mật khẩu!")]
-        [StringLength(20)]
+        [StringLength(50)]
         public string MatKhau { get; set; }
 
         [Required(ErrorMessage = "Vui lòng nhập họ tên!")]
