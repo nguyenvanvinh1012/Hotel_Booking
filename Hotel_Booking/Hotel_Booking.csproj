@@ -1436,6 +1436,9 @@
     <Content Include="Views\Account\DangNhap.cshtml" />
     <Content Include="Views\DatPhong\Confirm.cshtml" />
     <Content Include="Views\Home\Contact.cshtml" />
+    <Content Include="Views\Account\Index.cshtml" />
+    <Content Include="Views\Account\Edit.cshtml" />
+    <Content Include="Views\Account\Oder.cshtml" />
     <None Include="Web.Debug.Config">
       <DependentUpon>Web.Config</DependentUpon>
     </None>

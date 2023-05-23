@@ -1,0 +1,90 @@
+﻿@model Hotel_Booking.Models.TaiKhoan
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    List<Hotel_Booking.Models.DatPhong> DSDatPhong = ViewBag.DatPhong;
+    //var total = DSDatPhong.Sum(x => x.TongTien).ToString("#,##0");
+}
+
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    @Html.HiddenFor(model => model.TenTaiKhoan)
+    <div id="dashboard" class="pt-10 pb-10">
+        <div class="container">
+            <div class="dashboard-main">
+                <div class="row">
+                    @*menu*@
+                    <div class="dashboard-sidebar">
+                        <a href="#" class="dashboard-responsive-nav-trigger"><i class="fa fa-reorder"></i> Dashboard Navigation</a>
+                        <div class="dashboard-nav">
+                            <div class="dashboard-nav-inner">
+                                <ul>
+                                    <li class="active"><a id="account-dashboard-tab" href="@Url.Action("Index","Account")" role="tab" aria-controls="account-dashboard" aria-selected="true"><i class="sl sl-icon-settings"></i> Thông Tin Tài Khoản</a></li>
+                                    <li><a id="account-details-tab" href="@Url.Action("Edit","Account")" role="tab" aria-controls="account-details" aria-selected="false"><i class="sl sl-icon-user"></i> Chỉnh Sửa Thông Tin</a></li>
+                                    <li><a id="account-orders-tab" href="@Url.Action("Oder","Account")" role="tab" aria-controls="account-orders" aria-selected="false"><i class="fa fa-list-ul"></i>Lịch Sử Đặt Hàng</a></li>
+                                    <li><a href="@Url.Action("DangXuat","Account")" role="tab" aria-selected="false"><i class="sl sl-icon-power"></i> Đăng Xuất</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    @*Lịch sử đặt hàng*@
+                    <div class="col-lg-9 col-md-12 col-sm-12 col-xs-12" id="account-details" role="tabpanel" aria-labelledby="account-details-tab">
+                        <div class="dashboard-content">
+                            <div class="dashboard-form mb-4">
+                                <div class="row">
+                                    <h4>Danh sách phòng đã đặt</h4>
+                                    @if (DSDatPhong != null && DSDatPhong.Count() > 0)
+                                    {
+                                        <div class="table-responsive">
+                                            <table class="table table-bordered table-hover">
+                                                <tbody>
+                                                    <tr>
+                                                        <th>ID</th>
+                                                        <th>Phòng</th>
+
+                                                        <th>Ngày nhận phòng</th>
+                                                        <th>Ngày trả phòng</th>
+                                                        <th>Dịch vụ</th>
+                                                        <th>Ghi chú</th>
+                                                        <th>Thanh tiền</th>
+                                                    </tr>
+                                                    @foreach (var item in DSDatPhong)
+                                                    {
+                                                        <tr>
+                                                            <td><a class="account-order-id" href="javascript:void(0)">#@item.Id</a></td>
+                                                            <td>@item.Phong.Ten</td>
+
+                                                            <td>@String.Format("{0:ddd, MMM d, yyyy}", item.NgayDen)</td>
+                                                            <td>@String.Format("{0:ddd, MMM d, yyyy}", item.NgayTra)</td>
+                                                            <td>@item.DichVu</td>
+                                                            <td>@item.GhiChu</td>
+                                                            <td>@item.ThanhTien</td>
+                                                        </tr>
+                                                    }
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    }
+                                    else
+                                    {
+                                        <p>Tài khoản chưa đặt phòng!</p>
+                                    }
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+}
+
+
