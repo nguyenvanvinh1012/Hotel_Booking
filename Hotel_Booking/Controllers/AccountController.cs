@@ -129,19 +129,19 @@ namespace Hotel_Booking.Controllers
             return View();
         }
         [HttpPost]
-        public ActionResult DangKy(TaiKhoan tk,String xacnhanmatkhau, string matkhau)
+        public ActionResult DangKy(TaiKhoan tk, String xacnhanmatkhau, string matkhau)
         {
             TaiKhoan taiKhoan = context.TaiKhoans.FirstOrDefault(p => p.TenTaiKhoan == tk.TenTaiKhoan);
             if (ModelState.IsValid)
             {
                 if (taiKhoan == null)
                 {
-                    if(xacnhanmatkhau == matkhau)
+                    if (xacnhanmatkhau == matkhau)
                     {
                         TaiKhoan taiKhoan1 = new TaiKhoan
                         {
                             TenTaiKhoan = tk.TenTaiKhoan,
-                            MatKhau = matkhau,
+                            MatKhau = MH(matkhau),
                             HoTen = tk.HoTen,
                             SoDienThoai = tk.SoDienThoai,
                             Email = tk.Email,
@@ -176,17 +176,18 @@ namespace Hotel_Booking.Controllers
         [HttpPost]
         public ActionResult DangNhap(String tentaikhoan, String matkhau)
         {
+            var mhmatkhau = MH(matkhau);
             if (ModelState.IsValid)
             {
-                bool userE = context.TaiKhoans.Any(x => x.TenTaiKhoan == tentaikhoan && x.MatKhau == matkhau);
-                TaiKhoan t = context.TaiKhoans.FirstOrDefault(x => x.TenTaiKhoan == tentaikhoan && x.MatKhau == matkhau);
+                bool userE = context.TaiKhoans.Any(x => x.TenTaiKhoan == tentaikhoan && x.MatKhau == mhmatkhau);
+                TaiKhoan t = context.TaiKhoans.FirstOrDefault(x => x.TenTaiKhoan == tentaikhoan && x.MatKhau == mhmatkhau);
                 if (userE)
                 {
                     if (t.MaQuyenTryCap == 3)
                     {
                         if (t.Active == false)
                         {
-                            TempData["MessageErr"] = "Tài khoản đã bị chặn!!"; 
+                            TempData["MessageErr"] = "Tài khoản đã bị chặn!!";
                             return RedirectToAction("DangNhap", "Account", new { area = "" });
                         }
                         else
@@ -208,7 +209,7 @@ namespace Hotel_Booking.Controllers
             else
             {
                 return RedirectToAction("DangNhap");
-            }         
+            }
         }
         public ActionResult DangXuat()
         {
