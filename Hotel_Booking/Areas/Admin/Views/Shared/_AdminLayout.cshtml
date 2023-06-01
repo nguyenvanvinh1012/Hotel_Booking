@@ -15,6 +15,7 @@
     <link href="~/Content/Adminassets/vendors/bootstrap-datepicker/bootstrap-datepicker.min.css" rel="stylesheet">
     <!-- Core css -->
     <link href="~/Content/Adminassets/css/app.min.css" rel="stylesheet">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
 </head>
 
 <body>
@@ -108,8 +109,8 @@
                                             <p class="m-b-0 opacity-07">UI/UX Desinger</p>
                                         </div>
                                     </div>
-                                </div>
-                                <a href="@Url.Action("SignOut", "Account")" asp-area="Admin" asp-controller="Account" asp-action="AdminLogout" class="dropdown-item d-block p-h-15 p-v-10">
+                                </div>                             
+                                <a href="@Url.Action("SignOut", "AdminAccount",new {Area = "Admin"}, null)" asp-area="Admin" asp-controller="Account" asp-action="AdminLogout" class="dropdown-item d-block p-h-15 p-v-10">
                                     <div class="d-flex align-items-center justify-content-between">
                                         <div>
                                             <i class="anticon opacity-04 font-size-16 anticon-logout"></i>

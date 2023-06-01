@@ -23,6 +23,8 @@
 
     <link href="~/Content/assets/fonts/flaticon.css" rel="stylesheet" type="text/css">
 
+    <link href="~/Content/assets/css/dashboard.css" rel="stylesheet" />
+
     <link rel="stylesheet" href="~/Content/assets/cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="~/Content/assets/cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css">
     <link rel="stylesheet" href="~/Content/assets/fonts/line-icons.css" type="text/css">
@@ -60,23 +62,23 @@
                             <div class="login-title section-border">
                                 <h3 class="pink">Login</h3>
                             </div>
-                                <div class="login-form">
-                                    <form>
-                                        <div class="form-group">
-                                            <input name="TenTaiKhoan" type="text" placeholder="Enter user name">
-                                        </div>
-                                        <div class="form-group">
-                                            <input name="MatKhau" type="password" placeholder="Enter password">
-                                        </div>
-                                    </form>
-                                    <div class="form-btn">
-                                        @*<a href="@Url.Action("DangNhap", "Account")" class="nir-btn">Đăng nhập</a>*@
-                                        <input type="submit" value="Đăng nhập" class="nir-btn">
+                            <div class="login-form">
+                                <form>
+                                    <div class="form-group">
+                                        <input name="TenTaiKhoan" type="text" placeholder="Enter user name">
                                     </div>
-                                    <div class="form-group mb-0 form-checkbox mt-3">
-                                        <input type="checkbox"> Remember Me | <a href="#" class="">Forgot password?</a>
+                                    <div class="form-group">
+                                        <input name="MatKhau" type="password" placeholder="Enter password">
                                     </div>
+                                </form>
+                                <div class="form-btn">
+                                    @*<a href="@Url.Action("DangNhap", "Account")" class="nir-btn">Đăng nhập</a>*@
+                                    <input type="submit" value="Đăng nhập" class="nir-btn">
                                 </div>
+                                <div class="form-group mb-0 form-checkbox mt-3">
+                                    <input type="checkbox"> Remember Me | <a href="#" class="">Forgot password?</a>
+                                </div>
+                            </div>
                             <div class="login-social border-t mt-3 pt-2 mb-3">
                                 <p class="mb-2">OR continue with</p>
                                 <a href="#" class="btn-facebook">
@@ -284,7 +286,9 @@
     <script src="~/Content/assets/cdn-cgi/challenge-platform/h/b/scripts/alpha/invisible5615.js"></script>
     <script src="~/Content/assets/cdn-cgi/challenge-platform/h/b/scripts/cb/invisiblebbae.js"></script>
     <script src="~/Content/assets/cdn-cgi/challenge-platform/h/b/scripts/cb/invisibleb388.js"></script>
-    @*<script data-cfasync="false" src="~/Content/assets/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>*@
+    <script src="~/Content/assets/js/jpanelmenu.min.js"></script>
+    <script src="~/Content/assets/js/dashboard-custom.js"></script>
+    <script data-cfasync="false" src="~/Content/assets/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
 
 
 </body>

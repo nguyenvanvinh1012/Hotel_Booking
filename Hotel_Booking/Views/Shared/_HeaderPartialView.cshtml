@@ -62,36 +62,17 @@
                                     <li><a href="blog-single-full.html">Blog Single Full</a></li>
                                 </ul>
                             </li>
-                            <li class="submenu dropdown">
-                                <a href="dashboard.html" class="dropdown-toggle" data-toggle="dropdown"
-                                   role="button" aria-haspopup="true" aria-expanded="false">
-                                    Dashboard <i class="fa fa-angle-down" aria-hidden="true"></i>
-                                </a>
-                                <ul class="dropdown-menu">
-                                    <li><a href="dashboard.html">Dashboard</a></li>
-                                    <li><a href="dashboard-my-profile.html">User Profile</a></li>
-                                    <li><a href="dashboard-list.html">User Wishlist</a></li>
-                                    <li><a href="dashboard-messages.html">User Messages</a></li>
-                                    <li><a href="dashboard-history.html">Booking History</a></li>
-                                    <li><a href="dashboard-add-new.html">Add New</a></li>
-                                    <li><a href="dashboard-list.html">Tour List</a></li>
-                                    <li><a href="dashboard-reviews.html">Dashboard Reviews</a></li>
-                                </ul>
-                            </li>
                             <li><a href="@Url.Action("Contact", "Home")">Contact Us</a></li>
-                            <li><a href="@Url.Action("Index", "Home", new {Area = "Admin"}, null)">Go to Admin</a></li>
                         </ul>
-                        <div class="header_sidemenu">
-                            <div class="mhead">
-                                <span class="menu-ham">
-                                    <a href="#" class="cart-icon d-flex align-items-center ml-1">
-                                        <i class="icon-basket-loaded"></i><span class="cart-label">3</span>
-                                    </a>
-                                </span>
-                            </div>
-                        </div>
                     </div>
                     <div class="register-login">
+                        @if (User.Identity.IsAuthenticated)
+                        {
+                            Hotel_Booking.Models.HotelBookingContext context = new Hotel_Booking.Models.HotelBookingContext();
+                            var tentk = Session["TenTaiKhoan"];
+                            var name = context.TaiKhoans.FirstOrDefault(p => p.TenTaiKhoan == tentk);
+                            <a style="color:#0791be;">Hello @name.HoTen</a>
+                        }
                         @if (User.Identity.IsAuthenticated)
                         {
                             <a href="@Url.Action("Index", "Account")" class="mr-2">

@@ -16,6 +16,8 @@
     }
 }
 
+<span id="MessageErr" class="d-none">@TempData["MessageErr"]</span>
+
 <section class="breadcrumb-main pb-0" style="background-image: url(/Content/assets/images/bg/bg8.jpg);">
     <div class="breadcrumb-outer pt-10">
         <div class="container">
@@ -204,7 +206,7 @@
                                                         From <span class="font-weight-bold ml-1">@item.GiaThue.Value.ToString("#,##0") VNĐ</span>
                                                         <span> / night</span>
                                                     </p>
-                                                    <a href="@Url.Action("Confirm", "DatPhong",new { id = item.Id })" class="nir-btn w-100">Đặt ngay</a>
+                                                    <a href="@Url.Action("Confirm", "KhachSan",new { id = item.Id })" class="nir-btn w-100">Đặt ngay</a>
                                                 </div>
                                             </div>
                                         </div>
@@ -311,9 +313,9 @@
                                     <div class="col-lg-12">
                                         <div class="form-group mb-0">
                                             @*<a class="nir-btn w-100">
-                                                <i class="fa fa-search"></i> Check
-                                                Availability
-                                            </a>*@
+                                                    <i class="fa fa-search"></i> Check
+                                                    Availability
+                                                </a>*@
                                             <button style="border: none" value="submit" class="nir-btn w-100">
                                                 <i class="fa fa-search"></i> Check
                                                 Availability
@@ -352,6 +354,7 @@
         </div>
     </div>
 </section>
+
 @section Scripts
 {
     <script type="text/javascript">
@@ -387,5 +390,11 @@
             debugger
         });
 
+        $(document).ready(function () {
+            var messageErr = $('#MessageErr').text();
+            if (messageErr !== '') {
+                toastr.error(messageErr);
+            }
+        });
     </script>
 }

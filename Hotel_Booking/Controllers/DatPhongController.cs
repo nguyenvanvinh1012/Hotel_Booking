@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.Web.DynamicData;
 using System.Web.Mvc;
 
 namespace Hotel_Booking.Controllers
@@ -13,32 +14,53 @@ namespace Hotel_Booking.Controllers
     {
         HotelBookingContext context = new HotelBookingContext();
        public Info getInfoFromSession()
-        {
+       {
             Info info = (Info)Session["Info"];
             return info;
-        }
+       }
         // GET: DatPhong
-        [Authorize]
-        public ActionResult Confirm(int id)
+        //[Authorize]
+        //public ActionResult Confirm(int id)
+        //{
+        //    Info info = getInfoFromSession();
+        //    if(info.ngayDen == null || info.ngayTra == null)
+        //    {
+        //        return RedirectToAction("Detail", "KhachSan")
+        //    }
+        //    var tenTaiKhoan = Session["TenTaiKhoan"];
+        //    var taiKhoan = context.TaiKhoans.FirstOrDefault(p => p.TenTaiKhoan == tenTaiKhoan);
+        //    Phong Phong = context.Phongs.FirstOrDefault(p => p.Id == id);
+        //    KhachSan ks = context.KhachSans.FirstOrDefault(p => p.Id == Phong.IdKhachSan);
+        //    ThanhPho tp = context.ThanhPhoes.FirstOrDefault(p => p.Id == ks.IdThanhPho);
+        //    ViewBag.NgayDen = info.ngayDen;
+        //    ViewBag.NgayDi = info.ngayTra;
+        //    DateTime ngayden = info.ngayDen;
+        //    DateTime ngaydi = info.ngayTra;
+        //    ViewBag.ThanhPho = tp;
+        //    ViewBag.Phong = Phong;
+        //    info.idPhong = id;
+        //    info.giaThue = (int)Phong.GiaThue;
+        //    ViewBag.TongTien = info.tongTien;
+        //    return View(taiKhoan);
+        //}
+        public ActionResult Order()
         {
             Info info = getInfoFromSession();
             var tenTaiKhoan = Session["TenTaiKhoan"];
-            var taiKhoan = context.TaiKhoans.FirstOrDefault(p => p.TenTaiKhoan == tenTaiKhoan);
-            Phong Phong = context.Phongs.FirstOrDefault(p => p.Id == id);
-            KhachSan ks = context.KhachSans.FirstOrDefault(p => p.Id == Phong.IdKhachSan);
-            ThanhPho tp = context.ThanhPhoes.FirstOrDefault(p => p.Id == ks.IdThanhPho);
-            ViewBag.NgayDen = info.ngayDen;
-            ViewBag.NgayDi = info.ngayTra;
-            DateTime ngayden = info.ngayDen;
-            DateTime ngaydi = info.ngayTra;
-            ViewBag.ThanhPho = tp;
-            ViewBag.Phong = Phong;
-            info.idPhong = id;
-            info.giaThue = (int)Phong.GiaThue;
-            ViewBag.TongTien = info.tongTien;
-            return View(taiKhoan);
-        }
+            TaiKhoan taiKhoan = context.TaiKhoans.FirstOrDefault(p => p.TenTaiKhoan == tenTaiKhoan);
+            DatPhong datPhong = new DatPhong();
+                datPhong.TaiKhoan = taiKhoan.TenTaiKhoan;
+            datPhong.IdPhong = info.idPhong;
+            datPhong.NgayDen = info.ngayDen;
+            datPhong.NgayTra = info.ngayTra;
+            datPhong.ThanhTien = info.tongTien;
+            datPhong.isPaid = false;
+            context.DatPhongs.Add(datPhong);
+            context.SaveChanges();
+            TempData["Message"] = "Đặt phòng thành công !!";
+            return RedirectToAction("Index", "Home", new { area = "" });
 
+        }
         public ActionResult OrderMomo()
         {
             Info info = getInfoFromSession();
@@ -115,7 +137,7 @@ namespace Hotel_Booking.Controllers
                 datPhong.isPaid = true;
                 context.DatPhongs.Add(datPhong);
                 context.SaveChanges();
-                TempData["Message"] = "Giao dịch thành công !!";
+                TempData["Message"] = "Đặt phòng thành thành công !!";
                 return RedirectToAction("Index", "Home", new { area = "" });
             }
             TempData["MessageErr"] = "Giao dịch thất bại, vui lòng thử lại!";

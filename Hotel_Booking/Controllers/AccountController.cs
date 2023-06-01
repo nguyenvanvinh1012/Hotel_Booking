@@ -194,7 +194,7 @@ namespace Hotel_Booking.Controllers
                         {
                             Session["TenTaiKhoan"] = t.TenTaiKhoan;
                             FormsAuthentication.SetAuthCookie(t.TenTaiKhoan, false);
-                            return RedirectToAction("Index", "Home", new { area = "" });
+                            return RedirectToAction("Index", "Account", new { area = "" });
                         }
                     }
                     else if (t.MaQuyenTryCap == 1 || t.MaQuyenTryCap == 2)
@@ -216,6 +216,14 @@ namespace Hotel_Booking.Controllers
             Session["TenTaiKhoan"] = null;
             FormsAuthentication.SignOut();
             return RedirectToAction("DangNhap");
+        }
+        public ActionResult CancelRoom(int id)
+        {
+            DatPhong datPhong = context.DatPhongs.FirstOrDefault(p => p.Id == id);
+            context.DatPhongs.Remove(datPhong);
+            context.SaveChanges();
+            TempData["Message"] = "Hủy thành công !";
+            return RedirectToAction("Oder", "Account");
         }
     }
 }

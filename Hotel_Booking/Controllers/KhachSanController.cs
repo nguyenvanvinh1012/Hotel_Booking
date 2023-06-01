@@ -53,7 +53,7 @@ namespace Hotel_Booking.Controllers
                 {
                     if (tmp.IdPhong == p.Id)
                     {
-                        if (!(ngayDen.CompareTo(tmp.NgayTra) > 0) || ngayTra.CompareTo(tmp.NgayDen) < 0)
+                        if (!(ngayDen > tmp.NgayTra || ngayTra < tmp.NgayDen))
                         {
                             return false;
                         }
@@ -92,6 +92,31 @@ namespace Hotel_Booking.Controllers
             
             ViewBag.ListPhong = context.Phongs.Where(p => p.IdKhachSan == khachSan.Id).ToList();
             return View(khachSan);
+        }
+        [Authorize]
+        public ActionResult Confirm(int id)
+        {
+            Info info = (Info)Session["Info"];
+            if (info == null)
+            {
+                TempData["MessageErr"] = "Vui lòng kiểm tra phòng trống khi đặt phòng!!";
+                return RedirectToAction("Detail", "KhachSan", new { id = ID2 });
+            }
+            var tenTaiKhoan = Session["TenTaiKhoan"];
+            var taiKhoan = context.TaiKhoans.FirstOrDefault(p => p.TenTaiKhoan == tenTaiKhoan);
+            Phong Phong = context.Phongs.FirstOrDefault(p => p.Id == id);
+            KhachSan ks = context.KhachSans.FirstOrDefault(p => p.Id == Phong.IdKhachSan);
+            ThanhPho tp = context.ThanhPhoes.FirstOrDefault(p => p.Id == ks.IdThanhPho);
+            ViewBag.NgayDen = info.ngayDen;
+            ViewBag.NgayDi = info.ngayTra;
+            DateTime ngayden = info.ngayDen;
+            DateTime ngaydi = info.ngayTra;
+            ViewBag.ThanhPho = tp;
+            ViewBag.Phong = Phong;
+            info.idPhong = id;
+            info.giaThue = (int)Phong.GiaThue;
+            ViewBag.TongTien = info.tongTien;
+            return View(taiKhoan);
         }
         public static string RemoveDiacritics(string text)
         {
