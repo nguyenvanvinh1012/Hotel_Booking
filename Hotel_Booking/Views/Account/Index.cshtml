@@ -23,10 +23,10 @@
                         <div class="dashboard-nav">
                             <div class="dashboard-nav-inner">
                                 <ul>
-                                    <li class="active"><a id="account-dashboard-tab" href="@Url.Action("Index","Account")" role="tab" aria-controls="account-dashboard" aria-selected="true"><i class="sl sl-icon-settings"></i> Thông Tin Tài Khoản</a></li>
-                                    <li><a id="account-details-tab" href="@Url.Action("Edit","Account")" role="tab" aria-controls="account-details" aria-selected="false"><i class="sl sl-icon-user"></i> Chỉnh Sửa Thông Tin</a></li>
-                                    <li><a id="account-orders-tab" href="@Url.Action("Oder","Account")" role="tab" aria-controls="account-orders" aria-selected="false"><i class="fa fa-list-ul"></i>Lịch Sử Đặt Phòng</a></li>
-                                    <li><a href="@Url.Action("DangXuat","Account")" role="tab" aria-selected="false"><i class="sl sl-icon-power"></i> Đăng Xuất</a></li>
+                                    <li class="active"><a id="account-dashboard-tab" href="@Url.Action("Index","Account")" role="tab" aria-controls="account-dashboard" aria-selected="true"><i class="sl sl-icon-settings"></i> Account Information</a></li>
+                                    <li><a id="account-details-tab" href="@Url.Action("Edit","Account")" role="tab" aria-controls="account-details" aria-selected="false"><i class="sl sl-icon-user"></i> Edit Information</a></li>
+                                    <li><a id="account-orders-tab" href="@Url.Action("Oder","Account")" role="tab" aria-controls="account-orders" aria-selected="false"><i class="fa fa-list-ul"></i>Booking History</a></li>
+                                    <li><a href="@Url.Action("DangXuat","Account")" role="tab" aria-selected="false"><i class="sl sl-icon-power"></i> Logout</a></li>
                                 </ul>
                             </div>
                         </div>
@@ -38,19 +38,19 @@
                                 <div class="row">
                                     <div class="col-lg-6 col-md-6 col-xs-12 padding-right-30">
                                         <div class="dashboard-list">
-                                            <h4 class="gray">Thông Tin Tài Khoản</h4>
+                                            <h4 class="gray">Account Information</h4>
                                             <div class="dashboard-list-static">
                                                 <div class="my-profile">
                                                     <div class="form-group">
-                                                        <label>Tên tài khoản</label>
+                                                        <label>User Name</label>
                                                         <p>@Model.TenTaiKhoan</p>
                                                     </div>
                                                     <div class="form-group">
-                                                        <label>Họ và tên </label>
+                                                        <label>Your Name </label>
                                                         <p>@Model.HoTen</p>
                                                     </div>
                                                     <div class="form-group">
-                                                        <label>Số điện thoại </label>
+                                                        <label>Phone Number </label>
                                                         <p>@Model.SoDienThoai</p>
                                                     </div>
                                                     <div class="form-group">

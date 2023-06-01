@@ -14,36 +14,36 @@
     <div class="modal-body p-0">
         <div class="login-content p-4 text-center">
             <div class="login-title section-border">
-                <h3 style="font-size: 23px" class="pink mb-1">ĐĂNG KÝ</h3>
+                <h3 style="font-size: 23px" class="pink mb-1">Register</h3>
                 <p>Access thousands of online classes in design, business, and more!</p>
             </div>
             <div class="login-form text-center">
                 <form>
                     <div style="width: 60%" class="form-group">
-                        @Html.EditorFor(model => model.HoTen, new { htmlAttributes = new { @class = "form-control", placeholder = "Họ tên" } })
+                        @Html.EditorFor(model => model.HoTen, new { htmlAttributes = new { @class = "form-control", placeholder = "Enter Full Name" } })
                         @Html.ValidationMessageFor(model => model.HoTen, "", new { @class = "text-danger" })
                     </div>
                     <div style="width: 60%" class="form-group">
-                        @Html.EditorFor(model => model.SoDienThoai, new { htmlAttributes = new { @class = "form-control", placeholder = "Số điện thoại" } })
+                        @Html.EditorFor(model => model.SoDienThoai, new { htmlAttributes = new { @class = "form-control", placeholder = "Enter Phone Number" } })
                         @Html.ValidationMessageFor(model => model.SoDienThoai, "", new { @class = "text-danger" })
                     </div>
                     <div style="width: 60%" class="form-group">
-                        @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control", placeholder = "Email" } })
+                        @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control", placeholder = "Enter Email Address" } })
                         @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
                     </div>
                     <div style="width: 60%" class="form-group">
-                        @Html.EditorFor(model => model.TenTaiKhoan, new { htmlAttributes = new { @class = "form-control", placeholder = "Tên tài khỏan" } })
+                        @Html.EditorFor(model => model.TenTaiKhoan, new { htmlAttributes = new { @class = "form-control", placeholder = "Enter User Name" } })
                         @Html.ValidationMessageFor(model => model.TenTaiKhoan, "", new { @class = "text-danger" })
                     </div>
                     <div style="width: 60%" class="form-group">
-                        <input name="matkhau" type="password" placeholder="Mật khẩu">
+                        <input name="matkhau" type="password" placeholder="Enter Password">
                     </div>
                     <div style="width: 60%" class="form-group">
-                        <input name="xacnhanmatkhau" type="password" placeholder="Xác nhận mật khẩu">
+                        <input name="xacnhanmatkhau" type="password" placeholder="Confirm Password">
                     </div>
                 </form>
                 <div style="width: 60%" class="form-group">
-                    <input  style="width: 100%" type="submit" value="Đăng ký" class="nir-btn">
+                    <input  style="width: 100%" type="submit" value="Register" class="nir-btn">
                 </div>
                 <div class="form-group mb-0 form-checkbox mt-3">
                     <input type="checkbox"> By clicking this, you are agree to to<a href="#" class="">

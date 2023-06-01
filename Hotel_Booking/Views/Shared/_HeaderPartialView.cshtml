@@ -76,13 +76,13 @@
                         @if (User.Identity.IsAuthenticated)
                         {
                             <a href="@Url.Action("Index", "Account")" class="mr-2">
-                                <i class="icon-user mr-1"></i> Tài khoản
+                                <i class="icon-user mr-1"></i> Account
                             </a>
                         }
                         else
                         {
                             <a href="@Url.Action("DangKy", "Account")" class="mr-2">
-                                <i class="icon-user mr-1"></i> Đăng ký
+                                <i class="icon-user mr-1"></i> Register
                             </a>
                         }
 
@@ -90,13 +90,13 @@
                         {
                             <a href="@Url.Action("DangXuat", "Account")">
                                 <i class="icon-login mr-1"></i>
-                                Đăng xuất
+                                Log Out
                             </a>
                         }
                         else
                         { <a href="@Url.Action("DangNhap", "Account")">
                                 <i class="icon-login mr-1"></i>
-                                Đăng nhập
+                                Login
                             </a>
                         }
 

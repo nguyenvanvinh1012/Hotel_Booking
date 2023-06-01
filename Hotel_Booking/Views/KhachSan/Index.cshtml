@@ -45,7 +45,7 @@ else
                     <div class="trend-box">
                         <div class="list-results">
                             <div class="d-flex justify-content-between align-items-center mb-2 border-b pb-2">
-                                <h3 style="font-size: 25px" class="mb-0">@tp.Ten: tìm thấy @ViewBag.soks chổ nghỉ</h3>
+                                <h3 style="font-size: 25px" class="mb-0">@tp.Ten: @ViewBag.soks hotels found</h3>
                                 <div class="click-menu d-flex align-items-center justify-content-between">
                                     <div class="change-list f-active mr-2"><a href="hotel-list.html"><i class="fa fa-bars"></i></a></div>
                                     <div class="change-grid"><a href="#"><i class="fa fa-th"></i></a></div>
@@ -103,20 +103,20 @@ else
                         {
                             <div class="sidebar-item mb-4">
                                 <div class="form-content">
-                                    <h4 class="title white">Tìm khách sạn</h4>
+                                    <h4 class="title white">Find Hotel</h4>
                                     <div class="row">
                                         <div class="col-lg-12">
                                             <div class="form-group">
-                                                <label class="white">Tên chổ nghỉ / điểm đến</label>
+                                                <label class="white">Destination or Hotel Name</label>
                                                 <div class="input-box">
                                                     <i class="flaticon-placeholder"></i>
-                                                    <input type="text" name="keyword" value="@tp.Ten" placeholder="Bạn muốn đến đâu?" />
+                                                    <input type="text" name="keyword" value="@tp.Ten" placeholder="Where are you going?" />
                                                 </div>
                                             </div>
                                         </div>
                                         <div class="col-lg-6">
                                             <div class="form-group">
-                                                <label class="white">Ngày nhận phòng</label>
+                                                <label class="white">Check In</label>
                                                 <div class="input-box">
                                                     @*<i class="flaticon-calendar"></i>*@
                                                     @if (kt == true)
@@ -133,7 +133,7 @@ else
                                         </div>
                                         <div class="col-lg-6">
                                             <div class="form-group">
-                                                <label class="white">Ngày trả phòng</label>
+                                                <label class="white">Check Out</label>
                                                 <div class="input-box">
                                                     @*<i class="flaticon-calendar"></i>*@
                                                     @if (kt == true)
@@ -150,7 +150,7 @@ else
                                         </div>
                                         <div class="col-lg-12">
                                             <div class="form-group">
-                                                <label class="white">Số người</label>
+                                                <label class="white">Guests</label>
                                                 <div class="input-box">
                                                     <i class="flaticon-add-user"></i>
                                                     <select class="niceSelect">
@@ -165,7 +165,7 @@ else
                                         </div>
                                         <div class="col-lg-12">
                                             <div class="form-group mb-0">
-                                                <button type="submit" class="nir-btn w-100"><i class="fa fa-search"></i>Tìm</button>
+                                                <button type="submit" class="nir-btn w-100"><i class="fa fa-search"></i>Check Availability</button>
                                             </div>
                                         </div>
                                     </div>
