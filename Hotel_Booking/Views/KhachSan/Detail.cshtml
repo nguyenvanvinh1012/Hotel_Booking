@@ -218,12 +218,7 @@
                     </div>
                     <div class="single-map mb-4" id="single-map">
                         <h4>Map</h4>
-                        <div class="map">
-                            <div style="width: 100%">
-                                <iframe height="400"
-                                        src="https://maps.google.com/maps?width=100%25&amp;height=600&amp;hl=en&amp;q=+(mangal%20bazar)&amp;t=&amp;z=14&amp;ie=UTF8&amp;iwloc=B&amp;output=embed"></iframe>
-                            </div>
-                        </div>
+                        <div id="map"style="height: 500px; width: 100%;" ></div>
                     </div>
                 </div>
             </div>
@@ -357,6 +352,9 @@
 
 @section Scripts
 {
+    <script>
+        (g => { var h, a, k, p = "The Google Maps JavaScript API", c = "google", l = "importLibrary", q = "__ib__", m = document, b = window; b = b[c] || (b[c] = {}); var d = b.maps || (b.maps = {}), r = new Set, e = new URLSearchParams, u = () => h || (h = new Promise(async (f, n) => { await (a = m.createElement("script")); e.set("libraries", [...r] + ""); for (k in g) e.set(k.replace(/[A-Z]/g, t => "_" + t[0].toLowerCase()), g[k]); e.set("callback", c + ".maps." + q); a.src = `https://maps.${c}apis.com/maps/api/js?` + e; d[q] = f; a.onerror = () => h = n(Error(p + " could not load.")); a.nonce = m.querySelector("script[nonce]")?.nonce || ""; m.head.append(a) })); d[l] ? console.warn(p + " only loads once. Ignoring:", g) : d[l] = (f, ...n) => r.add(f) && u().then(() => d[l](f, ...n)) })
+            ({ key: "AIzaSyAmOTTdm9TwR98k9vaolqGuONg-FaUX2lk", v: "weekly" });</script>
     <script type="text/javascript">
 
         var date = new Date();
@@ -396,5 +394,17 @@
                 toastr.error(messageErr);
             }
         });
+
+        let map;
+
+        async function initMap() {
+            const { Map } = await google.maps.importLibrary("maps");
+            map = new Map(document.getElementById("map"), {
+                center: { lat: @ViewBag.Latitude, lng: @ViewBag.Longitude },
+                zoom: 20,
+            });
+        }
+        initMap();
     </script>
+
 }

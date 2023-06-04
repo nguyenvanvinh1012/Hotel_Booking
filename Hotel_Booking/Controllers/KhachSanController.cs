@@ -1,11 +1,17 @@
-﻿using Hotel_Booking.Models;
+﻿using GoogleMaps.LocationServices;
+using Hotel_Booking.Models;
+using Newtonsoft.Json;
 using PagedList;
 using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
+using System.Net;
+using System.Net.Http;
+using System.Security.Policy;
 using System.Text;
+using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.UI;
@@ -17,6 +23,8 @@ namespace Hotel_Booking.Controllers
         HotelBookingContext context = new HotelBookingContext();
         public static int ID;
         public static int ID2;
+        private readonly string apiKey = "AIzaSyAmOTTdm9TwR98k9vaolqGuONg-FaUX2lk";
+        private readonly HttpClient httpClient = new HttpClient();
         // GET: KhanhSan
         public ActionResult Index(int? page, int id)
         {
@@ -67,29 +75,54 @@ namespace Hotel_Booking.Controllers
             KhachSan khachSan = context.KhachSans.FirstOrDefault(p => p.Id == id);
             ID2 = id;
             Info info = (Info)Session["Info"];
-            if (info != null)
-            {
-                ViewBag.ngayden = info.ngayDen;
-                ViewBag.ngaydi = info.ngayTra;
-                List<Phong> ListPhong = new List<Phong>();
-                var DSPhong = context.Phongs.Where(p => p.IdKhachSan == khachSan.Id).ToList();
 
-                foreach(Phong tmp in DSPhong)//id = 1, id = 2
+            var encodedAddress = Uri.EscapeDataString(khachSan.DiaChi);
+            var apiUrl = $"https://maps.googleapis.com/maps/api/geocode/json?address={encodedAddress}&key={apiKey}";
+
+            var response = httpClient.GetAsync(apiUrl).Result;
+            response.EnsureSuccessStatusCode();
+
+            var responseContent = response.Content.ReadAsStringAsync().Result;
+            dynamic result = JsonConvert.DeserializeObject(responseContent);
+
+            if (result.status == "OK" && result.results.Count > 0)
+            {
+                var location = result.results[0].geometry.location;
+                var latitude = (double)location.lat;
+                var longitude = (double)location.lng;
+
+                if (info != null)
                 {
-                    if(checkEmptyRoom(tmp, info.ngayDen, info.ngayTra))
+                    ViewBag.ngayden = info.ngayDen;
+                    ViewBag.ngaydi = info.ngayTra;
+                    List<Phong> ListPhong = new List<Phong>();
+                    var DSPhong = context.Phongs.Where(p => p.IdKhachSan == khachSan.Id).ToList();
+
+                    foreach (Phong tmp in DSPhong)//id = 1, id = 2
                     {
-                        ListPhong.Add(tmp);
+                        if (checkEmptyRoom(tmp, info.ngayDen, info.ngayTra))
+                        {
+                            ListPhong.Add(tmp);
+                        }
                     }
+
+                    ViewBag.Latitude = latitude;
+                    ViewBag.Longitude = longitude;
+                    ViewBag.ListPhong = ListPhong;
+                    return View(khachSan);
                 }
-                ViewBag.ListPhong = ListPhong;
+
+                ViewBag.Latitude = latitude;
+                ViewBag.Longitude = longitude;
+                ViewBag.ListPhong = context.Phongs.Where(p => p.IdKhachSan == khachSan.Id).ToList();
                 return View(khachSan);
             }
+
             if (khachSan == null)
             {
                 return PartialView("NotFound");
             }
-  
-            
+
             ViewBag.ListPhong = context.Phongs.Where(p => p.IdKhachSan == khachSan.Id).ToList();
             return View(khachSan);
         }

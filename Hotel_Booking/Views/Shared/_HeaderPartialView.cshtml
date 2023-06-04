@@ -71,7 +71,7 @@
                             Hotel_Booking.Models.HotelBookingContext context = new Hotel_Booking.Models.HotelBookingContext();
                             var tentk = Session["TenTaiKhoan"];
                             var name = context.TaiKhoans.FirstOrDefault(p => p.TenTaiKhoan == tentk);
-                            <a style="color:#0791be;">Hello @name.HoTen</a>
+                            <a style="color:#0791be; margin-right: 7px">Hello, @name.HoTen</a>
                         }
                         @if (User.Identity.IsAuthenticated)
                         {
