@@ -84,6 +84,10 @@
     <script type="text/javascript">
         $(document).ready(function () {
             var message = $('#MessageErr').text();
+            toastr.options = {
+                "closeButton": true,
+                "progressBar": true,
+            }
             if (message !== '') {
                 toastr.error(message);
             }

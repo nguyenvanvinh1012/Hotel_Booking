@@ -62,7 +62,9 @@
                                 </td>
                                 <td>
                                     <div class="d-flex align-items-center">
-                                        <img class="img-fluid rounded" src="@item.UrlHinhAnh1" style="max-width: 60px" alt="">
+                                        <div style="width: 150px; height: 100px">
+                                            <img class="img-fluid rounded" src="@item.UrlHinhAnh1" style="max-width: 100%; object-fit: cover; width: 100%; height: 100px" alt="">
+                                        </div>                                   
                                         <h6 class="m-b-0 m-l-10">@item.Ten</h6>
                                     </div>
                                 </td>
@@ -126,6 +128,10 @@
 {
     <script type="text/javascript">
         $(document).ready(function () {
+            toastr.options = {
+                "closeButton": true,
+                "progressBar": true,
+            }
             var message = $('#Message').text();
             if (message !== '') {
                 toastr.success(message);

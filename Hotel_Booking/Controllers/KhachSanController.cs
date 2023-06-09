@@ -15,6 +15,7 @@ using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.UI;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace Hotel_Booking.Controllers
 {
@@ -23,7 +24,8 @@ namespace Hotel_Booking.Controllers
         HotelBookingContext context = new HotelBookingContext();
         public static int ID;
         public static int ID2;
-        private readonly string apiKey = "AIzaSyAmOTTdm9TwR98k9vaolqGuONg-FaUX2lk";
+        //AIzaSyAmOTTdm9TwR98k9vaolqGuONg-FaUX2lk
+        private readonly string apiKey = "AIzaSyBzGedy8KmGBxxSyGlUGMyVPhdlREd6BzY";
         private readonly HttpClient httpClient = new HttpClient();
         // GET: KhanhSan
         public ActionResult Index(int? page, int id)
@@ -48,6 +50,7 @@ namespace Hotel_Booking.Controllers
                 ViewBag.ngayden = info.ngayDen;
                 ViewBag.ngaydi = info.ngayTra;
             }
+
             var result = context.KhachSans.Where(p => p.IdThanhPho == id).ToList().ToPagedList(pageIndex, pageSize);
             return View(result);
         }
@@ -73,6 +76,10 @@ namespace Hotel_Booking.Controllers
         public ActionResult Detail(int id)
         {
             KhachSan khachSan = context.KhachSans.FirstOrDefault(p => p.Id == id);
+            var rv = context.Reviews.Where(p => p.KhachSan_id == id).ToList();
+            var countRV = context.Reviews.Where(p => p.KhachSan_id == id).Count();
+            var sumRating = context.Reviews.Where(p => p.KhachSan_id == id).Sum(p => p.rating);
+            var averageRating = (double)sumRating/countRV;
             ID2 = id;
             Info info = (Info)Session["Info"];
 
@@ -105,13 +112,17 @@ namespace Hotel_Booking.Controllers
                             ListPhong.Add(tmp);
                         }
                     }
-
+                    ViewBag.AverageRating = averageRating;
+                    ViewBag.CountRV = countRV;
+                    ViewBag.DSRV = rv;
                     ViewBag.Latitude = latitude;
                     ViewBag.Longitude = longitude;
                     ViewBag.ListPhong = ListPhong;
                     return View(khachSan);
                 }
-
+                ViewBag.AverageRating = averageRating;
+                ViewBag.CountRV = countRV;
+                ViewBag.DSRV = rv;
                 ViewBag.Latitude = latitude;
                 ViewBag.Longitude = longitude;
                 ViewBag.ListPhong = context.Phongs.Where(p => p.IdKhachSan == khachSan.Id).ToList();
@@ -122,7 +133,9 @@ namespace Hotel_Booking.Controllers
             {
                 return PartialView("NotFound");
             }
-
+            ViewBag.AverageRating = averageRating;
+            ViewBag.CountRV = countRV;
+            ViewBag.DSRV = rv;
             ViewBag.ListPhong = context.Phongs.Where(p => p.IdKhachSan == khachSan.Id).ToList();
             return View(khachSan);
         }
@@ -190,6 +203,25 @@ namespace Hotel_Booking.Controllers
             info.ngayDen = ngayden;
             info.ngayTra = ngaydi;
             Session["Info"] = info;
+            return RedirectToAction("Detail", "KhachSan", new { id = ID2 });
+        }
+        [Authorize]
+        public ActionResult Comment(String comment, int rating)
+        {
+            Review rv = new Review();
+            rv.KhachSan_id = ID2;
+            String taiKhoan = (String)Session["TenTaiKhoan"];
+            rv.TenTaiKhoan = taiKhoan;
+            rv.comment = comment;
+            rv.date_rv = DateTime.Now;
+            rv.rating = rating;
+            context.Reviews.Add(rv);
+            context.SaveChanges();
+            return RedirectToAction("Detail", "KhachSan", new { id = ID2 });
+        }
+        [Authorize]
+        public ActionResult DeleteComment(int id)
+        {
             return RedirectToAction("Detail", "KhachSan", new { id = ID2 });
         }
     }

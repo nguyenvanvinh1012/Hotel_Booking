@@ -17,13 +17,12 @@
         }
 
         public int Id { get; set; }
-
         [Required(ErrorMessage = "Vui loại nhập loại khách sạn!")]
         [StringLength(100)]
         public string Ten { get; set; }
 
-        [Required(ErrorMessage = "Vui lòng nhập mô tả!")]
         [StringLength(200)]
+        [Required(ErrorMessage = "Vui lòng nhập mô tả!")]
         public string MoTa { get; set; }
 
         [StringLength(200)]

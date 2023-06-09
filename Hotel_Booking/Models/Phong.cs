@@ -17,27 +17,22 @@
         }
 
         public int Id { get; set; }
-
         [Required(ErrorMessage = "Vui lòng nhập tên phòng!")]
         [StringLength(100)]
         public string Ten { get; set; }
-
-        [Range(10, 1000, ErrorMessage ="Diện tích phải lớn 10")]
+        [Range(10, 1000, ErrorMessage = "Diện tích phải lớn 10")]
         public int? DienTich { get; set; }
-
         [StringLength(200)]
         public string UrlHinhAnh { get; set; }
-
-
-        [Range(100000, 10000000, ErrorMessage =" Giá thuê phải lớn hơn 100000")]
+        [Range(100000, 10000000, ErrorMessage = " Giá thuê phải lớn hơn 100000")]
         public int? GiaThue { get; set; }
 
-        [Required(ErrorMessage = "Vui lòng nhập tiện nghi!")]
         [StringLength(200)]
+        [Required(ErrorMessage = "Vui lòng nhập tiện nghi!")]
         public string TienNghi { get; set; }
 
-        [Required(ErrorMessage = "Vui lòng nhập mô tả!")]
         [StringLength(1000)]
+        [Required(ErrorMessage = "Vui lòng nhập mô tả!")]
         public string MoTa { get; set; }
 
         public int? LoaiGiuong { get; set; }

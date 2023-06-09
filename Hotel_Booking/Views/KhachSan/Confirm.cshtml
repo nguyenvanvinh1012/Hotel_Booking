@@ -59,25 +59,78 @@
                     </div>
                     <div class="description detail-box mb-4">
                         <div class="booking-box">
-                            @*<div class="booking-box-title d-md-flex align-items-center bg-pink p-4 mb-4">
-                                    <i class="fa fa-check"></i>
-                                    <div class="title-content ml-3">
-                                        <h3 class="mb-0 white">Thank You. Your booking order is confirmed now.</h3>
-                                        <p class="mb-0 white">A confirmation email has been sent to your provided email address.</p>
-                                    </div>
-                                </div>*@
                             <div class="booking-border mb-2 bg-lgrey p-4">
-                                <a href="@Url.Action("Order", "DatPhong")" style="font-weight: bold; font-size: 20px; margin-bottom:25px" class="border-b pb-2 mb-2">
-                                    Thanh khi nhận phòng
+                                <a href="#" data-toggle="modal" data-target="#pay-on" style="font-weight: bold; font-size: 20px; margin-bottom:25px" class="border-b pb-2 mb-2">
+                                    Online payment with momo
+                                    <img style="width: 28px; border-radius: 3px; margin-left: 5px" src="~/Content/Images/momo.png" />
                                 </a>
                                 <p style="margin-top: 20px">This is the third time I've used Travelo Website and telling you the truth their services are always reliable and it ony takes few minutes to plan and finalize.</p>
                             </div>
                             <div class="booking-border mb-2 bg-lgrey p-4">
-                                <a href="@Url.Action("OrderMomo", "DatPhong")" style="font-weight: bold; font-size: 20px; margin-bottom:25px" class="border-b pb-2 mb-2">
-                                    Thanh toán điện tử
-                                    <img style="width: 28px; border-radius: 3px; margin-left: 5px" src="~/Content/Images/momo.png" />
+                                <a href="#" data-toggle="modal" data-target="#pay-off" style="font-weight: bold; font-size: 20px; margin-bottom:25px" class="border-b pb-2 mb-2">
+                                    Pay at check-in
                                 </a>
                                 <p style="margin-top: 20px">This is the third time I've used Travelo Website and telling you the truth their services are always reliable and it ony takes few minutes to plan and finalize.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            @*Modal*@
+            <div class="modal fade" id="pay-off" tabindex="-1" role="dialog" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header bordernone p-0">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body p-0">
+                            <div class="login-content p-4 text-center">
+                                <div class="login-title section-border">
+                                    <h3 style="text-align:left" class="pink">Are you sure?</h3>
+                                </div>
+                                <div class="login-form">
+                                    <form>
+                                        <div style="height: 60px; padding: 16px; border-top: 1px solid #dee2e6;border-bottom: 1px solid #dee2e6; " class="form-group">
+                                            <p>Modal body text goes here.</p>
+                                        </div>
+                                    </form>
+                                    <div style="text-align:right" class="form-btn">
+                                        <a style="border-radius: 5px; background-color: #F56961" href="" class="nir-btn" data-dismiss="modal" aria-label="Close">Close</a>
+                                        <a style="border-radius: 5px" href="@Url.Action("Order", "DatPhong")" class="nir-btn">Yes</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            @* Modal *@
+            <div class="modal fade" id="pay-on" tabindex="-1" role="dialog" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header bordernone p-0">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body p-0">
+                            <div class="login-content p-4 text-center">
+                                <div class="login-title section-border">
+                                    <h3 style="text-align:left" class="pink">Are you sure?</h3>
+                                </div>
+                                <div class="login-form">
+                                    <form>
+                                        <div style="height: 60px; padding: 16px; border-top: 1px solid #dee2e6;border-bottom: 1px solid #dee2e6; " class="form-group">
+                                            <p>Modal body text goes here.</p>
+                                        </div>
+                                    </form>
+                                    <div style="text-align:right" class="form-btn">
+                                        <a style="border-radius: 5px; background-color: #F56961" href="" class="nir-btn" data-dismiss="modal" aria-label="Close">Close</a>
+                                        <a style="border-radius: 5px" href="@Url.Action("OrderMomo", "DatPhong")" class="nir-btn">Yes</a>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>

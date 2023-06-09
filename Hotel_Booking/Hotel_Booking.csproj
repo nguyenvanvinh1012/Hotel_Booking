@@ -166,6 +166,7 @@
     <Compile Include="Models\Phong.cs" />
     <Compile Include="Models\QuyenTruyCap.cs" />
     <Compile Include="Models\Result.cs" />
+    <Compile Include="Models\Review.cs" />
     <Compile Include="Models\TaiKhoan.cs" />
     <Compile Include="Models\ThanhPho.cs" />
     <Compile Include="Other\MoMoSecurity.cs" />

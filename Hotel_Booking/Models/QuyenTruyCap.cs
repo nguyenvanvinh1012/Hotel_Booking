@@ -18,12 +18,12 @@
         [Key]
         public int MaQuyenTryCap { get; set; }
 
-        [Required(ErrorMessage ="Vui lòng nhập tên quyền truy cập!")]
         [StringLength(50)]
+        [Required(ErrorMessage = "Vui lòng nhập tên quyền truy cập!")]
         public string TenQuyenTryCap { get; set; }
 
-        [Required(ErrorMessage ="Vui lòng nhập mô tả!")]
         [StringLength(50)]
+        [Required(ErrorMessage = "Vui lòng nhập mô tả!")]
         public string Mota { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

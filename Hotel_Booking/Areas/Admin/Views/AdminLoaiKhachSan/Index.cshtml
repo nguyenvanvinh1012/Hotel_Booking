@@ -102,6 +102,10 @@
 {
     <script type="text/javascript">
         $(document).ready(function () {
+            toastr.options = {
+                "closeButton": true,
+                "progressBar": true,
+            }
             var message = $('#Message').text();
             if (message !== '') {
                 toastr.success(message);

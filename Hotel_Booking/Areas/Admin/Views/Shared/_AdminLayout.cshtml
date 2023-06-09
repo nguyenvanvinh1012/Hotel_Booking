@@ -5,7 +5,8 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>@ViewData["Title"]</title>
-    <link href="~/Content/toastr.css" rel="stylesheet" />
+    @*<link href="~/Content/toastr.css" rel="stylesheet" />*@
+    <link href="~/Content/toastr2.css" rel="stylesheet" />
     @Scripts.Render("~/bundles/modernizr")
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <link href="~/Content/PagedList.css" rel="stylesheet" />
@@ -109,7 +110,7 @@
                                             <p class="m-b-0 opacity-07">UI/UX Desinger</p>
                                         </div>
                                     </div>
-                                </div>                             
+                                </div>
                                 <a href="@Url.Action("SignOut", "AdminAccount",new {Area = "Admin"}, null)" asp-area="Admin" asp-controller="Account" asp-action="AdminLogout" class="dropdown-item d-block p-h-15 p-v-10">
                                     <div class="d-flex align-items-center justify-content-between">
                                         <div>
@@ -155,7 +156,8 @@
     </div>
 
     @Scripts.Render("~/bundles/jquery")
-    <script src="~/Scripts/toastr.js"></script>
+    @*<script src="~/Scripts/toastr.js"></script>*@
+    <script src="~/Scripts/toastr2.js"></script>
     @RenderSection("scripts", required: false)
 
     @Scripts.Render("~/Scripts/jquery.validate.min.js")

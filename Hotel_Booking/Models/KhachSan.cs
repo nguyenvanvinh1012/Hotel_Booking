@@ -14,11 +14,12 @@
         public KhachSan()
         {
             Phongs = new HashSet<Phong>();
+            Reviews = new HashSet<Review>();
         }
 
         public int Id { get; set; }
-
         [Required(ErrorMessage = "Tên khách sạn không được để trống!")]
+
         [StringLength(100)]
         public string Ten { get; set; }
 
@@ -31,7 +32,7 @@
         public string SoDienThoai { get; set; }
 
         [Range(1, 999999, ErrorMessage = "Giá trị phải lớn hơn 0")]
-        public int? CachTrungTam { get; set; }
+        public double? CachTrungTam { get; set; }
 
         [Required(ErrorMessage = "Mô tả không được để trống!")]
         [StringLength(1000)]
@@ -59,14 +60,17 @@
 
         public int? IdLoaiKhachSan { get; set; }
 
-        public virtual LoaiKhachSan LoaiKhachSan { get; set; }
-
         public bool? Active { get; set; }
+
+        public virtual LoaiKhachSan LoaiKhachSan { get; set; }
 
         public virtual ThanhPho ThanhPho { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Phong> Phongs { get; set; }
+
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Review> Reviews { get; set; }
         [NotMapped]
         public HttpPostedFileBase ImageFile1 { get; set; }
         [NotMapped]

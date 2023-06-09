@@ -17,6 +17,7 @@ namespace Hotel_Booking.Models
         public virtual DbSet<LoaiKhachSan> LoaiKhachSans { get; set; }
         public virtual DbSet<Phong> Phongs { get; set; }
         public virtual DbSet<QuyenTruyCap> QuyenTruyCaps { get; set; }
+        public virtual DbSet<Review> Reviews { get; set; }
         public virtual DbSet<TaiKhoan> TaiKhoans { get; set; }
         public virtual DbSet<ThanhPho> ThanhPhoes { get; set; }
 
@@ -51,6 +52,11 @@ namespace Hotel_Booking.Models
                 .WithOptional(e => e.KhachSan)
                 .HasForeignKey(e => e.IdKhachSan);
 
+            modelBuilder.Entity<KhachSan>()
+                .HasMany(e => e.Reviews)
+                .WithOptional(e => e.KhachSan)
+                .HasForeignKey(e => e.KhachSan_id);
+
             modelBuilder.Entity<LoaiKhachSan>()
                 .Property(e => e.UrlHinhAnh)
                 .IsUnicode(false);
@@ -64,6 +70,10 @@ namespace Hotel_Booking.Models
                 .HasMany(e => e.DatPhongs)
                 .WithOptional(e => e.Phong)
                 .HasForeignKey(e => e.IdPhong);
+
+            modelBuilder.Entity<Review>()
+                .Property(e => e.TenTaiKhoan)
+                .IsUnicode(false);
 
             modelBuilder.Entity<TaiKhoan>()
                 .Property(e => e.TenTaiKhoan)

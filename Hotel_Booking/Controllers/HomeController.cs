@@ -20,11 +20,11 @@ namespace Hotel_Booking.Controllers
 
             var listTP = context.ThanhPhoes.Where(p => p.Active == true).ToList();
             ViewBag.ListLoaKS = context.LoaiKhachSans.Where(p => p.Active == true).ToList();
-            ViewBag.TPHCM = context.ThanhPhoes.FirstOrDefault(p => p.Ten == "TP. Hồ Chí Minh");
-            ViewBag.HaNoi = context.ThanhPhoes.FirstOrDefault(p => p.Ten == "Hà Nội");
-            ViewBag.DaNang = context.ThanhPhoes.FirstOrDefault(p => p.Ten == "Đà Nẵng");
-            ViewBag.Hue = context.ThanhPhoes.FirstOrDefault(p => p.Ten == "Huế");
-            ViewBag.HoiAn = context.ThanhPhoes.FirstOrDefault(p => p.Ten == "Hội An");
+            ViewBag.TPHCM = context.ThanhPhoes.FirstOrDefault(p => p.Id == 2);
+            ViewBag.HaNoi = context.ThanhPhoes.FirstOrDefault(p => p.Id == 1);
+            ViewBag.DaNang = context.ThanhPhoes.FirstOrDefault(p => p.Id == 3);
+            ViewBag.Hue = context.ThanhPhoes.FirstOrDefault(p => p.Id == 4);
+            ViewBag.HoiAn = context.ThanhPhoes.FirstOrDefault(p => p.Id == 5);
 
             return View(listTP);
         }
@@ -65,6 +65,8 @@ namespace Hotel_Booking.Controllers
                     return RedirectToAction("Index", "KhachSan", new { id = findTP2.Id });
                 }
             }
+
+
             return PartialView("NotFound");
         }
 
