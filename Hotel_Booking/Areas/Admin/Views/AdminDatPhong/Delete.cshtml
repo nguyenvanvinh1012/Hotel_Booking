@@ -8,9 +8,9 @@
 <div class="page-header">
     <div class="header-sub-title">
         <nav class="breadcrumb breadcrumb-dash">
-            <a href="@Url.Action("Index", "Home",new { area = "Admin" })" class="breadcrumb-item"><i class="anticon anticon-home m-r-5"></i>Trang chủ</a>
-            <a href="@Url.Action("Index", "AdminDatPhong",new { area = "Admin" })" class="breadcrumb-item">Danh sách các phòng đã đặt</a>
-            <span class="breadcrumb-item active">Xác nhận xóa</span>
+            <a href="@Url.Action("Index", "Home",new { area = "Admin" })" class="breadcrumb-item"><i class="anticon anticon-home m-r-5"></i>Home</a>
+            <a href="@Url.Action("Index", "AdminDatPhong",new { area = "Admin" })" class="breadcrumb-item">List of Booking Hotel</a>
+            <span class="breadcrumb-item active">Confirm Delete</span>
         </nav>
     </div>
 </div>
@@ -24,38 +24,35 @@
                     <td class="text-dark font-weight-semibold">@Model.Id</td>
                 </tr>
                 <tr>
-                    <td>Tên tài khoản:</td>
+                    <td>Account Name:</td>
                     <td>@Model.TaiKhoan</td>
                 </tr>
                 <tr>
-                    <td>Tên phòng:</td>
+                    <td>Room Name:</td>
                     <td>@Model.Phong.Ten</td>
                 </tr>
                 <tr>
-                    <td>Ngày đặt:</td>
-                    <td>@Model.NgayDat</td>
-                </tr>
-                <tr>
-                    <td>Ngày đến:</td>
+                    <td>Check-in:</td>
                     <td>@Model.NgayDen</td>
                 </tr>
                 <tr>
-                    <td>Ngày trả:</td>
+                    <td>Check-out:</td>
                     <td>@Model.NgayTra</td>
                 </tr>
+                @*<tr>
+                        <td>Service:</td>
+                        <td>@Model.DichVu</td>
+                    </tr>
+                    <tr>
+                        <td>Note:</td>
+                        <td>@Model.GhiChu</td>
+                    </tr>*@
                 <tr>
-                    <td>Dịch vụ:</td>
-                    <td>@Model.DichVu</td>
-                </tr>
-                <tr>
-                    <td>Ghi chú:</td>
-                    <td>@Model.GhiChu</td>
-                </tr>
-                <tr>
+                    <td>Total:</td>
                     <td>@Model.ThanhTien</td>
                 </tr>
                 <tr>
-                    <td>Thanh toán:</td>
+                    <td>Payment status:</td>
                     @if (Model.isPaid == true)
                     {
                         <td>Đã thanh toán</td>
@@ -66,7 +63,7 @@
                     }
                 </tr>
                 <tr>
-                    <td>Xác nhận xóa:</td>
+                    <td>Confirm Delete:</td>
                     <td>
                         @using (Html.BeginForm())
                         {

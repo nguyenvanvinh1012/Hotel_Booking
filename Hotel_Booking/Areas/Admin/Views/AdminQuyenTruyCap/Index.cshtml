@@ -8,8 +8,8 @@
 <div class="page-header">
     <div class="header-sub-title">
         <nav class="breadcrumb breadcrumb-dash">
-            <a href="@Url.Action("Index", "Home",new { area = "Admin" })" class="breadcrumb-item"><i class="anticon anticon-home m-r-5"></i>Trang chủ</a>
-            <span class="breadcrumb-item active">Danh sách quyền truy cập</span>
+            <a href="@Url.Action("Index", "Home",new { area = "Admin" })" class="breadcrumb-item"><i class="anticon anticon-home m-r-5"></i>Home</a>
+            <span class="breadcrumb-item active">List of Role</span>
         </nav>
     </div>
 </div>
@@ -18,7 +18,7 @@
 
 <div class="row m-b-30">
     <div class="col-lg-8">
-        <a href="@Url.Action("Create", "AdminQuyenTruyCap",new { area = "Admin" })" class="btn btn-primary"><i class="anticon anticon-plus-circle m-r-5"></i><span>Thêm mới</span></a>
+        <a href="@Url.Action("Create", "AdminQuyenTruyCap",new { area = "Admin" })" class="btn btn-primary"><i class="anticon anticon-plus-circle m-r-5"></i><span>Add</span></a>
     </div>
     <div class="col-lg-4 ">
 
@@ -29,8 +29,8 @@
         <thead>
             <tr>
                 <th scope="col">ID</th>
-                <th scope="col">Tên</th>
-                <th scope="col">Mô tả</th>
+                <th scope="col">Role Nam</th>
+                <th scope="col">Description</th>
                 <th scope="col">#</th>
             </tr>
         </thead>
@@ -44,10 +44,10 @@
                         <td>@item.TenQuyenTryCap</td>
                         <td>@item.Mota</td>
                         <td>
-                            <a href="@Url.Action("Edit", "AdminQuyenTruyCap",new {id = item.MaQuyenTryCap,  area = "Admin" })" title="Chỉnh sửa" class="btn btn-icon btn-hover btn-sm btn-rounded pull-right">
+                            <a href="@Url.Action("Edit", "AdminQuyenTruyCap",new {id = item.MaQuyenTryCap,  area = "Admin" })" title="Edit" class="btn btn-icon btn-hover btn-sm btn-rounded pull-right">
                                 <i class="anticon anticon-edit"></i>
                             </a>
-                            <a href="@Url.Action("Delete", "AdminQuyenTruyCap",new {id = item.MaQuyenTryCap,  area = "Admin" })" title="Xóa" class="btn btn-icon btn-hover btn-sm btn-rounded">
+                            <a href="@Url.Action("Delete", "AdminQuyenTruyCap",new {id = item.MaQuyenTryCap,  area = "Admin" })" title="Delete" class="btn btn-icon btn-hover btn-sm btn-rounded">
                                 <i class="anticon anticon-delete"></i>
                             </a>
                         </td>

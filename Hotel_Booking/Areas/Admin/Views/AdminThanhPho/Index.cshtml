@@ -11,8 +11,8 @@
 <div class="page-header">
     <div class="header-sub-title">
         <nav class="breadcrumb breadcrumb-dash">
-            <a href="@Url.Action("Index", "Home",new { area = "Admin" })" class="breadcrumb-item"><i class="anticon anticon-home m-r-5"></i>Trang chủ</a>
-            <span class="breadcrumb-item active">Danh sách thành phố </span>
+            <a href="@Url.Action("Index", "Home",new { area = "Admin" })" class="breadcrumb-item"><i class="anticon anticon-home m-r-5"></i>Home</a>
+            <span class="breadcrumb-item active">List of City </span>
         </nav>
     </div>
 </div>
@@ -24,14 +24,14 @@
                     <div class="col-md-6">
                         <div class="input-affix m-v-10">
                             <i class="prefix-icon anticon anticon-search opacity-04"></i>
-                            <input id="keyword" name="keyword" type="text" class="form-control" placeholder="Tìm thành phố ">
+                            <input id="keyword" name="keyword" type="text" class="form-control" placeholder="Search City ">
                         </div>
                     </div>
                 </div>
             </div>
 
             <div class="col-lg-4 text-right">
-                <a class="btn btn-primary" href="@Url.Action("Create", "AdminThanhPho",new { area = "Admin" })"><i class="anticon anticon-plus-circle m-r-5"></i><span>Thêm thành phố</span></a>
+                <a class="btn btn-primary" href="@Url.Action("Create", "AdminThanhPho",new { area = "Admin" })"><i class="anticon anticon-plus-circle m-r-5"></i><span>Add City</span></a>
             </div>
         </div>
         <div class="table-responsive">
@@ -39,9 +39,9 @@
                 <thead>
                     <tr>
                         <th>ID</th>
-                        <th>Tên thành phố</th>
-                        <th>Mô tả</th>
-                        <th>Trạng thái</th>
+                        <th>City Name</th>
+                        <th>Description</th>
+                        <th>Active</th>
                     </tr>
                 </thead>
                 <tbody id="records_table">
@@ -79,10 +79,10 @@
 
                                 <td>
                                 <td>
-                                    <a href="@Url.Action("Edit", "AdminThanhPho",new {id = item.Id,  area = "Admin" })" title="Chỉnh sửa" class="btn btn-icon btn-hover btn-sm btn-rounded pull-right">
+                                    <a href="@Url.Action("Edit", "AdminThanhPho",new {id = item.Id,  area = "Admin" })" title="Edit" class="btn btn-icon btn-hover btn-sm btn-rounded pull-right">
                                         <i class="anticon anticon-edit"></i>
                                     </a>
-                                    <a href="#" title="Xóa" class="btn btn-icon btn-hover btn-sm btn-rounded">
+                                    <a href="#" title="Delete" class="btn btn-icon btn-hover btn-sm btn-rounded">
                                         <i class="anticon anticon-delete"></i>
                                     </a>
                                 </td>

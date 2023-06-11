@@ -8,11 +8,11 @@
             <td>@item.Id</td>
             <td>@item.TaiKhoan</td>
             <td>@item.Phong.Ten</td>
-            <td>@item.NgayDat</td>
+            @*<td>@item.NgayDat</td>*@
             <td>@item.NgayDen</td>
             <td>@item.NgayTra</td>
-            <td>@item.DichVu</td>
-            <td>@item.GhiChu</td>
+            @*<td>@item.DichVu</td>
+                <td>@item.GhiChu</td>*@
             <td>@item.ThanhTien</td>
             @if (item.isPaid == true)
             {
@@ -23,10 +23,10 @@
                 <td>Chưa thanh toán</td>
             }
             <td>
-                <a href="@Url.Action("Edit", "AdminLoaiKhachSan",new {id = item.Id,  area = "Admin" })" title="Chỉnh sửa" class="btn btn-icon btn-hover btn-sm btn-rounded pull-right">
+                <a href="@Url.Action("Edit", "AdminLoaiKhachSan",new {id = item.Id,  area = "Admin" })" title="Edit" class="btn btn-icon btn-hover btn-sm btn-rounded pull-right">
                     <i class="anticon anticon-edit"></i>
                 </a>
-                <a href="@Url.Action("Delete", "AdminLoaiKhachSan",new {id = item.Id,  area = "Admin" })" title="Xóa" class="btn btn-icon btn-hover btn-sm btn-rounded">
+                <a href="@Url.Action("Delete", "AdminLoaiKhachSan",new {id = item.Id,  area = "Admin" })" title="Delete" class="btn btn-icon btn-hover btn-sm btn-rounded">
                     <i class="anticon anticon-delete"></i>
                 </a>
             </td>

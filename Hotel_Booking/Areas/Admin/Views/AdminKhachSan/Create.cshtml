@@ -119,9 +119,156 @@
         <div class="form-group">
             <label class="control-label col-md-2">Ảnh 2</label>
             <div class="col-md-10">
+                @model Hotel_Booking.Models.KhachSan
 
-                <input type="file" name="ImageFile2" required class="form-control" accept=".png, .jpg, .jpeg" />
-            </div>
+                        @{
+                            ViewBag.Title = "Create";
+                            Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+                        }
+
+                        <div class="page-header">
+                            <div class="header-sub-title">
+                                <nav class="breadcrumb breadcrumb-dash">
+                                    <a href="@Url.Action("Index", "Home",new { area = "Admin" })" class="breadcrumb-item"><i class="anticon anticon-home m-r-5"></i>Home</a>
+                                    <a href="@Url.Action("Index", "AdminKhachSan",new { area = "Admin" })" class="breadcrumb-item">List of Hotel</a>
+                                    <span class="breadcrumb-item active">Add Hotel</span>
+                                </nav>
+                            </div>
+                        </div>
+
+                        @using (Html.BeginForm("Create", "AdminKhachSan", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                        {
+                            @Html.AntiForgeryToken()
+
+                            <div class="form-horizontal">
+                                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+                                <div class="form-group">
+                                    <label class="control-label col-md-2">Hotel</label>
+                                    <div class="col-md-10">
+                                        @Html.EditorFor(model => model.Ten, new { htmlAttributes = new { @class = "form-control", placeholder = "Hotel" } })
+                                        @Html.ValidationMessageFor(model => model.Ten, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-md-2">Hotel Address</label>
+                                    <div class="col-md-10">
+                                        @Html.EditorFor(model => model.DiaChi, new { htmlAttributes = new { @class = "form-control", placeholder = "Hotel Address" } })
+                                        @Html.ValidationMessageFor(model => model.DiaChi, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-md-2">Number Phone</label>
+                                    <div class="col-md-10">
+                                        @Html.EditorFor(model => model.SoDienThoai, new { htmlAttributes = new { @class = "form-control", placeholder = "Number Phone" } })
+                                        @Html.ValidationMessageFor(model => model.SoDienThoai, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-md-2">Center</label>
+                                    <div class="col-md-10">
+                                        @Html.EditorFor(model => model.CachTrungTam, new { htmlAttributes = new { @class = "form-control", placeholder = "Center" } })
+                                        @Html.ValidationMessageFor(model => model.CachTrungTam, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="col-md-10">
+                                        <div class="checkbox">
+                                            <input name="GiapBien" id="checkbox1" type="checkbox" />
+                                            <label for="checkbox1">Bordering sea</label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-md-2">Description</label>
+                                    <div class="col-md-10">
+                                        <textarea required placeholder="Description" class="form-control" name="moTa"></textarea>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="form-group col-md-6">
+                                        <label class="control-label col-md-3">Meal</label>
+                                        <div class="col-md-10">
+                                            <select class="form-control" name="buaAn" id="buaAn">
+                                                <option value="0">Không có</option>
+                                                <option value="1">Bữa sáng</option>
+                                                <option value="2">Bữa sáng và trưa</option>
+                                                <option value="3">Bữa sáng và tối</option>
+                                                <option value="4" selected>Cả ba bữa</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="form-group col-md-6">
+                                        <label class="control-label col-md-3">Review</label>
+                                        <div class="col-md-10">
+                                            <select class="form-control" name="danhGia" id="danhGia">
+                                                <option value="1">1</option>
+                                                <option value="2">2</option>
+                                                <option value="3">3</option>
+                                                <option value="4">4</option>
+                                                <option value="5" selected>5</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="form-group col-md-6">
+                                        <label class="control-label col-md-3">City</label>
+                                        <div class="col-md-10">
+                                            @Html.DropDownList("IdThanhPho", new SelectList(ViewBag.ListThanhPho, "Id", "Ten"), htmlAttributes: new { @class = "form-control" })
+                                            @Html.ValidationMessageFor(model => model.IdThanhPho, "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+                                    <div class="form-group col-md-6">
+                                        <label class="control-label col-md-3">Hote-Type</label>
+                                        <div class="col-md-10">
+                                            @Html.DropDownList("IdLoaiKhachSan", new SelectList(ViewBag.ListLoaiKhachSan, "Id", "Ten"), htmlAttributes: new { @class = "form-control" })
+                                            @Html.ValidationMessageFor(model => model.IdLoaiKhachSan, "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+                                </div>
+                                <div>
+                                    <label class="control-label col-md-2">Image Hotel </label>
+                                    <div class="form-group">
+                                        <label class="control-label col-md-2">Image 1</label>
+                                        <div class="col-md-10">
+                                            <input type="file" name="ImageFile1" required class="form-control" accept=".png, .jpg, .jpeg" />
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label col-md-2">Image 2</label>
+                                        <div class="col-md-10">
+
+                                            <input type="file" name="ImageFile2" required class="form-control" accept=".png, .jpg, .jpeg" />
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label col-md-2">Image 3</label>
+                                        <div class="col-md-10">
+                                            <input type="file" name="ImageFile3" required class="form-control" accept=".png, .jpg, .jpeg" />
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label col-md-2">Image 4</label>
+                                        <div class="col-md-10">
+                                            <input type="file" name="ImageFile4" required class="form-control" accept=".png, .jpg, .jpeg" />
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <div class="col-sm-6">
+                                        <button type="submit" class="btn btn-primary">Add New</button>
+                                    </div>
+                                </div>
+
+                            </div>
+                        }
+
+                        <input type="file" name="ImageFile2" required class="form-control" accept=".png, .jpg, .jpeg" />
+                    </div>
         </div>
         <div class="form-group">
             <label class="control-label col-md-2">Ảnh 3</label>

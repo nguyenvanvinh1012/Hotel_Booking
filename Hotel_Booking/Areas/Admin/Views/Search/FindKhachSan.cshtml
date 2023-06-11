@@ -35,10 +35,10 @@
             <td>@item.ThanhPho.Ten</td>
             <td>@item.LoaiKhachSan.Ten</td>
             <td>
-                <a href="@Url.Action("Edit", "AdminKhachSan",new {id = item.Id,  area = "Admin" })" title="Chỉnh sửa" class="btn btn-icon btn-hover btn-sm btn-rounded pull-right">
+                <a href="@Url.Action("Edit", "AdminKhachSan",new {id = item.Id,  area = "Admin" })" title="Edit" class="btn btn-icon btn-hover btn-sm btn-rounded pull-right">
                     <i class="anticon anticon-edit"></i>
                 </a>
-                <a href="@Url.Action("Delete", "AdminKhachSan",new {id = item.Id,  area = "Admin" })" title="Xóa" class="btn btn-icon btn-hover btn-sm btn-rounded">
+                <a href="@Url.Action("Delete", "AdminKhachSan",new {id = item.Id,  area = "Admin" })" title="Delete" class="btn btn-icon btn-hover btn-sm btn-rounded">
                     <i class="anticon anticon-delete"></i>
                 </a>
             </td>

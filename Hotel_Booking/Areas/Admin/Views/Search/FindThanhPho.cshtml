@@ -39,7 +39,52 @@
                 <a href="@Url.Action("Delete", "AdminThanhPho",new {id = item.Id,  area = "Admin" })" title="Xóa" class="btn btn-icon btn-hover btn-sm btn-rounded">
                     <i class="anticon anticon-delete"></i>
                 </a>
-            </td>
-        </tr>
-    }
-}
+                @if (Model != null)
+                {
+                    foreach (var item in Model)
+                    {
+                <tr>
+
+                    <td>
+                        @item.Id
+                    </td>
+                    <td>
+                        <div class="d-flex align-items-center">
+                            <img class="img-fluid rounded" src="@item.UrlHinhAnh" style="max-width: 60px" alt="">
+                            <h6 class="m-b-0 m-l-10">@item.Ten</h6>
+                        </div>
+                    </td>
+                    <td>@item.MoTa</td>
+                    <td>
+                        @if (item.Active == true)
+                        {
+                            <div class="d-flex align-items-center">
+                                <div class="badge badge-success badge-dot m-r-10"></div>
+                                <div>Active</div>
+                            </div>
+                        }
+                        else
+                        {
+                            <div class="d-flex align-items-center">
+                                <div class="badge badge-danger badge-dot m-r-10"></div>
+                                <div>Disable</div>
+                            </div>
+                        }
+
+                    <td>
+                    <td>
+                        <a href="@Url.Action("Edit", "AdminThanhPho",new {id = item.Id,  area = "Admin" })" title="Edit" class="btn btn-icon btn-hover btn-sm btn-rounded pull-right">
+                            <i class="anticon anticon-edit"></i>
+                        </a>
+                        <a href="@Url.Action("Delete", "AdminThanhPho",new {id = item.Id,  area = "Admin" })" title="Delete" class="btn btn-icon btn-hover btn-sm btn-rounded">
+                            <i class="anticon anticon-delete"></i>
+                        </a>
+                    </td>
+                </tr>
+            }
+        }
+
+                </td>
+                </tr>
+            }
+        }

@@ -21,7 +21,7 @@
                     <span class="icon-holder">
                         <i class="anticon anticon-schedule"></i>
                     </span>
-                    <span class="title">Quản lý đặt phòng</span>
+                    <span class="title">Check-In/Check-Out</span>
                     <span class="arrow">
                         <i class="arrow-icon"></i>
                     </span>
@@ -34,7 +34,7 @@
                     <span class="icon-holder">
                         <i class='bx bx-buildings'></i>
                     </span>
-                    <span class="title">Quản lý thành phố</span>
+                    <span class="title">City Manager</span>
                     <span class="arrow">
                         <i class="arrow-icon"></i>
                     </span>
@@ -42,28 +42,28 @@
             </li>
 
             @*Quản lí khách sạn*@
-        <li class="nav-item dropdown">
-            <a class="dropdown-toggle" href="javascript:void(0);">
-                <span class="icon-holder">
-                    <i class="anticon anticon-shop"></i>
-                </span>
-                <span class="title">Quản lý khách sạn</span>
-                <span class="arrow">
-                    <i class="arrow-icon"></i>
-                </span>
-            </a>
-            <ul class="dropdown-menu">
-                <li>
-                    @Html.ActionLink("Quản lí loại khách sạn", "Index", "AdminLoaiKhachSan", new { area = "Admin" }, null)
-                </li>
-                <li>
-                    @Html.ActionLink("Quản lí khách sạn", "Index", "AdminKhachSan", new { area = "Admin" }, null)
-                </li>
-                <li>
-                    @Html.ActionLink("Quản lí phòng", "Index", "AdminPhong", new { area = "Admin" }, null)
-                </li>
-            </ul>
-        </li>
+            <li class="nav-item dropdown">
+                <a class="dropdown-toggle" href="javascript:void(0);">
+                    <span class="icon-holder">
+                        <i class="anticon anticon-shop"></i>
+                    </span>
+                    <span class="title">Hotel Manager</span>
+                    <span class="arrow">
+                        <i class="arrow-icon"></i>
+                    </span>
+                </a>
+                <ul class="dropdown-menu">
+                    <li>
+                        @Html.ActionLink("Hotel Type Manager", "Index", "AdminLoaiKhachSan", new { area = "Admin" }, null)
+                    </li>
+                    <li>
+                        @Html.ActionLink("Hotel Manager", "Index", "AdminKhachSan", new { area = "Admin" }, null)
+                    </li>
+                    <li>
+                        @Html.ActionLink("Room Manager", "Index", "AdminPhong", new { area = "Admin" }, null)
+                    </li>
+                </ul>
+            </li>
 
             @*Quản lí hệ thống*@
             <li class="nav-item dropdown">
@@ -71,17 +71,17 @@
                     <span class="icon-holder">
                         <i class="anticon anticon-setting"></i>
                     </span>
-                    <span class="title">Quản lí hệ thống</span>
+                    <span class="title">Management system</span>
                     <span class="arrow">
                         <i class="arrow-icon"></i>
                     </span>
                 </a>
                 <ul class="dropdown-menu">
                     <li>
-                        @Html.ActionLink("Quản lí tài khoản", "Index", "AdminTaiKhoan", new { area = "Admin" }, null)
+                        @Html.ActionLink("Account Manager", "Index", "AdminTaiKhoan", new { area = "Admin" }, null)
                     </li>
                     <li>
-                        @Html.ActionLink("Quản lí quyền truy cập", "Index", "AdminQuyenTruyCap", new { area = "Admin" }, null)
+                        @Html.ActionLink("Role Manager", "Index", "AdminQuyenTruyCap", new { area = "Admin" }, null)
                     </li>
                 </ul>
             </li>

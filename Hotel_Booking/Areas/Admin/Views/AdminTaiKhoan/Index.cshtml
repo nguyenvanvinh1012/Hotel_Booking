@@ -10,8 +10,8 @@
 <div class="page-header">
     <div class="header-sub-title">
         <nav class="breadcrumb breadcrumb-dash">
-            <a href="@Url.Action("Index", "Home",new { area = "Admin" })" class="breadcrumb-item"><i class="anticon anticon-home m-r-5"></i>Trang chủ</a>
-            <span class="breadcrumb-item active">Danh sách tài khoản</span>
+            <a href="@Url.Action("Index", "Home",new { area = "Admin" })" class="breadcrumb-item"><i class="anticon anticon-home m-r-5"></i>Home</a>
+            <span class="breadcrumb-item active">List of Account</span>
         </nav>
     </div>
 </div>
@@ -20,7 +20,7 @@
 
 <div class="row m-b-30">
     <div class="col-lg-8">
-        <a href="@Url.Action("Create", "AdminTaiKhoan",new { area = "Admin" })" class="btn btn-primary"><i class="anticon anticon-plus-circle m-r-5"></i><span>Thêm mới</span></a>
+        <a href="@Url.Action("Create", "AdminTaiKhoan",new { area = "Admin" })" class="btn btn-primary"><i class="anticon anticon-plus-circle m-r-5"></i><span>Add</span></a>
     </div>
     <div class="col-lg-4 ">
 
@@ -30,10 +30,9 @@
     <table class="table">
         <thead>
             <tr>
-                <th scope="col">Tên Tài Khoản</th>
-                @*<th scope="col">Mật khẩu</th>*@
-                <th scope="col">Họ Tên</th>
-                <th scope="col">Số điện thoại</th>
+                <th scope="col">Account Name</th>
+                <th scope="col">Full Name</th>
+                <th scope="col">Phone</th>
                 <th scope="col">Email</th>
                 <th scope="col">Active</th>
             </tr>
@@ -44,10 +43,10 @@
                 foreach (var item in Model)
                 {
                     <tr>
-                        <th scope="row">@item.TenTaiKhoan</th>                       
+                        <th scope="row">@item.TenTaiKhoan</th>
                         <td>@item.HoTen</td>
                         <td>@item.SoDienThoai</td>
-                        <td>@item.Email</td>                        
+                        <td>@item.Email</td>
                         <td>
                             @if (item.Active == true)
                             {
@@ -66,7 +65,7 @@
 
                         <td>
                         <td>
-                            <a href="@Url.Action("Disable", "AdminTaiKhoan",new {tk = item.TenTaiKhoan,  area = "Admin" })" title="Xóa" class="btn btn-icon btn-hover btn-sm btn-rounded">
+                            <a href="@Url.Action("Disable", "AdminTaiKhoan",new {tk = item.TenTaiKhoan,  area = "Admin" })" title="Disable" class="btn btn-icon btn-hover btn-sm btn-rounded">
                                 <i class="anticon anticon-delete"></i>
                             </a>
                         </td>
