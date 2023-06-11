@@ -1105,6 +1105,7 @@
     <Content Include="Content\Images\momo.png" />
     <Content Include="Content\Images\Resort.jpeg" />
     <Content Include="Content\Images\ThonDa.jpeg" />
+    <Content Include="Content\Images\user.png" />
     <Content Include="Content\Images\vietnam.png" />
     <Content Include="Content\PagedList.css" />
     <Content Include="Content\toastr.css" />
