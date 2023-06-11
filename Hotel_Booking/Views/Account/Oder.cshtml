@@ -60,19 +60,49 @@
                                                             <td><a class="account-order-id" href="javascript:void(0)">#@item.Id</a></td>
                                                             <td>@item.Phong.Ten</td>
 
-                                                            <td>@string.Format(new CultureInfo("vi-VN"), "{0:dddd}, {0:dd} tháng {0:MM}, {0:yyyy}", item.NgayDen)</td>
-                                                            <td>@string.Format(new CultureInfo("vi-VN"), "{0:dddd}, {0:dd} tháng {0:MM}, {0:yyyy}", item.NgayDen) - @string.Format(new CultureInfo("vi-VN"), "{0:dddd}, {0:dd} tháng {0:MM}, {0:yyyy}", item.NgayTra)</td>
+                                                            <td>@string.Format(new CultureInfo("en-US"), "{0:dddd}, {0:dd}-{0:MM}, {0:yyyy}", item.NgayDen)</td>
+                                                            <td>@string.Format(new CultureInfo("en-US"), "{0:dddd}, {0:dd}-{0:MM}, {0:yyyy}", item.NgayDen) -> @string.Format(new CultureInfo("en-US"), "{0:dddd}, {0:dd}-{0:MM}, {0:yyyy}", item.NgayTra)</td>
                                                             <td>@item.ThanhTien.Value.ToString("#,##0") VNĐ</td>
                                                             <td>
                                                                 @if (@item.NgayDen >= @DateTime.Now && item.isPaid == false)
                                                                 {
-                                                                    <a href="@Url.Action("CancelRoom", "Account", new {id = item.Id})">
+                                                                    //href = "@Url.Action("CancelRoom", "Account", new {id = item.Id})"
+                                                                    <a href="#" data-toggle="modal" data-target="#cancel">
                                                                         <i class="fa fa-trash-alt text-danger"
                                                                            aria-hidden="true"></i>
                                                                     </a>
+                                                                    @*Modal*@
+                                                                    <div class="modal fade" id="cancel" tabindex="-1" role="dialog" aria-hidden="true">
+                                                                        <div class="modal-dialog modal-dialog-centered" role="document">
+                                                                            <div class="modal-content">
+                                                                                <div class="modal-header bordernone p-0">
+                                                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                                        <span aria-hidden="true">&times;</span>
+                                                                                    </button>
+                                                                                </div>
+                                                                                <div class="modal-body p-0">
+                                                                                    <div class="login-content p-4 text-center">
+                                                                                        <div class="login-title section-border">
+                                                                                            <h3 style="text-align:left" class="pink">Are you sure?</h3>
+                                                                                        </div>
+                                                                                        <div class="login-form">
+                                                                                            <form>
+                                                                                                <div style="height: 60px; padding: 16px; border-top: 1px solid #dee2e6;border-bottom: 1px solid #dee2e6; " class="form-group">
+                                                                                                    <p>Modal body text goes here.</p>
+                                                                                                </div>
+                                                                                            </form>
+                                                                                            <div style="text-align:right" class="form-btn">
+                                                                                                <a style="border-radius: 5px; background-color: #F56961" href="" class="nir-btn" data-dismiss="modal" aria-label="Close">Close</a>
+                                                                                                <a style="border-radius: 5px" href = "@Url.Action("CancelRoom", "Account", new {id = item.Id})" class="nir-btn">Yes</a>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
                                                                 }
                                                             </td>
-
                                                         </tr>
                                                     }
                                                 </tbody>
@@ -100,6 +130,10 @@
     <script type="text/javascript">
         $(document).ready(function () {
             var message = $('#Message').text();
+            toastr.options = {
+                "closeButton": true,
+                "progressBar": true,
+            }
             if (message !== '') {
                 toastr.success(message);
             }
