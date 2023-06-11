@@ -80,10 +80,6 @@
     <script type="text/javascript">
         $(document).ready(function () {
             var message = $('#Message').text();
-            toastr.options = {
-                "closeButton": true,
-                "progressBar": true,
-            }
             if (message !== '') {
                 toastr.success(message);
             }
@@ -91,10 +87,6 @@
 
         $(document).ready(function () {
             var messageErr = $('#MessageErr').text();
-            toastr.options = {
-                "closeButton": true,
-                "progressBar": true,
-            }
             if (messageErr !== '') {
                 toastr.error(messageErr);
             }

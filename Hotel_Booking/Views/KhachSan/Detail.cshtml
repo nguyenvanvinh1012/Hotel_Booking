@@ -227,19 +227,8 @@
                         <div class="row d-flex align-items-center">
                             <div class="col-lg-4 col-md-4">
                                 <div class="review-box bg-pink text-center pb-4 pt-4">
-                                    <h2 class="mb-1 white"><span>@ViewBag.AverageRating.ToString("0.00")</span>/5</h2>
-                                    @if (@ViewBag.AverageRating >= 1 && @ViewBag.AverageRating <= 2)
-                                    {
-                                        <h4 class="white mb-1">"Bad"</h4>
-                                    }
-                                    @if (@ViewBag.AverageRating >= 3 && @ViewBag.AverageRating <= 4)
-                                    {
-                                        <h4 class="white mb-1">"Good"</h4>
-                                    }
-                                    @if (@ViewBag.AverageRating == 5)
-                                    {
-                                        <h4 class="white mb-1">"Excellent"</h4>
-                                    }
+                                    <h2 class="mb-1 white"><span>@ViewBag.AverageRating.ToString("0.00")</span>/5</h2>  
+                                    <h4 class="white mb-1">"Feel so much worst than thinking"</h4>
                                     <p class="mb-0 white font-italic">From @ViewBag.CountRV Reviews</p>
                                 </div>
                             </div>
